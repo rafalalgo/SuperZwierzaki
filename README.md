@@ -32,10 +32,10 @@ Every card has two or three features:
 - Class
 - Function (only functional)
 
-# 4.1 Playing a card:
+# 4.1. Playing a card:
 After every turn the class and the colour are given (might be empty, might more than one). If player decide to play a card, he must play a one with the same colour or class as given. Furthermore, player can play any number of exactly the same cards as he wants.(see 4.3) After player plays a card, class and colour is changed to the ones of a card he has played.
 
-# 4.2 Functional cards:
+# 4.2. Functional cards:
 
 **“Czerwone karty” (Red)**
 - Adds two red points.
@@ -91,7 +91,7 @@ After every turn the class and the colour are given (might be empty, might more 
 - Can be played to reject "9 kolorów" power. (Before player gives all cards except one).
 - Can be played to prevent someone from winning, i.e. If player 1 plays last cars, player 2 can play (Cyr), player 1 has to draw a card.
 
-# 4.3 Combinations:
+# 4.3. Combinations:
 **Two exactly the same cards**
 - Player discards one card.
 
@@ -107,20 +107,20 @@ After every turn the class and the colour are given (might be empty, might more 
 **Two (War)**
 - Player must choose σ ∈ S(N) and two special players. One of special player chosen by the player, gives randomly chosen half of his cards to another special player. Then players switch their hands with respect to natural bijection between σ and 1, ..., N.
 
-# 5 Another special rules:
+# 5. Another special rules:
 
-# 5.1 Duel:
+# 5.1. Duel:
 If card causes a duel, duel starts, number of duel points is set on 1. Every player has two possibilities:
 - Fold.
 - Play a card.
 
 If player folds, he instantly loses a duel. Otherwise, he can play only a card, which would change number of duel points. Players do their moves with respect to normal queue, starting with the one who caused a duel, as long as amount of duel points is nonzero. If every players except one fold and number of duel points is nonzero, than the player who has not had fold is a winner
 
-# 5.2 9 kolorów:
+# 5.2. 9 kolorów:
 If player has a card in every nine colours (Here we assume set of (All)’s colours is empty) he can play that nine cards in one turn. First played card has to be in current given colour or class. Next he chose another player and gives him all his cards except one.
 
-# 6 Codziennie niskie ceny:
+# 6. Codziennie niskie ceny:
 If after some action player has only one card, he has to say: **“Codziennie niskie ceny”** . Otherwise, he draws two cards.
 
-# 7 End of the game:
+# 7. End of the game:
 If after his turn a player has no cards, and ten second pass, he wins.
