@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Objects;
+
 /**
  * Created by Rafal Byczek on 18.12.2017.
  */
@@ -64,5 +66,22 @@ public class Card {
 
     public void setFunction(Function function) {
         this.function = function;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return Objects.equals(number, card.number) &&
+                Objects.equals(quantity, card.quantity) &&
+                Objects.equals(name, card.name) &&
+                colour == card.colour &&
+                function == card.function;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number, quantity, name, colour, function);
     }
 }
