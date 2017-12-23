@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Player {
@@ -21,28 +22,28 @@ public class Player {
     public void getHand() {
         //jakieś wyświetlenie ręki
     }
-    
+
     public Integer whatMove() {
+        Integer what_move = null;
         //gracz wpisuje/losuje ruch, który chce wykonać
         return what_move;
     }
-    
+
     public Card ordinaryMove() {
+        Integer card_from_the_hand = null;
         //gracz wybiera kartę
         return hand.get(card_from_the_hand);
     }
-    
-    public void moveAllowed(Card card_allowed){
+
+    public void moveAllowed(Card card_allowed) {
         hand.remove(card_allowed);
     }
-    
+
     public void multipleMove() {
         //jak chce zagrać więcej kart, tzn kombinację
     }
-    
+
     public void draw(Card card) {
         hand.add(card);
     }
-
-    
 }

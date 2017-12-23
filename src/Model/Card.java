@@ -11,20 +11,32 @@ public class Card {
     private Integer quantity;
     private String name;
     private Colour colour;
+    private Model.Class cls;
     private Function function;
 
-    public Card(Integer number, String name, Colour colour) {
+    public Card(Integer number, String name, Colour colour, Class cls) {
 
         this.number = number;
         this.name = name;
         this.colour = colour;
+        this.cls = cls;
     }
 
-    public Card(Integer number, Integer quantity, String name, Colour colour, Function function) {
+    public Class getCls() {
+        return cls;
+    }
+
+    public void setCls(Class cls) {
+        this.cls = cls;
+    }
+
+    public Card(Integer number, Integer quantity, String name, Colour colour, Class cls, Function function) {
         this.number = number;
         this.quantity = quantity;
+
         this.name = name;
         this.colour = colour;
+        this.cls = cls;
         this.function = function;
     }
 
