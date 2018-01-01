@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="125cc3da-a8a1-416d-9ce9-e701cf086c79" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/sqlite_jdbc_3_15_1.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Tests/SetOfCardsTest.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/SuperZwierzaki.iml" afterPath="$PROJECT_DIR$/SuperZwierzaki.iml" />
       <change beforePath="$PROJECT_DIR$/src/Database/SetOfCards.java" afterPath="$PROJECT_DIR$/src/Database/SetOfCards.java" />
-      <change beforePath="$PROJECT_DIR$/src/Database/sqlite-jdbc-3.15.1.jar" afterPath="$PROJECT_DIR$/sqlite-jdbc-3.15.1.jar" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Card.java" afterPath="$PROJECT_DIR$/src/Model/Card.java" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Colour.java" afterPath="$PROJECT_DIR$/src/Model/Colour.java" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Supervisor.java" afterPath="$PROJECT_DIR$/src/Model/Supervisor.java" />
+      <change beforePath="$PROJECT_DIR$/src/Database/cards.txt" afterPath="$PROJECT_DIR$/src/Database/cards.txt" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Function.java" afterPath="$PROJECT_DIR$/src/Model/Function.java" />
+      <change beforePath="$PROJECT_DIR$/src/Tests/SetOfCardsTest.java" afterPath="$PROJECT_DIR$/src/Tests/SetOfCardsTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -70,8 +66,8 @@
       <file leaf-file-name="Supervisor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Model/Supervisor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1">
-              <caret line="419" column="5" lean-forward="false" selection-start-line="419" selection-start-column="5" selection-end-line="419" selection-end-column="5" />
+            <state relative-caret-position="1071">
+              <caret line="71" column="0" lean-forward="true" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#9075#9076#0" expanded="true" />
@@ -101,27 +97,37 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SetOfCards.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SetOfCards.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Database/SetOfCards.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="105" column="54" lean-forward="false" selection-start-line="105" selection-start-column="54" selection-end-line="105" selection-end-column="54" />
+            <state relative-caret-position="356">
+              <caret line="51" column="51" lean-forward="true" selection-start-line="51" selection-start-column="51" selection-end-line="51" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4150#4151#0" expanded="true" />
-                <element signature="e#4177#4178#0" expanded="true" />
-                <element signature="e#4244#4245#0" expanded="true" />
-                <element signature="e#4271#4272#0" expanded="true" />
-                <element signature="e#4350#4351#0" expanded="true" />
-                <element signature="e#4377#4378#0" expanded="true" />
-                <marker date="1514846229903" expanded="true" signature="1102:1137" ph="CREATE TABLE... IF" />
-                <marker date="1514846229903" expanded="true" signature="1102:1263" ph="CREATE TABLE... IF" />
-                <marker date="1514846229903" expanded="true" signature="1731:1762" ph="INSERT INTO animals... " />
-                <marker date="1514846229903" expanded="true" signature="1731:1771" ph="INSERT INTO animals... " />
-                <marker date="1514846229903" expanded="true" signature="1731:1775" ph="INSERT INTO animals... " />
-                <marker date="1514846229903" expanded="true" signature="2451:2470" ph="DELETE FROM animals... " />
-                <marker date="1514846229903" expanded="true" signature="3165:3186" ph="SELECT * FRO... animals" />
+                <element signature="e#12670#12671#0" expanded="true" />
+                <element signature="e#12697#12698#0" expanded="true" />
+                <element signature="e#12764#12765#0" expanded="true" />
+                <element signature="e#12791#12792#0" expanded="true" />
+                <element signature="e#12870#12871#0" expanded="true" />
+                <element signature="e#12897#12898#0" expanded="true" />
+                <marker date="1514848896448" expanded="true" signature="1102:1137" ph="CREATE TABLE... IF" />
+                <marker date="1514848896448" expanded="true" signature="1102:1263" ph="CREATE TABLE... IF" />
+                <marker date="1514848896448" expanded="true" signature="10251:10282" ph="INSERT INTO animals... " />
+                <marker date="1514848896448" expanded="true" signature="10251:10291" ph="INSERT INTO animals... " />
+                <marker date="1514848896448" expanded="true" signature="10251:10295" ph="INSERT INTO animals... " />
+                <marker date="1514848896448" expanded="true" signature="10971:10990" ph="DELETE FROM animals... " />
+                <marker date="1514848896448" expanded="true" signature="11685:11706" ph="SELECT * FRO... animals" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Function.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Model/Function.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="8" lean-forward="true" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -136,11 +142,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SetOfCardsTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SetOfCardsTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Tests/SetOfCardsTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="20" column="9" lean-forward="true" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+            <state relative-caret-position="255">
+              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -178,7 +184,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/Model/Main.java" />
         <option value="$PROJECT_DIR$/src/Model/Class.java" />
-        <option value="$PROJECT_DIR$/src/Model/Function.java" />
         <option value="$PROJECT_DIR$/src/Model/Database.java" />
         <option value="$PROJECT_DIR$/src/Model/Player.java" />
         <option value="$PROJECT_DIR$/src/Model/SetOfCards.java" />
@@ -187,8 +192,9 @@
         <option value="$PROJECT_DIR$/src/Database/SetOfCardsTest.java" />
         <option value="$PROJECT_DIR$/src/Model/Colour.java" />
         <option value="$PROJECT_DIR$/src/Model/Card.java" />
-        <option value="$PROJECT_DIR$/src/Database/SetOfCards.java" />
         <option value="$PROJECT_DIR$/src/Tests/SetOfCardsTest.java" />
+        <option value="$PROJECT_DIR$/src/Model/Function.java" />
+        <option value="$PROJECT_DIR$/src/Database/SetOfCards.java" />
       </list>
     </option>
   </component>
@@ -342,12 +348,12 @@
       <workItem from="1513627366171" duration="3168000" />
       <workItem from="1514062452506" duration="882000" />
       <workItem from="1514839511972" duration="401000" />
-      <workItem from="1514840039606" duration="6083000" />
+      <workItem from="1514840039606" duration="8649000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10534000" />
+    <option name="totallyTimeSpent" value="13100000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -362,11 +368,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32888147" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16868381" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2647504" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -661,32 +667,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/Main.java" />
     <entry file="file://$PROJECT_DIR$/src/Model/Class.java" />
-    <entry file="file://$PROJECT_DIR$/src/Model/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#529#530#0" expanded="true" />
-            <element signature="e#566#567#0" expanded="true" />
-            <element signature="e#627#628#0" expanded="true" />
-            <element signature="e#679#680#0" expanded="true" />
-            <element signature="e#713#714#0" expanded="true" />
-            <element signature="e#742#743#0" expanded="true" />
-            <element signature="e#787#788#0" expanded="true" />
-            <element signature="e#823#824#0" expanded="true" />
-            <element signature="e#859#860#0" expanded="true" />
-            <element signature="e#891#892#0" expanded="true" />
-            <element signature="e#941#942#0" expanded="true" />
-            <element signature="e#983#984#0" expanded="true" />
-            <element signature="e#2872#2873#0" expanded="true" />
-            <element signature="e#2913#2914#0" expanded="true" />
-            <element signature="e#2957#2958#0" expanded="true" />
-            <element signature="e#2995#2996#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/net/URLClassLoader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
@@ -719,14 +699,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Type.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="4" lean-forward="true" selection-start-line="7" selection-start-column="4" selection-end-line="26" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/Card.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -742,41 +714,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Function.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#529#530#0" expanded="true" />
+            <element signature="e#566#567#0" expanded="true" />
+            <element signature="e#627#628#0" expanded="true" />
+            <element signature="e#679#680#0" expanded="true" />
+            <element signature="e#713#714#0" expanded="true" />
+            <element signature="e#742#743#0" expanded="true" />
+            <element signature="e#787#788#0" expanded="true" />
+            <element signature="e#823#824#0" expanded="true" />
+            <element signature="e#859#860#0" expanded="true" />
+            <element signature="e#891#892#0" expanded="true" />
+            <element signature="e#941#942#0" expanded="true" />
+            <element signature="e#983#984#0" expanded="true" />
+            <element signature="e#2872#2873#0" expanded="true" />
+            <element signature="e#2913#2914#0" expanded="true" />
+            <element signature="e#2957#2958#0" expanded="true" />
+            <element signature="e#2995#2996#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Type.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="7" column="4" lean-forward="true" selection-start-line="7" selection-start-column="4" selection-end-line="20" selection-end-column="7" />
+          <caret line="7" column="4" lean-forward="true" selection-start-line="7" selection-start-column="4" selection-end-line="26" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Database/SetOfCards.java">
+    <entry file="file://$PROJECT_DIR$/src/Tests/SetOfCardsTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="105" column="54" lean-forward="false" selection-start-line="105" selection-start-column="54" selection-end-line="105" selection-end-column="54" />
+        <state relative-caret-position="255">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4150#4151#0" expanded="true" />
-            <element signature="e#4177#4178#0" expanded="true" />
-            <element signature="e#4244#4245#0" expanded="true" />
-            <element signature="e#4271#4272#0" expanded="true" />
-            <element signature="e#4350#4351#0" expanded="true" />
-            <element signature="e#4377#4378#0" expanded="true" />
-            <marker date="1514846229903" expanded="true" signature="1102:1137" ph="CREATE TABLE... IF" />
-            <marker date="1514846229903" expanded="true" signature="1102:1263" ph="CREATE TABLE... IF" />
-            <marker date="1514846229903" expanded="true" signature="1731:1762" ph="INSERT INTO animals... " />
-            <marker date="1514846229903" expanded="true" signature="1731:1771" ph="INSERT INTO animals... " />
-            <marker date="1514846229903" expanded="true" signature="1731:1775" ph="INSERT INTO animals... " />
-            <marker date="1514846229903" expanded="true" signature="2451:2470" ph="DELETE FROM animals... " />
-            <marker date="1514846229903" expanded="true" signature="3165:3186" ph="SELECT * FRO... animals" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Function.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="8" lean-forward="true" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/Supervisor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1">
-          <caret line="419" column="5" lean-forward="false" selection-start-line="419" selection-start-column="5" selection-end-line="419" selection-end-column="5" />
+        <state relative-caret-position="1071">
+          <caret line="71" column="0" lean-forward="true" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#9075#9076#0" expanded="true" />
@@ -805,12 +798,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tests/SetOfCardsTest.java">
+    <entry file="file://$PROJECT_DIR$/src/Database/SetOfCards.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="20" column="9" lean-forward="true" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+        <state relative-caret-position="356">
+          <caret line="51" column="51" lean-forward="true" selection-start-line="51" selection-start-column="51" selection-end-line="51" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#12670#12671#0" expanded="true" />
+            <element signature="e#12697#12698#0" expanded="true" />
+            <element signature="e#12764#12765#0" expanded="true" />
+            <element signature="e#12791#12792#0" expanded="true" />
+            <element signature="e#12870#12871#0" expanded="true" />
+            <element signature="e#12897#12898#0" expanded="true" />
+            <marker date="1514848896448" expanded="true" signature="1102:1137" ph="CREATE TABLE... IF" />
+            <marker date="1514848896448" expanded="true" signature="1102:1263" ph="CREATE TABLE... IF" />
+            <marker date="1514848896448" expanded="true" signature="10251:10282" ph="INSERT INTO animals... " />
+            <marker date="1514848896448" expanded="true" signature="10251:10291" ph="INSERT INTO animals... " />
+            <marker date="1514848896448" expanded="true" signature="10251:10295" ph="INSERT INTO animals... " />
+            <marker date="1514848896448" expanded="true" signature="10971:10990" ph="DELETE FROM animals... " />
+            <marker date="1514848896448" expanded="true" signature="11685:11706" ph="SELECT * FRO... animals" />
           </folding>
         </state>
       </provider>

@@ -18,5 +18,6 @@ public enum Function {
     Orc,
     Pol,
     Dem,
-    All
+    All,
+    None
 }

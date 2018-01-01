@@ -14,7 +14,6 @@ public class SetOfCardsTest {
     public static void main(String[] args) {
         SetOfCards setOfCards = new SetOfCards();
 
-        setOfCards.insertCard(1, 10, "A", "V", "bir", "War");
         List<Card> list = setOfCards.getAllCards();
         for(Card card : list) {
             System.out.println(card);

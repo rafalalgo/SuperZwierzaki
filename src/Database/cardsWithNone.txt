@@ -36,82 +36,82 @@
 88,5,Cykada Cystosoma Saundersii,Y,ins,None
 90,5,Świerszcz Arachnoscelis Arachnoides,Y,ins,None
 93,5,Wioślak,Y,ins,Mch
-96,5,Krewetka Pistoletowa,Y,ins,
-63,2,Tenrekowiec Pręgowany,O,hed,
-1,5,Mamba Czarna,LB,rep,
+96,5,Krewetka Pistoletowa,Y,ins,None
+63,2,Tenrekowiec Pręgowany,O,hed,None
+1,5,Mamba Czarna,LB,rep,None
 25,5,Grzechotnik Preriowy,R,rep,Red
 30,5,Efa Piaskowa,R,rep,Red
 32,5,Krokodyl Różańcowy,R,rep,Red
-43,5,Aligator Amerykański,DB,rep,
+43,5,Aligator Amerykański,DB,rep,None
 53,5,Waran z Komodo,V,rep,War
-74,5,Żmija Gabońska,DG,rep,
-80,5,Toke,DG,rep,
-82,5,Żółw Sępi,DG,rep,
+74,5,Żmija Gabońska,DG,rep,None
+80,5,Toke,DG,rep,None
+82,5,Żółw Sępi,DG,rep,None
 29,5,Tau,R,fis,Red
-21,5,Żaba Chórzystka,LG,fro,
+21,5,Żaba Chórzystka,LG,fro,None
 27,5,Żaba Psedophryne Corroboree,R,fro,Red
 31,5,Drzewołaz Karłowaty,R,fro,Red
-39,5,Rzekotka Zielona,DB,fro,
-70,2,Żółwinka Podziemna,O,fro,
-81,5,Nosorożnica Nosata,DG,fro,
-91,5,Żaba Coqui,Y,fro,
-108,5,Chwytnica Czerwonooka,P,fro,
-42,5,Wydra Morska,DB,sml,
-48,5,Bóbr Kanadyjski,DB,sml,
+39,5,Rzekotka Zielona,DB,fro,None
+70,2,Żółwinka Podziemna,O,fro,None
+81,5,Nosorożnica Nosata,DG,fro,None
+91,5,Żaba Coqui,Y,fro,None
+108,5,Chwytnica Czerwonooka,P,fro,None
+42,5,Wydra Morska,DB,sml,None
+48,5,Bóbr Kanadyjski,DB,sml,None
 37,5,Orangutan Borneański,DB,mky,Oth
 47,5,Szympans,DB,mky,Oth
-89,5,Siamang,Y,mky,
-98,5,Mandryl,P,mky,
-101,5,Goryl Nizinny,P,mky,
-67,2,Pancernik Dziewięciopaskowy,O,aml,
+89,5,Siamang,Y,mky,None
+98,5,Mandryl,P,mky,None
+101,5,Goryl Nizinny,P,mky,None
+67,2,Pancernik Dziewięciopaskowy,O,aml,None
 2,5,Gepard,LB,cat,Giv
 36,5,Likaon,R,cat,Red
-52,5,Tygrys Bengalski,V,cat,
-56,5,Wilk Europejski,V,cat,
-58,5,Hiena Centkowana,V,cat,
-76,5,Pantera Śnieżna,DG,cat,
-12,5,Guziec Zwyczajny,LB,pig,
-61,2,Babirussa,O,pig,
+52,5,Tygrys Bengalski,V,cat,None
+56,5,Wilk Europejski,V,cat,None
+58,5,Hiena Centkowana,V,cat,None
+76,5,Pantera Śnieżna,DG,cat,None
+12,5,Guziec Zwyczajny,LB,pig,None
+61,2,Babirussa,O,pig,None
 7,5,Antylopa Skoczek,LB,hor,Giv
-10,5,Gnu Pręgowane,LB,hor,
-20,5,Wielbłąd Dwugarbny,LG,hor,
-23,5,Antylopa Widłoroga,LG,hor,
+10,5,Gnu Pręgowane,LB,hor,None
+20,5,Wielbłąd Dwugarbny,LG,hor,None
+23,5,Antylopa Widłoroga,LG,hor,None
 99,5,Jeleń Kanadyjski,P,hor,Cch
-11,5,Ogoniak Duży,LB,bat,
-64,2,Rurkonos Żółtoplamy,O,bat,
+11,5,Ogoniak Duży,LB,bat,None
+64,2,Rurkonos Żółtoplamy,O,bat,None
 26,5,Lampart Morski,R,sea,Red
 51,5,Orka Oceaniczna,V,sea,Orc
-68,2,Narwal Jednozębny,O,sea,
-71,2,Słoń Morski Południowy,O,sea,
-92,5,Foka Wedela,Y,sea,
-95,5,Wieloryb Biskajski,Y,sea,
-3,5,Zając Szarak,LB,rod,
-40,5,Szczur Wędrowny,DB,rod,
-45,5,Pręgowiec,DB,rod,
-50,5,Diabeł Tasmański,V,rod,
-19,5,Koala,LG,tre,
+68,2,Narwal Jednozębny,O,sea,None
+71,2,Słoń Morski Południowy,O,sea,None
+92,5,Foka Wedela,Y,sea,None
+95,5,Wieloryb Biskajski,Y,sea,None
+3,5,Zając Szarak,LB,rod,None
+40,5,Szczur Wędrowny,DB,rod,None
+45,5,Pręgowiec,DB,rod,None
+50,5,Diabeł Tasmański,V,rod,None
+19,5,Koala,LG,tre,None
 28,5,Kukang Ciemnolicy,R,tre,Red
-65,2,Karłowaty Leniwiec Trójpalczasty,O,tre,
+65,2,Karłowaty Leniwiec Trójpalczasty,O,tre,None
 66,2,Nosacz Sundyjski,O,tre,Pol
-85,5,Wyjec Czarny,Y,tre,
-106,5,Lemu Kata,P,tre,
-49,5,Niedźwiedź Grizzly,V,bea,
-57,5,Niedźwiedź Polarny,V,bea,
+85,5,Wyjec Czarny,Y,tre,None
+106,5,Lemu Kata,P,tre,None
+49,5,Niedźwiedź Grizzly,V,bea,None
+57,5,Niedźwiedź Polarny,V,bea,None
 14,5,Ratel Miodożerny,LG,sml,Dem
 17,5,Mangusta Pręgowana,LG,sml,Dem
-54,5,Fossa Madagaskarska,V,sml,
-60,5,Rosomak,V,sml,
+54,5,Fossa Madagaskarska,V,sml,None
+60,5,Rosomak,V,sml,None
 4,4,Lew Afrykański,ALL,all,All
 13,4,Bawół Afrykański,ALL,all,All
 15,4,Nosorożec Czarny,ALL,all,All
 78,4,Lampart,ALL,all,All
 86,4,Słoń Afrykański,ALL,all,All
-109,5,Alpaka,LG,hor,
-110,5,Kangur Szary,LB,koo,
-111,5,Bielik Zwyczajny,V,bir,
-112,5,Panda Wielka,P,tre,
+109,5,Alpaka,LG,hor,None
+110,5,Kangur Szary,LB,koo,None
+111,5,Bielik Zwyczajny,V,bir,None
+112,5,Panda Wielka,P,tre,None
 113,5,Żarłacz Biały,R,sea,Red
-114,5,Lis Rudy,DG,sml,
-115,5,Koń Polski,Y,hor,
-116,5,Świnia Domowa,DB,pig,
-117,2,Mrówkojad Wielki,O,ant,
+114,5,Lis Rudy,DG,sml,None
+115,5,Koń Polski,Y,hor,None
+116,5,Świnia Domowa,DB,pig,None
+117,2,Mrówkojad Wielki,O,ant,None
