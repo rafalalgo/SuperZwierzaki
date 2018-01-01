@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -261,7 +262,7 @@ public class Supervisor {
 
     public Boolean checkIfOrdinaryAllowed(Card card) {
         return (card.getColour() == given_colour || card.getType() == given_type
-                || card.getColour() == ALL || card.getType() == Function.All);
+                || card.getColour() == ALL || card.getType() == Type.all);
     }
 
     public Boolean ordinaryMove(Player player) {
@@ -389,7 +390,7 @@ public class Supervisor {
 // special
 
     public void waranTransposition(Player player1, Player player2) {
-        private List<Card> aux;
+        List<Card> aux = new LinkedList<>();
 
         for (Integer i = 0; i < player2.getQuant_of_cards(); i++) {
             aux.add(player2.showACard(0));
