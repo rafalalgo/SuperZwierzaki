@@ -11,32 +11,32 @@ public class Card {
     private Integer quantity;
     private String name;
     private Colour colour;
-    private Model.Class cls;
+    private Type type;
     private Function function;
 
-    public Card(Integer number, String name, Colour colour, Class cls) {
+    public Card(Integer number, String name, Colour colour, Type type) {
 
         this.number = number;
         this.name = name;
         this.colour = colour;
-        this.cls = cls;
+        this.type = type;
     }
 
     public Class getCls() {
         return cls;
     }
 
-    public void setCls(Class cls) {
-        this.cls = cls;
+    public void setType(Type type) {
+        this.type = type;
     }
 
-    public Card(Integer number, Integer quantity, String name, Colour colour, Class cls, Function function) {
+    public Card(Integer number, Integer quantity, String name, Colour colour, Type type, Function function) {
         this.number = number;
         this.quantity = quantity;
 
         this.name = name;
         this.colour = colour;
-        this.cls = cls;
+        this.type = type;
         this.function = function;
     }
 
@@ -83,7 +83,7 @@ public class Card {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getType() != o.getType()) return false;
         Card card = (Card) o;
         return Objects.equals(number, card.number) &&
                 Objects.equals(quantity, card.quantity) &&
