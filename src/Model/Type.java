@@ -4,7 +4,7 @@ package Model;
  * Created by Rafal Byczek on 18.12.2017.
  */
 
-public enum Class {
+public enum Type {
     bir,
     hip,
     ins,
