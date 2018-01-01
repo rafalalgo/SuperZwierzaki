@@ -5,13 +5,14 @@ package Model;
  */
 
 public enum Colour {
-    LightBlue,
-    LightGreen,
-    Red,
-    DarkBlue,
-    Violet,
-    Orange,
-    DarkGreen,
-    Yellow,
-    Pink
+    LB,
+    LG,
+    R,
+    DB,
+    V,
+    O,
+    DG,
+    Y,
+    P,
+    ALL
 }

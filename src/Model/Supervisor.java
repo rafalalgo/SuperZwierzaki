@@ -262,7 +262,7 @@ public class Supervisor {
 
     public Boolean checkIfOrdinaryAllowed(Card card) {
         return (card.getColour() == given_colour || card.getType() == given_type
-                || card.getColour() == ALL || card.getType() == Type.all);
+                || card.getColour() == Colour.ALL || card.getType() == Type.all);
     }
 
     public Boolean ordinaryMove(Player player) {
