@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class Card {
     private Integer number;
-    private Integer quantity;
+    //private Integer quantity;
     private String name;
     private Colour colour;
     private Type type;
@@ -30,9 +30,9 @@ public class Card {
         this.type = type;
     }
 
-    public Card(Integer number, Integer quantity, String name, Colour colour, Type type, Function function) {
+    public Card(Integer number, String name, Colour colour, Type type, Function function) {
         this.number = number;
-        this.quantity = quantity;
+        //this.quantity = quantity;
         this.name = name;
         this.colour = colour;
         this.type = type;
@@ -45,14 +45,6 @@ public class Card {
 
     public void setNumber(Integer number) {
         this.number = number;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
     }
 
     public String getName() {
@@ -85,7 +77,6 @@ public class Card {
         if (o == null || getClass() != o.getClass()) return false;
         Card card = (Card) o;
         return Objects.equals(number, card.number) &&
-                Objects.equals(quantity, card.quantity) &&
                 Objects.equals(name, card.name) &&
                 colour == card.colour &&
                 type == card.type &&
@@ -94,6 +85,17 @@ public class Card {
 
     @Override
     public int hashCode() {
-        return Objects.hash(number, quantity, name, colour, function);
+        return Objects.hash(number, name, colour, function);
+    }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "number=" + number +
+                ", name='" + name + '\'' +
+                ", colour=" + colour +
+                ", type=" + type +
+                ", function=" + function +
+                '}';
     }
 }

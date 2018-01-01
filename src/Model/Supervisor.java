@@ -151,9 +151,9 @@ public class Supervisor {
         //zakładamy, że nie zdaży się opcja dwóch rodzajów punktów niezerowych (nie powinna xd)
 
         Integer what_move = player.whatForcedMove();
-        Integer what_kind;
+        Integer what_kind = null;
         if (what_move == 2) {
-            what_kind = player.whatKindOfForcedMove2();
+            //what_kind = player.whatKindOfForcedMove2();
         }
 
         if (this.red != 0) {
@@ -193,9 +193,9 @@ public class Supervisor {
                 return true;
             } else if (what_move == 2) {
                 if (what_kind == 1) {
-                    return this.ordinaryDemandedFunction(player, Function.Green);
+                    //return this.ordinaryDemandedFunction(player, Function.Green);
                 } else if (what_kind == 2) {
-                    return this.multipleDemandedFunction(player, Function.Green);
+                    //return this.multipleDemandedFunction(player, Function.Green);
                 }
             }
         } else if (this.demand != 0) {
@@ -220,6 +220,7 @@ public class Supervisor {
                 this.resetDemand();
             }
         }
+        return false;
     }
 
     public Boolean duelMove(Player player, Function function) {
@@ -256,6 +257,7 @@ public class Supervisor {
                 return false;
             }
         }
+        return false;
     }
 
     // ordinary
@@ -421,7 +423,7 @@ public class Supervisor {
         giver.shuffleHand();
         for (Integer i = 0; i < quant_given; i++) {
             receiver.draw(giver.showACard(0));
-            giver.moveAllowed(giver.showACard(0));
+            //giver.moveAllowed(giver.showACard(0));
         }
     }
 
