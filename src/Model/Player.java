@@ -1,8 +1,11 @@
 package Model;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Collections;
+
+/**
+ * Created by Jędrzej Hodor on 01.01.2018.
+ */
 
 public class Player {
     private Integer number;
@@ -10,12 +13,20 @@ public class Player {
     private Integer quant_of_cards;
     private Boolean if_folded = false;
 
-//setting
+    //setting
 
     public Player(Integer number, Integer quant_of_cards, Boolean if_folded) {
         this.number = number;
         this.quant_of_cards = quant_of_cards;
         this.if_folded = if_folded;
+    }
+
+    public Integer getQuant_of_cards() {
+        return quant_of_cards;
+    }
+
+    public void setQuant_of_cards(Integer quant_of_cards) {
+        this.quant_of_cards = quant_of_cards;
     }
 
     public Integer getNumber() {
@@ -25,7 +36,7 @@ public class Player {
     public void setNumber(Integer number) {
         this.number = number;
     }
-    
+
     public Boolean getIfFolded() {
         return if_folded;
     }
@@ -37,7 +48,7 @@ public class Player {
     public void getHand() {
         //jakieś wyświetlenie ręki
     }
-  
+
 //moves
 
     public Integer whatMove() {
@@ -71,14 +82,14 @@ public class Player {
         // gracz wybiera liczbę kart
         return how_many;
     }
-    
+
     public void playFewCards(Integer how_many, Card card) {
-        for(Integer i = 0; i < how_many; i++){
-          hand.remove(card);
-          quant_of_cards -= 1;
+        for (Integer i = 0; i < how_many; i++) {
+            hand.remove(card);
+            quant_of_cards -= 1;
         }
     }
-    
+
     public Integer whatForcedMove() {
         Integer what_move = null;
         // Gracz wpisuje ruch.
@@ -87,7 +98,7 @@ public class Player {
         // 3 - inny - dla red wielka 5, dla demand zagranie rządanej karty.
         return what_move;
     }
-    
+
     public Integer whatKindOfForcedMove() {
         Integer what_kind = null;
         // Gracz wpisuje ruch.
@@ -104,7 +115,7 @@ public class Player {
         // 3 - Wielka 5 na Red.
         return what_move;
     }
-    
+
 //special
 
     public void shuffleHand() {
@@ -120,9 +131,8 @@ public class Player {
         // gracz wybiera kartę
         return hand.get(card_from_the_hand);
     }
-    
-    
-    
+
+
 }
 
 

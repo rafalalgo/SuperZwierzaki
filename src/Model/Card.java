@@ -22,8 +22,8 @@ public class Card {
         this.type = type;
     }
 
-    public Class getCls() {
-        return cls;
+    public Type getType() {
+        return this.type;
     }
 
     public void setType(Type type) {
@@ -83,12 +83,13 @@ public class Card {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getType() != o.getType()) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Card card = (Card) o;
         return Objects.equals(number, card.number) &&
                 Objects.equals(quantity, card.quantity) &&
                 Objects.equals(name, card.name) &&
                 colour == card.colour &&
+                type == card.type &&
                 function == card.function;
     }
 
