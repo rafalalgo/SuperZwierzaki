@@ -15,12 +15,12 @@ public class Card {
     private Function function;
 
     public Card(Integer number, String name, Colour colour, Type type) {
-
         this.number = number;
         this.name = name;
         this.colour = colour;
         this.type = type;
     }
+
 
     public Type getType() {
         return this.type;
@@ -33,7 +33,6 @@ public class Card {
     public Card(Integer number, Integer quantity, String name, Colour colour, Type type, Function function) {
         this.number = number;
         this.quantity = quantity;
-
         this.name = name;
         this.colour = colour;
         this.type = type;

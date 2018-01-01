@@ -1,0 +1,117 @@
+﻿Number,Quantity,Name,Colour,Class,Function
+5,5,Sokół Wędrowny,LB,bir,
+8,5,Igłosternik Białogardły,LB,bir,
+16,5,Pingwin Cesarski,LG,bir,
+18,5,Szlamnik Zwyczajny,LG,bir,
+24,5,Dzięcioł Czarny,LG,bir,Dzi
+33,5,Kazuar Hełmiasty,R,bir,Kaz
+38,5,Kłowacz Kaktusowy,DB,bir,
+41,5,Wrona Brodata,DB,bir,
+44,5,Ścierwnik,DB,bir,
+46,5,Dzięciur Żołędziowy,DB,bir,Dzi
+55,5,Małpożer,V,bir,
+62,2,Trzewikodziób,O,bir,
+63,2,Marabut Afrykański,O,bir,
+73,5,Czapla Zielona,DG,bir,
+75,5,Kukiel Wielki,DG,bir,
+77,5,Paszczak Australijski,DG,bir,
+79,5,Fregata Wielka,DG,bir,
+84,5,Płomykówka Zwyczajna,DG,bir,
+87,5,Modroara Hiacyntowa,Y,bir,
+94,5,Tłuszczak,Y,bir,
+97,5,Żuraw Krzykliwy,P,bir,
+100,5,Pazik Czarnosterny,P,bir,
+102,5,Paw Niebieski,P,bir,
+103,5,Gorzyk Czerwonogłowy,P,bir,
+104,5,Cudowronka Błękitna,P,bir,
+105,5,Głuszec,P,bir,
+107,5,Cyraneczka zwyczajna,P,bir,Cyr
+34,5,Hipopotam Nilowy,R,hip,Red
+6,5,Rawka Błazen,LB,ins,
+9,5,Ważka,LB,ins,
+22,5,Danaid Wędrowny,LG,ins,Stp
+35,5,Komar,R,ins,Red
+59,5,Pszczoła Miodna Afrykańska,V,ins,Stp
+83,5,Koczownica,DG,ins,Stp
+88,5,Cykada Cystosoma Saundersii,Y,ins,
+90,5,Świerszcz Arachnoscelis Arachnoides,Y,ins,
+93,5,Wioślak,Y,ins,Mch
+96,5,Krewetka Pistoletowa,Y,ins,
+63,2,Tenrekowiec Pręgowany,O,hed,
+1,5,Mamba Czarna,LB,rep,
+25,5,Grzechotnik Preriowy,R,rep,Red
+30,5,Efa Piaskowa,R,rep,Red
+32,5,Krokodyl Różańcowy,R,rep,Red
+43,5,Aligator Amerykański,DB,rep,
+53,5,Waran z Komodo,V,rep,War
+74,5,Żmija Gabońska,DG,rep,
+80,5,Toke,DG,rep,
+82,5,Żółw Sępi,DG,rep,
+29,5,Tau,R,fis,Red
+21,5,Żaba Chórzystka,LG,fro,
+27,5,Żaba Psedophryne Corroboree,R,fro,Red
+31,5,Drzewołaz Karłowaty,R,fro,Red
+39,5,Rzekotka Zielona,DB,fro,
+70,2,Żółwinka Podziemna,O,fro,
+81,5,Nosorożnica Nosata,DG,fro,
+91,5,Żaba Coqui,Y,fro,
+108,5,Chwytnica Czerwonooka,P,fro,
+42,5,Wydra Morska,DB,sml,
+48,5,Bóbr Kanadyjski,DB,sml,
+37,5,Orangutan Borneański,DB,mky,Oth
+47,5,Szympans,DB,mky,Oth
+89,5,Siamang,Y,mky,
+98,5,Mandryl,P,mky,
+101,5,Goryl Nizinny,P,mky,
+67,2,Pancernik Dziewięciopaskowy,O,aml,
+2,5,Gepard,LB,cat,Giv
+36,5,Likaon,R,cat,Red
+52,5,Tygrys Bengalski,V,cat,
+56,5,Wilk Europejski,V,cat,
+58,5,Hiena Centkowana,V,cat,
+76,5,Pantera Śnieżna,DG,cat,
+12,5,Guziec Zwyczajny,LB,pig,
+61,2,Babirussa,O,pig,
+7,5,Antylopa Skoczek,LB,hor,Giv
+10,5,Gnu Pręgowane,LB,hor,
+20,5,Wielbłąd Dwugarbny,LG,hor,
+23,5,Antylopa Widłoroga,LG,hor,
+99,5,Jeleń Kanadyjski,P,hor,Cch
+11,5,Ogoniak Duży,LB,bat,
+64,2,Rurkonos Żółtoplamy,O,bat,
+26,5,Lampart Morski,R,sea,Red
+51,5,Orka Oceaniczna,V,sea,Orc
+68,2,Narwal Jednozębny,O,sea,
+71,2,Słoń Morski Południowy,O,sea,
+92,5,Foka Wedela,Y,sea,
+95,5,Wieloryb Biskajski,Y,sea,
+3,5,Zając Szarak,LB,rod,
+40,5,Szczur Wędrowny,DB,rod,
+45,5,Pręgowiec,DB,rod,
+50,5,Diabeł Tasmański,V,rod,
+19,5,Koala,LG,tre,
+28,5,Kukang Ciemnolicy,R,tre,Red
+65,2,Karłowaty Leniwiec Trójpalczasty,O,tre,
+66,2,Nosacz Sundyjski,O,tre,Pol
+85,5,Wyjec Czarny,Y,tre,
+106,5,Lemu Kata,P,tre,
+49,5,Niedźwiedź Grizzly,V,bea,
+57,5,Niedźwiedź Polarny,V,bea,
+14,5,Ratel Miodożerny,LG,sml,Dem
+17,5,Mangusta Pręgowana,LG,sml,Dem
+54,5,Fossa Madagaskarska,V,sml,
+60,5,Rosomak,V,sml,
+4,4,Lew Afrykański,ALL,all,All
+13,4,Bawół Afrykański,ALL,all,All
+15,4,Nosorożec Czarny,ALL,all,All
+78,4,Lampart,ALL,all,All
+86,4,Słoń Afrykański,ALL,all,All
+109,5,Alpaka,LG,hor,
+110,5,Kangur Szary,LB,koo,
+111,5,Bielik Zwyczajny,V,bir,
+112,5,Panda Wielka,P,tre,
+113,5,Żarłacz Biały,R,sea,Red
+114,5,Lis Rudy,DG,sml,
+115,5,Koń Polski,Y,hor,
+116,5,Świnia Domowa,DB,pig,
+117,2,Mrówkojad Wielki,O,ant,
