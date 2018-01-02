@@ -153,7 +153,7 @@ public class Supervisor {
         Integer what_move = player.whatForcedMove();
         Integer what_kind = null;
         if (what_move == 2) {
-            //what_kind = player.whatKindOfForcedMove2();
+            what_kind = player.whatKindOfForcedMove();
         }
 
         if (this.red != 0) {
@@ -193,9 +193,9 @@ public class Supervisor {
                 return true;
             } else if (what_move == 2) {
                 if (what_kind == 1) {
-                    //return this.ordinaryDemandedFunction(player, Function.Green);
+                    return this.ordinaryDemandedFunction(player, Function.Stp);
                 } else if (what_kind == 2) {
-                    //return this.multipleDemandedFunction(player, Function.Green);
+                    return this.multipleDemandedFunction(player, Function.Stp);
                 }
             }
         } else if (this.demand != 0) {
@@ -423,7 +423,7 @@ public class Supervisor {
         giver.shuffleHand();
         for (Integer i = 0; i < quant_given; i++) {
             receiver.draw(giver.showACard(0));
-            //giver.moveAllowed(giver.showACard(0));
+            giver.playOneCard(giver.showACard(0));
         }
     }
 

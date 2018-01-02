@@ -8,7 +8,6 @@ import java.util.Objects;
 
 public class Card {
     private Integer number;
-    //private Integer quantity;
     private String name;
     private Colour colour;
     private Type type;
@@ -32,7 +31,6 @@ public class Card {
 
     public Card(Integer number, String name, Colour colour, Type type, Function function) {
         this.number = number;
-        //this.quantity = quantity;
         this.name = name;
         this.colour = colour;
         this.type = type;

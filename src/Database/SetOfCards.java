@@ -9,6 +9,7 @@ import Model.Type;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Rafal Byczek on 01.01.2018.
@@ -54,7 +55,7 @@ public class SetOfCards implements Database {
             this.insertCard(46,5, "Dzięciur Żołędziowy", "DB", "bir", "Dzi");
             this.insertCard(55,5, "Małpożer", "V", "bir", "None");
             this.insertCard(62,2, "Trzewikodziób", "O", "bir", "None");
-            this.insertCard(63,2, "Marabut Afrykański", "O", "bir", "None");
+            this.insertCard(0,2, "Marabut Afrykański", "O", "bir", "None");
             this.insertCard(73,5, "Czapla Zielona", "DG", "bir", "None");
             this.insertCard(75,5, "Kukiel Wielki", "DG", "bir", "None");
             this.insertCard(77,5, "Paszczak Australijski", "DG", "bir", "None");
@@ -176,7 +177,7 @@ public class SetOfCards implements Database {
             preparedStatement.setString(6, function);
             preparedStatement.execute();
         } catch (SQLException e) {
-            System.err.println("Blad przy dodawaniu zwierzęcia do bazy.");
+            System.err.println("Blad przy dodawaniu zwierzęcia do bazy."+nr+name);
             e.printStackTrace();
             return false;
         }
@@ -225,7 +226,8 @@ public class SetOfCards implements Database {
                 Function function2 = this.switchStringIntoFunction(function);
 
                 Card card = new Card(number, name, colour2, type2, function2);
-                cardList.add(card);
+                for(int i = 0; i < quantity; i++)
+                    cardList.add(card);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -236,17 +238,20 @@ public class SetOfCards implements Database {
 
     @Override
     public List<Card> getCardsWithColour(Colour colour) {
-        return null;
+        List<Card> listCard = this.getAllCards();
+        return listCard.stream().filter(item -> item.getColour() == colour).collect(Collectors.toList());
     }
 
     @Override
-    public List<Card> getCardsWithClass(Class cl) {
-        return null;
+    public List<Card> getCardsWithType(Type type) {
+        List<Card> listCard = this.getAllCards();
+        return listCard.stream().filter(item -> item.getType() == type).collect(Collectors.toList());
     }
 
     @Override
     public List<Card> getCardsWithFunction(Function function) {
-        return null;
+        List<Card> listCard = this.getAllCards();
+        return listCard.stream().filter(item -> item.getFunction() == function).collect(Collectors.toList());
     }
 
     private Colour switchStringIntoColour(String colour) {

@@ -3,6 +3,7 @@ package Database;
 import Model.Card;
 import Model.Colour;
 import Model.Function;
+import Model.Type;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface Database {
 
     public List<Card> getCardsWithColour(Colour colour);
 
-    public List<Card> getCardsWithClass(Class cl);
+    public List<Card> getCardsWithType(Type type);
 
     public List<Card> getCardsWithFunction(Function function);
 }
