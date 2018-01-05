@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="125cc3da-a8a1-416d-9ce9-e701cf086c79" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Card.java" afterPath="$PROJECT_DIR$/src/Model/Card.java" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Colour.java" afterPath="$PROJECT_DIR$/src/Model/Colour.java" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Duel.java" afterPath="$PROJECT_DIR$/src/Model/Duel.java" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GetFromHuman.java" afterPath="$PROJECT_DIR$/src/Model/GetFromHuman.java" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Human.java" afterPath="$PROJECT_DIR$/src/Model/Human.java" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Player.java" afterPath="$PROJECT_DIR$/src/Model/Player.java" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Preparation.java" afterPath="$PROJECT_DIR$/src/Model/Preparation.java" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Supervisor.java" afterPath="$PROJECT_DIR$/src/Model/Supervisor.java" />
-    </list>
+    <list default="true" id="125cc3da-a8a1-416d-9ce9-e701cf086c79" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -130,8 +120,8 @@
       <file leaf-file-name="Supervisor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Model/Supervisor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="442" column="18" lean-forward="true" selection-start-line="442" selection-start-column="18" selection-end-line="442" selection-end-column="18" />
+            <state relative-caret-position="214">
+              <caret line="427" column="8" lean-forward="false" selection-start-line="427" selection-start-column="8" selection-end-line="427" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Supervisor#0;class#Supervisor#0" expanded="false" />
@@ -376,12 +366,12 @@
       <workItem from="1515156038884" duration="961000" />
       <workItem from="1515157282131" duration="4317000" />
       <workItem from="1515181475207" duration="44000" />
-      <workItem from="1515181752921" duration="3384000" />
+      <workItem from="1515181752921" duration="3506000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26413000" />
+    <option name="totallyTimeSpent" value="26535000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="463" y="0" width="910" height="735" extended-state="0" />
@@ -950,8 +940,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/Supervisor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="442" column="18" lean-forward="true" selection-start-line="442" selection-start-column="18" selection-end-line="442" selection-end-column="18" />
+        <state relative-caret-position="214">
+          <caret line="427" column="8" lean-forward="false" selection-start-line="427" selection-start-column="8" selection-end-line="427" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Supervisor#0;class#Supervisor#0" expanded="false" />
