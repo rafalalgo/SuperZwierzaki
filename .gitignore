@@ -7,4 +7,5 @@
 *.o
 *.so
 .idea
+/out
 SuperZwierzaki.iml
