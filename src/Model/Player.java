@@ -12,13 +12,15 @@ public class Player {
     private List<Card> hand;
     private Integer quant_of_cards;
     private Boolean if_folded = false;
+    private String name;
 
     //setting
 
-    public Player(Integer number, Integer quant_of_cards, Boolean if_folded) {
+    public Player(Integer number, Integer quant_of_cards, Boolean if_folded, String name) {
         this.number = number;
         this.quant_of_cards = quant_of_cards;
         this.if_folded = if_folded;
+        this.name = name;
     }
 
     public Integer getQuant_of_cards() {
@@ -45,20 +47,22 @@ public class Player {
         this.if_folded = if_folded;
     }
 
-    public void getHand() {
-        //jakieś wyświetlenie ręki
+    public Card getHand(Integer i) {
+        return hand.get(i);
+    }
+
+    public void setName (String name) {
+        this.name = name;
+    }
+
+    public String getName () {
+        return this.name;
     }
 
 //moves
 
     public Integer whatMove() {
-        Integer what_move = null;
-        // Gracz wpisuje/losuje ruch, który chce wykonać.
-        // Na tym poziomie trzeba sprawdzać, czy to ma sens.
-        // 1 - ordinary
-        // 2 - multiple
-        // 3 - draw
-        return what_move;
+        return Human.askWhatMove();
     }
 
     public void draw(Card card) {
@@ -67,8 +71,7 @@ public class Player {
     }
 
     public Card ordinaryMove() {
-        Integer card_from_the_hand = null;
-        // gracz wybiera kartę
+        Integer card_from_the_hand = Human.askWhatCard(this);
         return hand.get(card_from_the_hand);
     }
 
@@ -77,10 +80,8 @@ public class Player {
         quant_of_cards -= 1;
     }
 
-    public Integer multipleMove() {
-        Integer how_many = null;
-        // gracz wybiera liczbę kart
-        return how_many;
+    public Integer multipleMove(Card card) {
+        return Human.askHowMany(this, card);
     }
 
     public void playFewCards(Integer how_many, Card card) {
@@ -90,30 +91,16 @@ public class Player {
         }
     }
 
-    public Integer whatForcedMove() {
-        Integer what_move = null;
-        // Gracz wpisuje ruch.
-        // 1 - ruch pasywny, tzn dobieranie/stanie.
-        // 2 - ruch aktywny, tzn zagranie karty. (w demand zagranie innej rządającej)
-        // 3 - inny - dla red wielka 5, dla demand zagranie rządanej karty.
-        return what_move;
+    public Integer whatForcedMove(Integer options) {
+        return Human.askWhatForced(options);
     }
 
     public Integer whatKindOfForcedMove() {
-        Integer what_kind = null;
-        // Gracz wpisuje ruch.
-        // 1 - ordinary.
-        // 2 - multiple.
-        return what_kind;
+        return Human.askWhatForcedKind();
     }
 
     public Integer whatDuelMove() {
-        Integer what_move = null;
-        // Gracz wpisuje/losuje ruch, który chce wykonać.
-        // 1 - fold
-        // 2 - podbicie
-        // 3 - Wielka 5 na Red.
-        return what_move;
+        return Human.askForDuelMove();
     }
 
 //special
@@ -126,12 +113,20 @@ public class Player {
         return hand.get(which);
     }
 
-    public Card getThirdCardToThePair() {
-        Integer card_from_the_hand = null;
-        // gracz wybiera kartę
+    public Card getThirdCardToThePair(Card card) {
+        Integer card_from_the_hand = Human.askForThirdCard(this, card);
         return hand.get(card_from_the_hand);
     }
 
+    public Integer checkHowManyExactCardsInHand(Card card) {
+        Integer how_many;
+        for(Integer i = 0; i < this.quant_of_cards; i++) {
+            if(this.getHand(i) == card) {
+                how_many += 1;
+            }
+        }
+        return how_many;
+    }
 
 }
 

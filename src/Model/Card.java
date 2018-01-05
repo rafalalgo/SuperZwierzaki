@@ -96,4 +96,8 @@ public class Card {
                 ", function=" + function +
                 '}';
     }
+
+    public void displayCard() {
+        System.out.print(this.getNumber() + " " + this.getName() + " " + this.getColour() + " " + this.getType() + "/n");
+    }
 }

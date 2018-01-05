@@ -55,7 +55,7 @@ public class SetOfCards implements Database {
             this.insertCard(46,5, "Dzięciur Żołędziowy", "DB", "bir", "Dzi");
             this.insertCard(55,5, "Małpożer", "V", "bir", "None");
             this.insertCard(62,2, "Trzewikodziób", "O", "bir", "None");
-            this.insertCard(0,2, "Marabut Afrykański", "O", "bir", "None");
+            this.insertCard(69,2, "Marabut Afrykański", "O", "bir", "None");
             this.insertCard(73,5, "Czapla Zielona", "DG", "bir", "None");
             this.insertCard(75,5, "Kukiel Wielki", "DG", "bir", "None");
             this.insertCard(77,5, "Paszczak Australijski", "DG", "bir", "None");
