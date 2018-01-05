@@ -20,7 +20,6 @@ public class Preparation {
     }
 
     public static void giveCards() {
-        Supervisor.getWhoseMove(); = 0;
         for (Integer i = 0; i < Supervisor.getPlayersQuant(); i++) {
             Player player = Supervisor.getPlayers(i);
             Supervisor.draw(5, player);

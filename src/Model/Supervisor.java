@@ -72,7 +72,7 @@ public class Supervisor {
 
 // game
 
-    public void shuffleDeck() {
+    private void shuffleDeck() {
         Collections.shuffle(hip);
     }
 
@@ -89,7 +89,7 @@ public class Supervisor {
         Boolean no_winner = true;
         Player winner = null;
         while (no_winner) {
-            Human.beginingOfATurn();
+            Human.beginingOfATurn(players.get(whose_move));
             if (!this.playTurn()) {
                 Human.error();
             } else {
@@ -151,6 +151,7 @@ public class Supervisor {
                 return players.get(i);
             }
         }
+        return players.get(0);
     }
 
 // moves
@@ -172,6 +173,7 @@ public class Supervisor {
         } else if (Supervisor.orc != 0 || Supervisor.green != 0) {
             return 2;
         }
+        return 0;
     }
 
     private Boolean forcedMove(Player player) {
@@ -331,10 +333,9 @@ public class Supervisor {
         Card pl_card = player.ordinaryMove();
         Integer how_many;
         if (this.checkDemandedFunction(pl_card, function)) {
-            player.playOneCard(pl_card);
-            how_many = player.multipleMove();
+            how_many = player.multipleMove(pl_card);
             if (how_many == 2) {
-                Card extra_card = player.getThirdCardToThePair();
+                Card extra_card = player.getThirdCardToThePair(pl_card);
                 player.playOneCard(extra_card);
             } else if (how_many == 3) {
                 // Play Polak.
@@ -356,10 +357,9 @@ public class Supervisor {
         Card pl_card = player.ordinaryMove();
         Integer how_many;
         if (this.checkDemandedType(pl_card, type)) {
-            player.playOneCard(pl_card);
-            how_many = player.multipleMove();
+            how_many = player.multipleMove(pl_card);
             if (how_many == 2) {
-                Card extra_card = player.getThirdCardToThePair();
+                Card extra_card = player.getThirdCardToThePair(pl_card);
                 player.playOneCard(extra_card);
             } else if (how_many == 3) {
                 // Play Polak.
