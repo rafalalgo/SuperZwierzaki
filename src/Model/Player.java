@@ -16,6 +16,10 @@ public class Player {
 
     //setting
 
+    public Player(Integer number) {
+        this.number = number;
+    }
+
     public Player(Integer number, Integer quant_of_cards, Boolean if_folded, String name) {
         this.number = number;
         this.quant_of_cards = quant_of_cards;
@@ -51,11 +55,11 @@ public class Player {
         return hand.get(i);
     }
 
-    public void setName (String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public String getName () {
+    public String getName() {
         return this.name;
     }
 
@@ -119,9 +123,9 @@ public class Player {
     }
 
     public Integer checkHowManyExactCardsInHand(Card card) {
-        Integer how_many;
-        for(Integer i = 0; i < this.quant_of_cards; i++) {
-            if(this.getHand(i) == card) {
+        Integer how_many = 0;
+        for (Integer i = 0; i < this.quant_of_cards; i++) {
+            if (this.getHand(i) == card) {
                 how_many += 1;
             }
         }

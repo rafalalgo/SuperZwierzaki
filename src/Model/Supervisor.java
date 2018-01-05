@@ -10,54 +10,54 @@ import java.util.List;
 
 public class Supervisor {
 
-    private List<Card> hip;
-    private List<Player> players;
-    private Integer players_quant; //powinno być ustawione 1 mniej niż w rzeczyiwtsości, zeby te zabawy z modulo działały
+    private static List<Card> hip;
+    private static List<Player> players;
+    private static Integer players_quant; //powinno być ustawione 1 mniej niż w rzeczyiwtsości, zeby te zabawy z modulo działały
 
-    private Integer whose_move;
-    private Colour given_colour;
-    private Type given_type;
-    private Integer red = 0;
-    private Integer orc = 0;
-    private Integer green = 0;
-    private Integer demand = 0;
+    private static Integer whose_move;
+    private static Colour given_colour;
+    private static Type given_type;
+    private static Integer red = 0;
+    private static Integer orc = 0;
+    private static Integer green = 0;
+    private static Integer demand = 0;
 
-    private Card demanded_card;
-    private Integer player_who_has_demanded;
+    private static Card demanded_card;
+    private static Integer player_who_has_demanded;
 
 // setting
 
     public Supervisor(Integer whose_move, Colour given_colour, Type given_type, Integer players_quant, Integer red, Integer orc, Integer green, Integer demand, Card demanded_card, Integer player_who_has_demanded) {
-        this.whose_move = whose_move;
-        this.given_colour = given_colour;
-        this.given_type = given_type;
-        this.players_quant = players_quant;
-        this.red = red;
-        this.orc = orc;
-        this.green = green;
-        this.demand = demand;
-        this.demanded_card = demanded_card;
-        this.player_who_has_demanded = player_who_has_demanded;
+        Supervisor.whose_move = whose_move;
+        Supervisor.given_colour = given_colour;
+        Supervisor.given_type = given_type;
+        Supervisor.players_quant = players_quant;
+        Supervisor.red = red;
+        Supervisor.orc = orc;
+        Supervisor.green = green;
+        Supervisor.demand = demand;
+        Supervisor.demanded_card = demanded_card;
+        Supervisor.player_who_has_demanded = player_who_has_demanded;
     }
 
-    public Integer getWhoseMove() {
+    public static Integer getWhoseMove() {
         return whose_move;
     }
 
-    public Integer getPlayersQuant() {
+    public static Integer getPlayersQuant() {
         return players_quant;
     }
 
-    public Player getPlayers(Integer i) {
-        return get.players(i);
+    public static Player getPlayers(Integer i) {
+        return players.get(i);
     }
 
     private void setWhoseMove(Integer whose_move) {
-        this.whose_move = whose_move;
+        Supervisor.whose_move = whose_move;
     }
 
-    public void setPlayersQuant(Integer players_quant) {
-        this.players_quant = players_quant;
+    public static void setPlayersQuant(Integer players_quant) {
+        Supervisor.players_quant = players_quant;
     }
 
     public void setDeck() {
@@ -65,7 +65,7 @@ public class Supervisor {
     }
 
     private void setPlayers(Integer players_quant) {
-        for(Integer i = 0; i <= players_quant; i++) {
+        for (Integer i = 0; i <= players_quant; i++) {
             players.set(i, Preparation.setPlayer(i));
         }
     }
@@ -77,11 +77,10 @@ public class Supervisor {
     }
 
     private void gameBegin() {
-
         this.shuffleDeck();
         Preparation.askForPlayersQuant();
         this.setWhoseMove(0);
-        this.setPlayers();
+        this.setPlayers(Supervisor.players_quant);
         Preparation.giveCards();
     }
 
@@ -94,7 +93,7 @@ public class Supervisor {
             if (!this.playTurn()) {
                 Human.error();
             } else {
-                if(this.ifWinner()) {
+                if (this.ifWinner()) {
                     winner = this.whoWon();
                     no_winner = false;
                 }
@@ -105,7 +104,7 @@ public class Supervisor {
     }
 
     private Boolean playTurn() {
-        Player player = players.get(this.whose_move);
+        Player player = players.get(whose_move);
         Integer type = player.whatMove();
         if (this.checkIfForced()) {
             return this.forcedMove(player);
@@ -127,19 +126,19 @@ public class Supervisor {
         //jak sama nazwa wskazuje
     }
 
-    public void newCardOnTheHip(Card card) {
-        this.given_type = card.getType();
-        this.given_colour = card.getColour();
+    public static void newCardOnTheHip(Card card) {
+        given_type = card.getType();
+        given_colour = card.getColour();
     }
 
     private void nextTurn() {
-        this.whose_move += 1;
-        this.whose_move = this.whose_move % this.players_quant;
+        whose_move += 1;
+        whose_move = whose_move % players_quant;
     }
 
     public Boolean ifWinner() {
-        for(Integer i = 0; i < this.players_quant; i++) {
-            if(0 == (players.get(i)).getQuant_of_cards()) {
+        for (Integer i = 0; i < players_quant; i++) {
+            if (0 == (players.get(i)).getQuant_of_cards()) {
                 return true;
             }
         }
@@ -147,8 +146,8 @@ public class Supervisor {
     }
 
     public Player whoWon() {
-        for(Integer i = 0; i < this.players_quant; i++) {
-            if(0 == (players.get(i)).getQuant_of_cards()) {
+        for (Integer i = 0; i < players_quant; i++) {
+            if (0 == (players.get(i)).getQuant_of_cards()) {
                 return players.get(i);
             }
         }
@@ -156,7 +155,7 @@ public class Supervisor {
 
 // moves
 
-    private void draw(Integer quantity, Player player) {
+    static void draw(Integer quantity, Player player) {
         for (Integer i = 0; i < quantity; i++) {
             player.draw(hip.get(0));
             hip.remove(0);
@@ -164,17 +163,13 @@ public class Supervisor {
     }
 
     private Boolean checkIfForced() {
-        if (this.red == 0 && this.orc == 0 && this.green == 0 && this.demand == 0) {
-            return false;
-        } else {
-            return true;
-        }
+        return red != 0 || orc != 0 || green != 0 || demand != 0;
     }
 
     private Integer whatKindOfForced() {
-        if(this.red != 0 || this.demand != 0) {
+        if (Supervisor.red != 0 || Supervisor.demand != 0) {
             return 3;
-        } else if(this.orc != 0 || this.green != 0) {
+        } else if (Supervisor.orc != 0 || Supervisor.green != 0) {
             return 2;
         }
     }
@@ -188,9 +183,9 @@ public class Supervisor {
             what_kind = player.whatKindOfForcedMove();
         }
 
-        if (this.red != 0) {
+        if (red != 0) {
             if (what_move == 1) {
-                draw(this.red, player);
+                draw(red, player);
                 this.resetRed();
                 return true;
             } else if (what_move == 2) {
@@ -206,9 +201,9 @@ public class Supervisor {
                     return this.multipleDemandedFunction(player, Function.All);
                 }
             }
-        } else if (this.orc != 0) {
+        } else if (orc != 0) {
             if (what_move == 1) {
-                draw(this.orc, player);
+                draw(orc, player);
                 this.resetOrc();
                 return true;
             } else if (what_move == 2) {
@@ -218,7 +213,7 @@ public class Supervisor {
                     return this.multipleDemandedFunction(player, Function.Orc);
                 }
             }
-        } else if (this.green != 0) {
+        } else if (green != 0) {
             if (what_move == 1) {
                 // Funkcja tracenia kolejek.
                 this.resetGreen();
@@ -230,7 +225,7 @@ public class Supervisor {
                     return this.multipleDemandedFunction(player, Function.Stp);
                 }
             }
-        } else if (this.demand != 0) {
+        } else if (demand != 0) {
             if (what_move == 1) {
                 draw(1, player);
                 return true;
@@ -422,35 +417,35 @@ public class Supervisor {
     }
 
     public void addRed(Integer how_many) {
-        this.red += how_many;
+        red += how_many;
     }
 
     public void addOrc(Integer how_many) {
-        this.orc += how_many;
+        orc += how_many;
     }
 
     public void addGreen(Integer how_many) {
-        this.green += how_many;
+        green += how_many;
     }
 
     public void addDemand(Integer how_many) {
-        this.demand += how_many;
+        demand += how_many;
     }
 
     private void resetRed() {
-        this.red = 0;
+        red = 0;
     }
 
     private void resetOrc() {
-        this.orc = 0;
+        orc = 0;
     }
 
     private void resetGreen() {
-        this.green = 0;
+        green = 0;
     }
 
     private void resetDemand() {
-        this.demand = 0;
+        demand = 0;
     }
 
 }

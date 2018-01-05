@@ -14,7 +14,6 @@ public class Duel {
         this.duel_card = duel_card;
     }
 
-
     public void addDuel(Integer how_many) {
         this.duel += how_many;
     }
@@ -28,7 +27,7 @@ public class Duel {
     }
 
     private Boolean checkIfWinner() {
-        if(Supervisor.ifWinner()) {
+        if (Supervisor.ifWinner()) {
             return true;
         }
         Boolean stop = false;
@@ -44,7 +43,7 @@ public class Duel {
     }
 
     private Player findWinner() {
-        if(Supervisor.ifWinner()) {
+        if (Supervisor.ifWinner()) {
             return Supervisor.whoWon();
         }
         for (Integer i = 0; i < Supervisor.getPlayersQuant(); i++) {

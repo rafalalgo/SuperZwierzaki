@@ -20,7 +20,6 @@ public class Card {
         this.type = type;
     }
 
-
     public Type getType() {
         return this.type;
     }
@@ -98,6 +97,6 @@ public class Card {
     }
 
     public void displayCard() {
-        System.out.print(this.getNumber() + " " + this.getName() + " " + this.getColour() + " " + this.getType() + "/n");
+        System.out.println(this.getNumber() + " " + this.getName() + " " + this.getColour() + " " + this.getType());
     }
 }

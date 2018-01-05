@@ -4,12 +4,12 @@ import java.util.Scanner;
 
 public class GetFromHuman {
 
-    private Integer getInt() {
+    public static Integer getInt() {
         Scanner sc = new Scanner(System.in);
         return sc.nextInt();
     }
 
-    private String getString() {
+    public static String getString() {
         Scanner sc = new Scanner(System.in);
         return sc.next();
     }
