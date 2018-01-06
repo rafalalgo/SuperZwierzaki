@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Collections;
 
@@ -9,22 +10,20 @@ import java.util.Collections;
 
 public class Player {
     private Integer number;
-    private List<Card> hand;
+    private static List<Card> hand;
     private Integer quant_of_cards;
     private Boolean if_folded = false;
     private String name;
 
-    //setting
-
-    public Player(Integer number) {
-        this.number = number;
-    }
+//setting
 
     public Player(Integer number, Integer quant_of_cards, Boolean if_folded, String name) {
         this.number = number;
         this.quant_of_cards = quant_of_cards;
         this.if_folded = if_folded;
         this.name = name;
+        List<Card> hand = new LinkedList<>();
+        Player.hand = hand;
     }
 
     public Integer getQuant_of_cards() {
