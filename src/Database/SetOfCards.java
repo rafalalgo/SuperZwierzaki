@@ -207,7 +207,7 @@ public class SetOfCards implements Database {
     }
 
     @Override
-    public static List<Card> getAllCards() {
+    public List<Card> getAllCards() {
         List<Card> cardList = new LinkedList<>();
         try {
             ResultSet resultSet = stat.executeQuery("SELECT * FROM animals;");
@@ -336,8 +336,8 @@ public class SetOfCards implements Database {
             case "bat":
                 type2 = Type.bat;
                 break;
-            case "see":
-                type2 = Type.see;
+            case "sea":
+                type2 = Type.sea;
                 break;
             case "rod":
                 type2 = Type.rod;
@@ -353,6 +353,9 @@ public class SetOfCards implements Database {
                 break;
             case "all":
                 type2 = Type.all;
+                break;
+            case "koo":
+                type2 = Type.koo;
                 break;
         }
         return type2;

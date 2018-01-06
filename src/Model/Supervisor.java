@@ -40,6 +40,8 @@ public class Supervisor {
         Supervisor.demand = demand;
         Supervisor.demanded_card = demanded_card;
         Supervisor.player_who_has_demanded = player_who_has_demanded;
+        List<Player> players = new LinkedList<>();
+        Supervisor.players = players;
     }
 
     public static Integer getWhoseMove() {
@@ -63,13 +65,24 @@ public class Supervisor {
     }
 
     private static void setDeck() {
-        hip = SetOfCards.getAllCards();
+        SetOfCards setOfCards = new SetOfCards();
+        hip = setOfCards.getAllCards();
+        setOfCards.clearTable();
+        setOfCards.closeConnection();
     }
 
     private void setPlayers(Integer players_quant) {
-        for (Integer i = 0; i <= players_quant; i++) {
-            players.set(i, Preparation.setPlayer(i));
+        for (Integer i = 0; i < players_quant; i++) {
+            Player player = Preparation.setPlayer(i);
+            players.add(player);
         }
+    }
+
+    private static void setFirstCard() {
+        Card firstCard = hip.get(0);
+        given_colour = firstCard.getColour();
+        given_type = firstCard.getType();
+        hip.remove(0);
     }
 
 // game
@@ -81,8 +94,9 @@ public class Supervisor {
     private void gameBegin() {
         Supervisor.setDeck();
         this.shuffleDeck();
+        Supervisor.setFirstCard();
         Preparation.askForPlayersQuant();
-        this.setWhoseMove(0);
+        Supervisor.setWhoseMove(0);
         this.setPlayers(Supervisor.players_quant);
         Preparation.giveCards();
     }
@@ -96,8 +110,8 @@ public class Supervisor {
             if (!this.playTurn()) {
                 Human.error();
             } else {
-                if (this.ifWinner()) {
-                    winner = this.whoWon();
+                if (Supervisor.ifWinner()) {
+                    winner = Supervisor.whoWon();
                     no_winner = false;
                 }
                 this.nextTurn();
@@ -107,6 +121,7 @@ public class Supervisor {
     }
 
     private Boolean playTurn() {
+        Supervisor.tellASituation();
         Player player = players.get(whose_move);
         Integer type = player.whatMove();
         if (this.checkIfForced()) {
@@ -123,6 +138,11 @@ public class Supervisor {
         }
         return false;
         //W każdym segmencie powinien być return tzn powinno sprawdzać, czy udało się succesful ruch, czy nie
+    }
+
+    public static void tellASituation() {
+        System.out.println("Given colour: " + given_colour);
+        System.out.println("Given type: " + given_type);
     }
 
     private void nextTurn() {

@@ -19,10 +19,11 @@ public enum Type {
     pig,
     hor,
     bat,
-    see,
+    sea,
     rod,
     tre,
     bea,
     sml,
+    koo,
     all
 }

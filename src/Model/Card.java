@@ -87,13 +87,13 @@ public class Card {
 
     @Override
     public String toString() {
-        return "Card{" +
-                "number=" + number +
-                ", name='" + name + '\'' +
-                ", colour=" + colour +
-                ", type=" + type +
-                ", function=" + function +
-                '}';
+        return "Card { " +
+                "number = " + number +
+                ", name = '" + name + '\'' +
+                ", colour = " + colour +
+                ", type = " + type +
+                ", function = " + function +
+                " }";
     }
 
     public void displayCard() {

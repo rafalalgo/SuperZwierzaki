@@ -1,5 +1,11 @@
 package Model;
 
+import Database.SetOfCards;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * Created by Jędrzej Hodor on 05.01.2018.
  */
@@ -12,7 +18,7 @@ public class Preparation {
     }
 
     public static Player setPlayer(Integer i) {
-        Player player = new Player(i);
+        Player player = new Player(0, 0, false, "");
         player.setNumber(i);
         Preparation.askForName();
         player.setName(GetFromHuman.getString());
@@ -31,3 +37,4 @@ public class Preparation {
     }
 
 }
+
