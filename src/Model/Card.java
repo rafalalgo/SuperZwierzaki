@@ -97,6 +97,6 @@ public class Card {
     }
 
     public void displayCard() {
-        System.out.println(this.getNumber() + " " + this.getName() + " " + this.getColour() + " " + this.getType());
+        System.out.println(this.toString());
     }
 }

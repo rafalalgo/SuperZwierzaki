@@ -1,5 +1,7 @@
 package Model;
 
+import Database.SetOfCards;
+
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,7 +14,7 @@ public class Supervisor {
 
     private static List<Card> hip;
     private static List<Player> players;
-    private static Integer players_quant; //powinno być ustawione 1 mniej niż w rzeczyiwtsości, zeby te zabawy z modulo działały
+    private static Integer players_quant;
 
     private static Integer whose_move;
     private static Colour given_colour;
@@ -52,7 +54,7 @@ public class Supervisor {
         return players.get(i);
     }
 
-    private void setWhoseMove(Integer whose_move) {
+    public static void setWhoseMove(Integer whose_move) {
         Supervisor.whose_move = whose_move;
     }
 
@@ -60,8 +62,8 @@ public class Supervisor {
         Supervisor.players_quant = players_quant;
     }
 
-    public void setDeck() {
-        //trzeba by pewnie wstawić karty jakoś
+    private static void setDeck() {
+        hip = SetOfCards.getAllCards();
     }
 
     private void setPlayers(Integer players_quant) {
@@ -77,6 +79,7 @@ public class Supervisor {
     }
 
     private void gameBegin() {
+        Supervisor.setDeck();
         this.shuffleDeck();
         Preparation.askForPlayersQuant();
         this.setWhoseMove(0);
@@ -122,21 +125,12 @@ public class Supervisor {
         //W każdym segmencie powinien być return tzn powinno sprawdzać, czy udało się succesful ruch, czy nie
     }
 
-    public void checkIfTheHipEmpty() {
-        //jak sama nazwa wskazuje
-    }
-
-    public static void newCardOnTheHip(Card card) {
-        given_type = card.getType();
-        given_colour = card.getColour();
-    }
-
     private void nextTurn() {
         whose_move += 1;
         whose_move = whose_move % players_quant;
     }
 
-    public Boolean ifWinner() {
+    public static Boolean ifWinner() {
         for (Integer i = 0; i < players_quant; i++) {
             if (0 == (players.get(i)).getQuant_of_cards()) {
                 return true;
@@ -145,7 +139,7 @@ public class Supervisor {
         return false;
     }
 
-    public Player whoWon() {
+    public static Player whoWon() {
         for (Integer i = 0; i < players_quant; i++) {
             if (0 == (players.get(i)).getQuant_of_cards()) {
                 return players.get(i);
@@ -154,10 +148,53 @@ public class Supervisor {
         return players.get(0);
     }
 
+    // hip
+
+    private static Boolean checkIfTheHipEmpty() {
+        if(hip.size() == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    private static Integer findCardInTheHip(Card card) {
+        for(Integer i = 0; i < hip.size(); i++) {
+            if(hip.get(i) == card) {
+                return i;
+            }
+        }
+        Human.error();
+        Human.error();
+        return 0;
+    }
+
+    private static void playerCardsRemover() {
+        for(Integer i = 0; i < players_quant;) {
+            Player player = players.get(i);
+            for(Integer j = 0; j < player.getQuant_of_cards(); j++) {
+                Integer rm = Supervisor.findCardInTheHip(player.getHand(j));
+                hip.remove(rm);
+            }
+        }
+    }
+
+    private static void hipWarden() {
+        if(checkIfTheHipEmpty()) {
+            Supervisor.setDeck();
+            Supervisor.playerCardsRemover();
+        }
+    }
+
+    public static void newCardOnTheHip(Card card) {
+        given_type = card.getType();
+        given_colour = card.getColour();
+    }
+
 // moves
 
     static void draw(Integer quantity, Player player) {
         for (Integer i = 0; i < quantity; i++) {
+            Supervisor.hipWarden();
             player.draw(hip.get(0));
             hip.remove(0);
         }

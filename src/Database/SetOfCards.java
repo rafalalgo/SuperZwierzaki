@@ -207,7 +207,7 @@ public class SetOfCards implements Database {
     }
 
     @Override
-    public List<Card> getAllCards() {
+    public static List<Card> getAllCards() {
         List<Card> cardList = new LinkedList<>();
         try {
             ResultSet resultSet = stat.executeQuery("SELECT * FROM animals;");

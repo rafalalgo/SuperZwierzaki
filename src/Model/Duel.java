@@ -1,5 +1,7 @@
 package Model;
 
+import static Model.Supervisor.getPlayers;
+
 /**
  * Created by Jędrzej Hodor on 05.01.2018.
  */
@@ -21,7 +23,7 @@ public class Duel {
     private void resetDuel() {
         this.duel = 0;
         for (Integer i = 0; i < Supervisor.getPlayersQuant(); i++) {
-            Player player = Supervisor.getPlayers(i);
+            Player player = getPlayers(i);
             player.setIfFolded(false);
         }
     }
@@ -33,9 +35,9 @@ public class Duel {
         Boolean stop = false;
         for (Integer i = 0; i < Supervisor.getPlayersQuant(); i++) {
             Player player = Supervisor.getPlayers(i);
-            if (!player.getIfFolded() && !stop) {
+            if (!(player.getIfFolded()) && !stop) {
                 stop = true;
-            } else if (!player.getIfFolded() && stop) {
+            } else if (!(player.getIfFolded()) && stop) {
                 return false;
             }
         }
@@ -47,7 +49,7 @@ public class Duel {
             return Supervisor.whoWon();
         }
         for (Integer i = 0; i < Supervisor.getPlayersQuant(); i++) {
-            Player player = Supervisor.getPlayers(i);
+            Player player = getPlayers(i);
             if (!player.getIfFolded()) {
                 return player;
             }
@@ -99,7 +101,7 @@ public class Duel {
         Boolean if_winner = false;
 
         while (!end) {
-            Player current_player = Supervisor.getPlayers(index);
+            Player current_player = getPlayers(index);
             this.duelMove(current_player, function);
 
             if (this.duel == 0) {
@@ -112,7 +114,7 @@ public class Duel {
 
             index = (index + 1) % Supervisor.getPlayersQuant();
         }
-        Supervisor.getWhoseMove() = (index + 1) % Supervisor.getPlayersQuant();
+        Supervisor.setWhoseMove((index + 1) % Supervisor.getPlayersQuant());
         this.resetDuel();
         Supervisor.newCardOnTheHip(this.duel_card);
 

@@ -1,5 +1,9 @@
 package Model;
 
+/**
+ * Created by Jędrzej Hodor on 05.01.2018.
+ */
+
 public class Human {
 
     private static Boolean check1(Integer input, Integer begin, Integer end) {

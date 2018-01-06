@@ -1,5 +1,9 @@
 package Model;
 
+/**
+ * Created by Jędrzej Hodor on 05.01.2018.
+ */
+
 public class Preparation {
 
     public static void askForPlayersQuant() {
@@ -25,4 +29,5 @@ public class Preparation {
             Supervisor.draw(5, player);
         }
     }
+
 }
