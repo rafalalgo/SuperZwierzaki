@@ -11,25 +11,24 @@ import java.util.List;
  */
 
 public class Supervisor {
-
     private static List<Card> hip;
     private static List<Player> players;
-    private static Integer players_quant;
+    private static int players_quant;
 
-    private static Integer whose_move;
+    private static int whose_move;
     private static Colour given_colour;
     private static Type given_type;
-    private static Integer red = 0;
-    private static Integer orc = 0;
-    private static Integer green = 0;
-    private static Integer demand = 0;
+    private static int red = 0;
+    private static int orc = 0;
+    private static int green = 0;
+    private static int demand = 0;
 
     private static Card demanded_card;
-    private static Integer player_who_has_demanded;
+    private static int player_who_has_demanded;
 
 // setting
 
-    public Supervisor(Integer whose_move, Colour given_colour, Type given_type, Integer players_quant, Integer red, Integer orc, Integer green, Integer demand, Card demanded_card, Integer player_who_has_demanded) {
+    public Supervisor(int whose_move, Colour given_colour, Type given_type, int players_quant, int red, int orc, int green, int demand, Card demanded_card, int player_who_has_demanded) {
         Supervisor.whose_move = whose_move;
         Supervisor.given_colour = given_colour;
         Supervisor.given_type = given_type;
@@ -40,27 +39,26 @@ public class Supervisor {
         Supervisor.demand = demand;
         Supervisor.demanded_card = demanded_card;
         Supervisor.player_who_has_demanded = player_who_has_demanded;
-        List<Player> players = new LinkedList<>();
-        Supervisor.players = players;
+        Supervisor.players = new LinkedList<>();
     }
 
-    public static Integer getWhoseMove() {
+    public static int getWhoseMove() {
         return whose_move;
     }
 
-    public static Integer getPlayersQuant() {
+    public static int getPlayersQuant() {
         return players_quant;
     }
 
-    public static Player getPlayers(Integer i) {
+    public static Player getPlayers(int i) {
         return players.get(i);
     }
 
-    public static void setWhoseMove(Integer whose_move) {
+    public static void setWhoseMove(int whose_move) {
         Supervisor.whose_move = whose_move;
     }
 
-    public static void setPlayersQuant(Integer players_quant) {
+    public static void setPlayersQuant(int players_quant) {
         Supervisor.players_quant = players_quant;
     }
 
@@ -71,8 +69,8 @@ public class Supervisor {
         setOfCards.closeConnection();
     }
 
-    private void setPlayers(Integer players_quant) {
-        for (Integer i = 0; i < players_quant; i++) {
+    private void setPlayers(int players_quant) {
+        for (int i = 0; i < players_quant; i++) {
             Player player = Preparation.setPlayer(i);
             players.add(player);
         }
@@ -99,7 +97,6 @@ public class Supervisor {
         Supervisor.setWhoseMove(0);
         this.setPlayers(Supervisor.players_quant);
         Preparation.giveCards();
-
     }
 
     public String game() {
@@ -124,7 +121,7 @@ public class Supervisor {
     private Boolean playTurn() {
         Supervisor.tellASituation();
         Player player = players.get(whose_move);
-        Integer type = player.whatMove();
+        int type = player.whatMove();
         if (this.checkIfForced()) {
             return this.forcedMove(player);
         } else {
@@ -152,7 +149,7 @@ public class Supervisor {
     }
 
     public static Boolean ifWinner() {
-        for (Integer i = 0; i < players_quant; i++) {
+        for (int i = 0; i < players_quant; i++) {
             if (0 == (players.get(i)).getQuant_of_cards()) {
                 return true;
             }
@@ -161,7 +158,7 @@ public class Supervisor {
     }
 
     public static Player whoWon() {
-        for (Integer i = 0; i < players_quant; i++) {
+        for (int i = 0; i < players_quant; i++) {
             if (0 == (players.get(i)).getQuant_of_cards()) {
                 return players.get(i);
             }
@@ -169,17 +166,8 @@ public class Supervisor {
         return players.get(0);
     }
 
-    // hip
-
-    private static Boolean checkIfTheHipEmpty() {
-        if(hip.size() == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    private static Integer findCardInTheHip(Card card) {
-        for(Integer i = 0; i < hip.size(); i++) {
+    private static int findCardInTheHip(Card card) {
+        for(int i = 0; i < hip.size(); i++) {
             if(hip.get(i) == card) {
                 return i;
             }
@@ -190,17 +178,17 @@ public class Supervisor {
     }
 
     private static void playerCardsRemover() {
-        for(Integer i = 0; i < players_quant;) {
+        for(int i = 0; i < players_quant;) {
             Player player = players.get(i);
-            for(Integer j = 0; j < player.getQuant_of_cards(); j++) {
-                Integer rm = Supervisor.findCardInTheHip(player.getHand(j));
+            for(int j = 0; j < player.getQuant_of_cards(); j++) {
+                int rm = Supervisor.findCardInTheHip(player.getHand(j));
                 hip.remove(rm);
             }
         }
     }
 
     private static void hipWarden() {
-        if(checkIfTheHipEmpty()) {
+        if(hip.isEmpty()) {
             Supervisor.setDeck();
             Supervisor.playerCardsRemover();
         }
@@ -213,8 +201,8 @@ public class Supervisor {
 
 // moves
 
-    static void draw(Integer quantity, Player player) {
-        for (Integer i = 0; i < quantity; i++) {
+    static void draw(int quantity, Player player) {
+        for (int i = 0; i < quantity; i++) {
             Supervisor.hipWarden();
             player.draw(hip.get(0));
             hip.remove(0);
@@ -225,7 +213,7 @@ public class Supervisor {
         return red != 0 || orc != 0 || green != 0 || demand != 0;
     }
 
-    private Integer whatKindOfForced() {
+    private int whatKindOfForced() {
         if (Supervisor.red != 0 || Supervisor.demand != 0) {
             return 3;
         } else if (Supervisor.orc != 0 || Supervisor.green != 0) {
@@ -237,8 +225,8 @@ public class Supervisor {
     private Boolean forcedMove(Player player) {
         //zakładamy, że nie zdaży się opcja dwóch rodzajów punktów niezerowych (nie powinna xd)
 
-        Integer what_move = player.whatForcedMove(this.whatKindOfForced());
-        Integer what_kind = null;
+        int what_move = player.whatForcedMove(this.whatKindOfForced());
+        int what_kind = 0;
         if (what_move == 2) {
             what_kind = player.whatKindOfForcedMove();
         }
@@ -365,7 +353,7 @@ public class Supervisor {
 
     private Boolean multipleMove(Player player) {
         Card pl_card = player.ordinaryMove();
-        Integer how_many;
+        int how_many;
         if (this.checkIfOrdinaryAllowed(pl_card)) {
             how_many = player.multipleMove(pl_card);
             if (how_many == 2) {
@@ -389,7 +377,7 @@ public class Supervisor {
 
     private Boolean multipleDemandedFunction(Player player, Function function) {
         Card pl_card = player.ordinaryMove();
-        Integer how_many;
+        int how_many;
         if (this.checkDemandedFunction(pl_card, function)) {
             how_many = player.multipleMove(pl_card);
             if (how_many == 2) {
@@ -413,7 +401,7 @@ public class Supervisor {
 
     private Boolean multipleDemandedType(Player player, Type type) {
         Card pl_card = player.ordinaryMove();
-        Integer how_many;
+        int how_many;
         if (this.checkDemandedType(pl_card, type)) {
             how_many = player.multipleMove(pl_card);
             if (how_many == 2) {
@@ -441,15 +429,15 @@ public class Supervisor {
     private void waranTransposition(Player player1, Player player2) {
         List<Card> aux = new LinkedList<>();
 
-        for (Integer i = 0; i < player2.getQuant_of_cards(); i++) {
+        for (int i = 0; i < player2.getQuant_of_cards(); i++) {
             aux.add(player2.showACard(0));
             player2.playOneCard(player2.showACard(0));
         }
-        for (Integer i = 0; i < player1.getQuant_of_cards(); i++) {
+        for (int i = 0; i < player1.getQuant_of_cards(); i++) {
             player2.draw(player1.showACard(0));
             player1.playOneCard(player1.showACard(0));
         }
-        for (Integer i = 0; i < player2.getQuant_of_cards(); i++) {
+        for (int i = 0; i < player2.getQuant_of_cards(); i++) {
             player1.draw(aux.get(i));
         }
     } // poprawic
@@ -466,27 +454,27 @@ public class Supervisor {
         }
     }
 
-    public void giveCards(Player giver, Player receiver, Integer quant_given) {
+    public void giveCards(Player giver, Player receiver, int quant_given) {
         giver.shuffleHand();
-        for (Integer i = 0; i < quant_given; i++) {
+        for (int i = 0; i < quant_given; i++) {
             receiver.draw(giver.showACard(0));
             giver.playOneCard(giver.showACard(0));
         }
     }
 
-    public void addRed(Integer how_many) {
+    public void addRed(int how_many) {
         red += how_many;
     }
 
-    public void addOrc(Integer how_many) {
+    public void addOrc(int how_many) {
         orc += how_many;
     }
 
-    public void addGreen(Integer how_many) {
+    public void addGreen(int how_many) {
         green += how_many;
     }
 
-    public void addDemand(Integer how_many) {
+    public void addDemand(int how_many) {
         demand += how_many;
     }
 

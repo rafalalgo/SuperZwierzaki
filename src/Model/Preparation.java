@@ -11,7 +11,7 @@ public class Preparation {
         Supervisor.setPlayersQuant(GetFromHuman.getInt());
     }
 
-    public static Player setPlayer(Integer i) {
+    public static Player setPlayer(int i) {
         Player player = new Player(0, 0, false, "");
         player.setNumber(i);
         Preparation.askForName();
@@ -24,7 +24,7 @@ public class Preparation {
     }
 
     public static void giveCards() {
-        for (Integer i = 0; i < Supervisor.getPlayersQuant(); i++) {
+        for (int i = 0; i < Supervisor.getPlayersQuant(); i++) {
             Player player = Supervisor.getPlayers(i);
             Supervisor.draw(5, player);
         }

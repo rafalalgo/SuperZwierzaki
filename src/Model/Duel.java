@@ -7,22 +7,21 @@ import static Model.Supervisor.getPlayers;
  */
 
 public class Duel {
-
-    private Integer duel = 0;
+    private int duel;
     private Card duel_card;
 
-    public Duel(Integer duel, Card duel_card) {
+    public Duel(int duel, Card duel_card) {
         this.duel = duel;
         this.duel_card = duel_card;
     }
 
-    public void addDuel(Integer how_many) {
+    public void addDuel(int how_many) {
         this.duel += how_many;
     }
 
     private void resetDuel() {
         this.duel = 0;
-        for (Integer i = 0; i < Supervisor.getPlayersQuant(); i++) {
+        for (int i = 0; i < Supervisor.getPlayersQuant(); i++) {
             Player player = getPlayers(i);
             player.setIfFolded(false);
         }
@@ -33,7 +32,7 @@ public class Duel {
             return true;
         }
         Boolean stop = false;
-        for (Integer i = 0; i < Supervisor.getPlayersQuant(); i++) {
+        for (int i = 0; i < Supervisor.getPlayersQuant(); i++) {
             Player player = Supervisor.getPlayers(i);
             if (!(player.getIfFolded()) && !stop) {
                 stop = true;
@@ -48,7 +47,7 @@ public class Duel {
         if (Supervisor.ifWinner()) {
             return Supervisor.whoWon();
         }
-        for (Integer i = 0; i < Supervisor.getPlayersQuant(); i++) {
+        for (int i = 0; i < Supervisor.getPlayersQuant(); i++) {
             Player player = getPlayers(i);
             if (!player.getIfFolded()) {
                 return player;
@@ -58,7 +57,7 @@ public class Duel {
     }
 
     private Boolean duelMove(Player player, Function function) {
-        Integer what_move = player.whatDuelMove();
+        int what_move = player.whatDuelMove();
 
         if (what_move == 1) {
             player.setIfFolded(true);
@@ -94,8 +93,8 @@ public class Duel {
         return false;
     }
 
-    public Integer duel(Function function, Player triggering_player) {
-        Integer index = triggering_player.getNumber();
+    public int duel(Function function, Player triggering_player) {
+        int index = triggering_player.getNumber();
         Boolean end = false;
         Player winner = null;
         Boolean if_winner = false;

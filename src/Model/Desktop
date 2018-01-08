@@ -12,24 +12,24 @@ public class Supervisor {
 
     private List<Card> hip;
     private List<Player> players;
-    private Integer players_quant; //powinno być ustawione 1 mniej niż w rzeczyiwtsości, zeby te zabawy z modulo działały
+    private int players_quant; //powinno być ustawione 1 mniej niż w rzeczyiwtsości, zeby te zabawy z modulo działały
 
-    private Integer whose_move;
+    private int whose_move;
     private Colour given_colour;
     private Type given_type;
-    private Integer red = 0;
-    private Integer orc = 0;
-    private Integer green = 0;
-    private Integer demand = 0;
-    private Integer duel = 0;
+    private int red = 0;
+    private int orc = 0;
+    private int green = 0;
+    private int demand = 0;
+    private int duel = 0;
 
     private Card demanded_card;
-    private Integer player_who_has_demanded;
+    private int player_who_has_demanded;
     private Card duel_card;
 
 // setting
 
-    public Supervisor(Integer whose_move, Colour given_colour, Type given_type, Integer players_quant, Integer red, Integer orc, Integer green, Integer demand, Card demanded_card, Integer player_who_has_demanded, Integer duel, Card duel_card) {
+    public Supervisor(int whose_move, Colour given_colour, Type given_type, int players_quant, int red, int orc, int green, int demand, Card demanded_card, int player_who_has_demanded, int duel, Card duel_card) {
         this.whose_move = whose_move;
         this.given_colour = given_colour;
         this.given_type = given_type;
@@ -44,19 +44,19 @@ public class Supervisor {
         this.duel_card = duel_card;
     }
 
-    public Integer getWhoseMove() {
+    public int getWhoseMove() {
         return whose_move;
     }
 
-    public void setWhoseMove(Integer whose_move) {
+    public void setWhoseMove(int whose_move) {
         this.whose_move = whose_move;
     }
 
-    public Integer getPlayersQuant() {
+    public int getPlayersQuant() {
         return players_quant;
     }
 
-    public void setPlayersQuant(Integer players_quant) {
+    public void setPlayersQuant(int players_quant) {
         this.players_quant = players_quant;
     }
 
@@ -76,13 +76,13 @@ public class Supervisor {
 
     public void gameBegin() {
         this.whose_move = 0;
-        for (Integer i = 0; i < players_quant; i++) {
+        for (int i = 0; i < players_quant; i++) {
             Player player = players.get(i);
             this.draw(5, player);
         }
     }
 
-    public Integer game() {
+    public int game() {
         this.gameBegin();
         Boolean no_winner = true;
         Player winner = null;
@@ -99,7 +99,7 @@ public class Supervisor {
 
     public Boolean playTurn() {
         Player player = players.get(this.whose_move);
-        Integer type = player.whatMove();
+        int type = player.whatMove();
         if (this.checkIfForced()) {
             return this.forcedMove(player);
         } else {
@@ -132,8 +132,8 @@ public class Supervisor {
 
 // moves
 
-    public void draw(Integer quantity, Player player) {
-        for (Integer i = 0; i < quantity; i++) {
+    public void draw(int quantity, Player player) {
+        for (int i = 0; i < quantity; i++) {
             player.draw(hip.get(0));
             hip.remove(0);
         }
@@ -150,8 +150,8 @@ public class Supervisor {
     public Boolean forcedMove(Player player) {
         //zakładamy, że nie zdaży się opcja dwóch rodzajów punktów niezerowych (nie powinna xd)
 
-        Integer what_move = player.whatForcedMove();
-        Integer what_kind = null;
+        int what_move = player.whatForcedMove();
+        int what_kind = null;
         if (what_move == 2) {
             what_kind = player.whatKindOfForcedMove();
         }
@@ -224,7 +224,7 @@ public class Supervisor {
     }
 
     public Boolean duelMove(Player player, Function function) {
-        Integer what_move = player.whatDuelMove();
+        int what_move = player.whatDuelMove();
 
         if (what_move == 1) {
             player.setIfFolded(true);
@@ -315,7 +315,7 @@ public class Supervisor {
 
     public Boolean multipleMove(Player player) {
         Card pl_card = player.ordinaryMove();
-        Integer how_many;
+        int how_many;
         if (this.checkIfOrdinaryAllowed(pl_card)) {
             player.playOneCard(pl_card);
             how_many = player.multipleMove();
@@ -340,7 +340,7 @@ public class Supervisor {
 
     public Boolean multipleDemandedFunction(Player player, Function function) {
         Card pl_card = player.ordinaryMove();
-        Integer how_many;
+        int how_many;
         if (this.checkDemandedFunction(pl_card, function)) {
             player.playOneCard(pl_card);
             how_many = player.multipleMove();
@@ -365,7 +365,7 @@ public class Supervisor {
 
     public Boolean multipleDemandedType(Player player, Type type) {
         Card pl_card = player.ordinaryMove();
-        Integer how_many;
+        int how_many;
         if (this.checkDemandedType(pl_card, type)) {
             player.playOneCard(pl_card);
             how_many = player.multipleMove();
@@ -394,15 +394,15 @@ public class Supervisor {
     public void waranTransposition(Player player1, Player player2) {
         List<Card> aux = new LinkedList<>();
 
-        for (Integer i = 0; i < player2.getQuant_of_cards(); i++) {
+        for (int i = 0; i < player2.getQuant_of_cards(); i++) {
             aux.add(player2.showACard(0));
             player2.playOneCard(player2.showACard(0));
         }
-        for (Integer i = 0; i < player1.getQuant_of_cards(); i++) {
+        for (int i = 0; i < player1.getQuant_of_cards(); i++) {
             player2.draw(player1.showACard(0));
             player1.playOneCard(player1.showACard(0));
         }
-        for (Integer i = 0; i < player2.getQuant_of_cards(); i++) {
+        for (int i = 0; i < player2.getQuant_of_cards(); i++) {
             player1.draw(aux.get(i));
         }
     } // poprawic
@@ -419,27 +419,27 @@ public class Supervisor {
         }
     }
 
-    public void giveCards(Player giver, Player receiver, Integer quant_given) {
+    public void giveCards(Player giver, Player receiver, int quant_given) {
         giver.shuffleHand();
-        for (Integer i = 0; i < quant_given; i++) {
+        for (int i = 0; i < quant_given; i++) {
             receiver.draw(giver.showACard(0));
             giver.playOneCard(giver.showACard(0));
         }
     }
 
-    public void addRed(Integer how_many) {
+    public void addRed(int how_many) {
         this.red += how_many;
     }
 
-    public void addOrc(Integer how_many) {
+    public void addOrc(int how_many) {
         this.orc += how_many;
     }
 
-    public void addGreen(Integer how_many) {
+    public void addGreen(int how_many) {
         this.green += how_many;
     }
 
-    public void addDemand(Integer how_many) {
+    public void addDemand(int how_many) {
         this.demand += how_many;
     }
 
@@ -461,13 +461,13 @@ public class Supervisor {
 
     // duel
 
-    public void addDuel(Integer how_many) {
+    public void addDuel(int how_many) {
         this.duel += how_many;
     }
 
     public void resetDuel() {
         this.duel = 0;
-        for (Integer i = 0; i < players_quant; i++) {
+        for (int i = 0; i < players_quant; i++) {
             Player player = players.get(i);
             player.setIfFolded(false);
         }
@@ -475,7 +475,7 @@ public class Supervisor {
 
     public Boolean checkIfWinner() {
         Boolean stop = false;
-        for (Integer i = 0; i < players_quant; i++) {
+        for (int i = 0; i < players_quant; i++) {
             Player player = players.get(i);
             if (!player.getIfFolded() && !stop) {
                 stop = true;
@@ -487,7 +487,7 @@ public class Supervisor {
     }
 
     public Player findWinner() {
-        for (Integer i = 0; i < players_quant; i++) {
+        for (int i = 0; i < players_quant; i++) {
             Player player = players.get(i);
             if (!player.getIfFolded()) {
                 return player;
@@ -496,8 +496,8 @@ public class Supervisor {
         return null;
     }
 
-    public Integer duel(Function function, Player triggering_player) {
-        Integer index = triggering_player.getNumber();
+    public int duel(Function function, Player triggering_player) {
+        int index = triggering_player.getNumber();
         Boolean end = false;
         Player winner = null;
         Boolean if_winner = false;

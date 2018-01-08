@@ -9,36 +9,35 @@ import java.util.Collections;
  */
 
 public class Player {
-    private Integer number;
-    private static List<Card> hand;
-    private Integer quant_of_cards;
-    private Boolean if_folded = false;
+    private int number;
+    private List<Card> hand;
+    private int quant_of_cards;
+    private Boolean if_folded;
     private String name;
 
 //setting
 
-    public Player(Integer number, Integer quant_of_cards, Boolean if_folded, String name) {
+    public Player(int number, int quant_of_cards, Boolean if_folded, String name) {
         this.number = number;
         this.quant_of_cards = quant_of_cards;
         this.if_folded = if_folded;
         this.name = name;
-        List<Card> hand = new LinkedList<>();
-        Player.hand = hand;
+        this.hand = new LinkedList<>();
     }
 
-    public Integer getQuant_of_cards() {
+    public int getQuant_of_cards() {
         return quant_of_cards;
     }
 
-    public void setQuant_of_cards(Integer quant_of_cards) {
+    public void setQuant_of_cards(int quant_of_cards) {
         this.quant_of_cards = quant_of_cards;
     }
 
-    public Integer getNumber() {
+    public int getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 
@@ -50,7 +49,7 @@ public class Player {
         this.if_folded = if_folded;
     }
 
-    public Card getHand(Integer i) {
+    public Card getHand(int i) {
         return hand.get(i);
     }
 
@@ -64,7 +63,7 @@ public class Player {
 
 //moves
 
-    public Integer whatMove() {
+    public int whatMove() {
         return Human.askWhatMove();
     }
 
@@ -74,7 +73,7 @@ public class Player {
     }
 
     public Card ordinaryMove() {
-        Integer card_from_the_hand = Human.askWhatCard(this);
+        int card_from_the_hand = Human.askWhatCard(this);
         return hand.get(card_from_the_hand);
     }
 
@@ -83,26 +82,26 @@ public class Player {
         quant_of_cards -= 1;
     }
 
-    public Integer multipleMove(Card card) {
+    public int multipleMove(Card card) {
         return Human.askHowMany(this, card);
     }
 
-    public void playFewCards(Integer how_many, Card card) {
-        for (Integer i = 0; i < how_many; i++) {
+    public void playFewCards(int how_many, Card card) {
+        for (int i = 0; i < how_many; i++) {
             hand.remove(card);
             quant_of_cards -= 1;
         }
     }
 
-    public Integer whatForcedMove(Integer options) {
+    public int whatForcedMove(int options) {
         return Human.askWhatForced(options);
     }
 
-    public Integer whatKindOfForcedMove() {
+    public int whatKindOfForcedMove() {
         return Human.askWhatForcedKind();
     }
 
-    public Integer whatDuelMove() {
+    public int whatDuelMove() {
         return Human.askForDuelMove();
     }
 
@@ -112,18 +111,18 @@ public class Player {
         Collections.shuffle(hand);
     }
 
-    public Card showACard(Integer which) {
+    public Card showACard(int which) {
         return hand.get(which);
     }
 
     public Card getThirdCardToThePair(Card card) {
-        Integer card_from_the_hand = Human.askForThirdCard(this, card);
+        int card_from_the_hand = Human.askForThirdCard(this, card);
         return hand.get(card_from_the_hand);
     }
 
-    public Integer checkHowManyExactCardsInHand(Card card) {
-        Integer how_many = 0;
-        for (Integer i = 0; i < this.quant_of_cards; i++) {
+    public int checkHowManyExactCardsInHand(Card card) {
+        int how_many = 0;
+        for (int i = 0; i < this.quant_of_cards; i++) {
             if (this.getHand(i) == card) {
                 how_many += 1;
             }

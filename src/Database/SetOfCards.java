@@ -40,7 +40,7 @@ public class SetOfCards implements Database {
     }
 
     public boolean createTables() {
-        String createTableWithAnimals = "CREATE TABLE IF NOT EXISTS animals (nr INTEGER PRIMARY KEY, quantity INTEGER, naame varchar(255), colour varchar(255), tyype varchar(255), function varchar(255))";
+        String createTableWithAnimals = "CREATE TABLE IF NOT EXISTS animals (nr int PRIMARY KEY, quantity int, naame varchar(255), colour varchar(255), tyype varchar(255), function varchar(255))";
         try {
             stat.execute(createTableWithAnimals);
             this.insertCard(5,5, "Sokół Wędrowny", "LB", "bir", "None");
@@ -166,7 +166,7 @@ public class SetOfCards implements Database {
         return true;
     }
 
-    public boolean insertCard(Integer nr, Integer quantity, String name, String colour, String type, String function) {
+    public boolean insertCard(int nr, int quantity, String name, String colour, String type, String function) {
         try {
             PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO animals VALUES(?, ?, ?, ?, ?, ?);");
             preparedStatement.setInt(1, nr);
@@ -212,8 +212,8 @@ public class SetOfCards implements Database {
         try {
             ResultSet resultSet = stat.executeQuery("SELECT * FROM animals;");
             while (resultSet.next()) {
-                Integer number = resultSet.getInt("nr");
-                Integer quantity = resultSet.getInt("quantity");
+                int number = resultSet.getInt("nr");
+                int quantity = resultSet.getInt("quantity");
                 String name = resultSet.getString("naame");
 
                 String colour = resultSet.getString("colour");

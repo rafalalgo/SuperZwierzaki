@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class GetFromHuman {
 
-    public static Integer getInt() {
+    public static int getInt() {
         Scanner sc = new Scanner(System.in);
         return sc.nextInt();
     }

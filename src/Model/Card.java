@@ -7,13 +7,13 @@ import java.util.Objects;
  */
 
 public class Card {
-    private Integer number;
+    private int number;
     private String name;
     private Colour colour;
     private Type type;
     private Function function;
 
-    public Card(Integer number, String name, Colour colour, Type type) {
+    public Card(int number, String name, Colour colour, Type type) {
         this.number = number;
         this.name = name;
         this.colour = colour;
@@ -28,7 +28,7 @@ public class Card {
         this.type = type;
     }
 
-    public Card(Integer number, String name, Colour colour, Type type, Function function) {
+    public Card(int number, String name, Colour colour, Type type, Function function) {
         this.number = number;
         this.name = name;
         this.colour = colour;
@@ -36,11 +36,11 @@ public class Card {
         this.function = function;
     }
 
-    public Integer getNumber() {
+    public int getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 

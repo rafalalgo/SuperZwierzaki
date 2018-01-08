@@ -6,14 +6,14 @@ package Model;
 
 public class Human {
 
-    private static Boolean check1(Integer input, Integer begin, Integer end) {
+    private static Boolean check1(int input, int begin, int end) {
         return begin <= input && input <= end;
     }
 
-    private static Integer checking(Integer begin, Integer end) {
+    private static int checking(int begin, int end) {
         Boolean notYet = true;
-        Integer er = 0;
-        Integer dec = null;
+        int er = 0;
+        int dec = 0;
         while (notYet) {
             dec = GetFromHuman.getInt();
             notYet = !check1(dec, begin, end);
@@ -29,7 +29,7 @@ public class Human {
         return dec;
     }
 
-    private static Boolean checkingThird(Player player, Integer numberInHand, Card card) {
+    private static Boolean checkingThird(Player player, int numberInHand, Card card) {
         return player.getHand(numberInHand) == card;
     }
 
@@ -41,7 +41,7 @@ public class Human {
 
     private static void displayHand(Player player) {
         System.out.println("Your cards:");
-        for (Integer i = 0; i < player.getQuant_of_cards(); i++) {
+        for (int i = 0; i < player.getQuant_of_cards(); i++) {
             System.out.print(i + " ");
             (player.getHand(i)).displayCard();
         }
@@ -100,35 +100,35 @@ public class Human {
         Human.displayHand(player);
     }
 
-    public static Integer askWhatMove() {
+    public static int askWhatMove() {
         Human.displayRulesNormal();
         Human.displayQuestionAction();
         return Human.checking(1, 3);
     }
 
-    public static Integer askWhatCard(Player player) {
+    public static int askWhatCard(Player player) {
         Human.displayCard();
         return Human.checking(0, player.getQuant_of_cards() - 1);
     }
 
-    public static Integer askHowMany(Player player, Card card) {
+    public static int askHowMany(Player player, Card card) {
         Human.displayMultiple();
         return checking(2, player.checkHowManyExactCardsInHand(card));
     }
 
-    public static Integer askWhatForced(Integer options) {
+    public static int askWhatForced(int options) {
         Human.displayForced();
         return Human.checking(1, options);
     }
 
-    public static Integer askWhatForcedKind() {
+    public static int askWhatForcedKind() {
         Human.displayForcedKind();
         return Human.checking(1, 2);
     }
 
-    public static Integer askForThirdCard(Player player, Card card) {
+    public static int askForThirdCard(Player player, Card card) {
         Human.displayThirdCard();
-        Integer choosen = Human.checking(0, player.getQuant_of_cards());
+        int choosen = Human.checking(0, player.getQuant_of_cards());
         if (Human.checkingThird(player, choosen, card)) {
             Human.error();
             return 0;
@@ -137,7 +137,7 @@ public class Human {
         }
     }
 
-    public static Integer askForDuelMove() {
+    public static int askForDuelMove() {
         Human.displayDuel();
         return checking(1, 3);
     }
