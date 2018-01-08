@@ -145,10 +145,10 @@ public class Human {
 
     public static int askForThirdCard(Player player, Card card) {
         Human.displayThirdCard();
-        int choosen = Human.checking(0, player.getQuant_of_cards());
+        int choosen = Human.checking(0, player.getQuant_of_cards() - 1);
         if (Human.checkingThird(player, choosen, card)) {
             Human.error();
-            return 0;
+            return -1;
         } else {
             return choosen;
         }
