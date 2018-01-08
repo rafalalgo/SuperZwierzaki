@@ -12,11 +12,11 @@ import java.util.List;
  */
 
 public interface Database {
-    public List<Card> getAllCards();
+    List<Card> getAllCards();
 
-    public List<Card> getCardsWithColour(Colour colour);
+    List<Card> getCardsWithColour(Colour colour);
 
-    public List<Card> getCardsWithType(Type type);
+    List<Card> getCardsWithType(Type type);
 
-    public List<Card> getCardsWithFunction(Function function);
+    List<Card> getCardsWithFunction(Function function);
 }

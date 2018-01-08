@@ -130,7 +130,7 @@ public class Supervisor {
             } else if (type == 2) {
                 return this.multipleMove(player);
             } else if (type == 3) {
-                this.draw(1, player);
+                draw(1, player);
                 return true;
             }
         }
@@ -309,7 +309,7 @@ public class Supervisor {
         Card pl_card = player.ordinaryMove();
         if (this.checkIfOrdinaryAllowed(pl_card)) {
             player.playOneCard(pl_card);
-            this.newCardOnTheHip(pl_card);
+            newCardOnTheHip(pl_card);
             // Wykonanie funkcji.
             return true;
         } else {
@@ -325,7 +325,7 @@ public class Supervisor {
         Card pl_card = player.ordinaryMove();
         if (this.checkDemandedFunction(pl_card, function)) {
             player.playOneCard(pl_card);
-            this.newCardOnTheHip(pl_card);
+            newCardOnTheHip(pl_card);
             // Wykonanie funkcji.
             return true;
         } else {
@@ -341,7 +341,7 @@ public class Supervisor {
         Card pl_card = player.ordinaryMove();
         if (this.checkDemandedType(pl_card, type)) {
             player.playOneCard(pl_card);
-            this.newCardOnTheHip(pl_card);
+            newCardOnTheHip(pl_card);
             // Wykonanie funkcji.
             return true;
         } else {
@@ -367,7 +367,7 @@ public class Supervisor {
                 // cośtam
             }
             player.playFewCards(how_many, pl_card);
-            this.newCardOnTheHip(pl_card);
+            newCardOnTheHip(pl_card);
             // Wykonanie funkcji odp ilość razy.
             return true;
         } else {
@@ -391,7 +391,7 @@ public class Supervisor {
                 // cośtam
             }
             player.playFewCards(how_many, pl_card);
-            this.newCardOnTheHip(pl_card);
+            newCardOnTheHip(pl_card);
             // Wykonanie funkcji odp ilość razy
             return true;
         } else {
@@ -415,7 +415,7 @@ public class Supervisor {
                 // cośtam
             }
             player.playFewCards(how_many, pl_card);
-            this.newCardOnTheHip(pl_card);
+            newCardOnTheHip(pl_card);
             // Wykonanie funkcji odp ilość razy.
             return true;
         } else {
