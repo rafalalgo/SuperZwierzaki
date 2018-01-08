@@ -16,11 +16,15 @@ public class Human {
         int dec = 0;
         while (notYet) {
             dec = GetFromHuman.getInt();
+            if(dec == -1) {
+                Human.goBack();
+                return -1;
+            }
             notYet = !check1(dec, begin, end);
             if (notYet) {
                 Human.error();
                 if (er == 2) {
-                    return 0;
+                    return -1;
                 } else {
                     er += 1;
                 }
@@ -51,6 +55,14 @@ public class Human {
         System.out.println("Error, try again");
     }
 
+    public static void goBack() {
+        System.out.println("You have just returned to the previous screen");
+    }
+
+    public static void tryAgain() {
+        System.out.println("Try again");
+    }
+
     private static void displayQuestionAction() {
         System.out.println("What are you willing to do?");
     }
@@ -64,6 +76,7 @@ public class Human {
     private static void displayMultiple() {
         System.out.println("How many cards of that type are you willing to play?");
         System.out.println("Choose a number.");
+        System.out.println("Choose 1 to play /Ten colours power/");
     }
 
     private static void displayCard() {
@@ -95,6 +108,10 @@ public class Human {
         System.out.println("3 to block");
     }
 
+    private static void displayTenColours() {
+        System.out.println("Choose another card");
+    }
+
     public static void beginingOfATurn(Player player) {
         Human.displayWho(player);
         Human.displayHand(player);
@@ -113,7 +130,7 @@ public class Human {
 
     public static int askHowMany(Player player, Card card) {
         Human.displayMultiple();
-        return checking(2, player.checkHowManyExactCardsInHand(card));
+        return checking(1, player.checkHowManyExactCardsInHand(card));
     }
 
     public static int askWhatForced(int options) {
@@ -140,6 +157,11 @@ public class Human {
     public static int askForDuelMove() {
         Human.displayDuel();
         return checking(1, 3);
+    }
+
+    public static Integer askForTenColours(Player player) {
+        Human.displayTenColours();
+        return checking(0,player.getQuant_of_cards() - 1);
     }
 
 }
