@@ -14,5 +14,6 @@ public enum Colour {
     DG,
     Y,
     P,
-    ALL
+    ALL,
+    ERROR
 }
