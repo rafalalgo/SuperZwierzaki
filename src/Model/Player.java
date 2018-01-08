@@ -61,6 +61,7 @@ public class Player {
         return this.name;
     }
 
+
 //moves
 
     public int whatMove() {
@@ -74,6 +75,9 @@ public class Player {
 
     public Card ordinaryMove() {
         int card_from_the_hand = Human.askWhatCard(this);
+        if(card_from_the_hand == -1) {
+            return ErrorCard.getError();
+        }
         return hand.get(card_from_the_hand);
     }
 
@@ -117,6 +121,9 @@ public class Player {
 
     public Card getThirdCardToThePair(Card card) {
         int card_from_the_hand = Human.askForThirdCard(this, card);
+        if(card_from_the_hand == -1) {
+            return ErrorCard.getError();
+        }
         return hand.get(card_from_the_hand);
     }
 
