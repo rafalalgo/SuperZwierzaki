@@ -99,6 +99,7 @@ public class Supervisor {
         Supervisor.setWhoseMove(0);
         this.setPlayers(Supervisor.players_quant);
         Preparation.giveCards();
+
     }
 
     public String game() {

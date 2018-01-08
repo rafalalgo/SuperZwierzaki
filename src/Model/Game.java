@@ -10,7 +10,7 @@ public class Game {
                 0, 0, 0, 0, 0, null, 0);
         String winner;
         winner = supervisor.game();
-        System.out.println("The winner is:" + winner);
+        System.out.println("The winner is: " + winner);
         System.out.println("Congratulation for all participants ;)");
     }
 }

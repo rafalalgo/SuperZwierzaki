@@ -1,11 +1,5 @@
 package Model;
 
-import Database.SetOfCards;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 /**
  * Created by Jędrzej Hodor on 05.01.2018.
  */

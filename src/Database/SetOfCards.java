@@ -35,7 +35,7 @@ public class SetOfCards implements Database {
             System.err.println("Problem z otwarciem polaczenia");
             e.printStackTrace();
         }
-        System.out.println("Otwarto baze danych.");
+        System.out.println("Database open.");
         createTables();
     }
 
@@ -199,7 +199,7 @@ public class SetOfCards implements Database {
     public void closeConnection() {
         try {
             conn.close();
-            System.out.println("Zamknieto baze danych.");
+            System.out.println("Database closed.");
         } catch (SQLException e) {
             System.err.println("Problem z zamknieciem polaczenia");
             e.printStackTrace();
