@@ -31,7 +31,7 @@ public class Supervisor {
         }
     }
 
-    public Supervisor(int whoseMove, int playersQuant, Card demandedCard, int playerWhoHasDemanded) {
+    public Supervisor(int whoseMove, int playersQuant, Card demandedCard, int playerWhoHasDemanded, Card error) {
         this();
         this.whoseMove = whoseMove;
         this.playersQuant = playersQuant;
@@ -72,9 +72,11 @@ public class Supervisor {
         hip.remove(0);
     }
 
+
 // game
 
     private void gameBegin() {
+        ErrorCard.setError();
         this.hip.setDeck();
         this.hip.shuffleDeck();
         this.setFirstCard();
@@ -169,6 +171,7 @@ public class Supervisor {
     public void newCardOnTheHip(Card card) {
         situation.setGivenColour(card.getColour());
         situation.setGivenType(card.getType());
+        situation.setCardOnTheTop(card);
     }
 
 // moves
@@ -310,10 +313,14 @@ public class Supervisor {
 
     //multiple
 
-    private void helpMove(Player player, Card pl_card) {
+    private Boolean helpMove(Player player, Card pl_card) {
+        Boolean ifSuccesfull = false;
         int how_many = player.multipleMove(pl_card);
         if (how_many == 2) {
             Card extra_card = player.getThirdCardToThePair(pl_card);
+            if(extra_card == ErrorCard.getError()) {
+                return false;
+            }
             player.playOneCard(extra_card);
         } else if (how_many == 3) {
             // Play Polak.
@@ -321,26 +328,30 @@ public class Supervisor {
             // Play Kazuar.
         } else if (how_many == 5) {
             // cośtam
+        } else if (how_many == 1) {
+            return player.tenColours(pl_card);
         }
-        player.playFewCards(how_many, pl_card);
-        newCardOnTheHip(pl_card);
-        // Wykonanie funkcji odp ilość razy.
+        if(ifSuccesfull && how_many != 1) {
+            player.playFewCards(how_many, pl_card);
+            newCardOnTheHip(pl_card);
+            // Wykonanie funkcji odp ilość razy.
+            return true;
+        }
+        return false;
     }
 
     private Boolean multipleMove(Player player) {
         Card pl_card = player.ordinaryMove();
         if (this.checkIfOrdinaryAllowed(pl_card)) {
-            this.helpMove(player, pl_card);
-            return true;
+            return this.helpMove(player, pl_card);
         }
         return false;
-    } // 9 kart, 2 warany
+    } // 2 warany
 
     private Boolean multipleDemandedFunction(Player player, Function function) {
         Card pl_card = player.ordinaryMove();
         if (this.checkDemandedFunction(pl_card, function)) {
-            this.helpMove(player, pl_card);
-            return true;
+            return this.helpMove(player, pl_card);
         }
         return false;
     }
@@ -348,7 +359,7 @@ public class Supervisor {
     private Boolean multipleDemandedType(Player player, Type type) {
         Card pl_card = player.ordinaryMove();
         if (this.checkDemandedType(pl_card, type)) {
-            helpMove(player, pl_card);
+            return this.helpMove(player, pl_card);
         }
         return false;
     }
