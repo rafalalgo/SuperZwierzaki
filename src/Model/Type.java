@@ -25,5 +25,6 @@ public enum Type {
     bea,
     sml,
     koo,
-    all
+    all,
+    error
 }
