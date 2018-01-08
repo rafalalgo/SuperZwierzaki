@@ -115,7 +115,7 @@ public class Duel {
         }
         Supervisor.setWhoseMove((index + 1) % Supervisor.getPlayersQuant());
         this.resetDuel();
-        Supervisor.newCardOnTheHip(this.duel_card);
+        new Supervisor().newCardOnTheHip(this.duel_card);
 
         if (if_winner) {
             return winner.getNumber();

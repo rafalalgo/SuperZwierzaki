@@ -6,8 +6,7 @@ package Model;
 
 public class Game {
     public static void main(String[] args) {
-        Supervisor supervisor = new Supervisor(0, null, null,
-                0, 0, 0, 0, 0, null, 0);
+        Supervisor supervisor = new Supervisor();
         String winner;
         winner = supervisor.game();
         System.out.println("The winner is: " + winner);

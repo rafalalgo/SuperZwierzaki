@@ -10,7 +10,7 @@ import java.util.Collections;
 
 public class Player {
     private int number;
-    private List<Card> hand;
+    public List<Card> hand;
     private int quant_of_cards;
     private Boolean if_folded;
     private String name;

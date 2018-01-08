@@ -23,13 +23,13 @@ public class Supervisor {
     private int demand = 0;
     private int duel = 0;
 
-    private Card demanded_card;
-    private int player_who_has_demanded;
+    private Card demandedCard;
+    private int playerWhoHasDemanded;
     private Card duel_card;
 
 // setting
 
-    public Supervisor(int whose_move, Colour given_colour, Type given_type, int players_quant, int red, int orc, int green, int demand, Card demanded_card, int player_who_has_demanded, int duel, Card duel_card) {
+    public Supervisor(int whose_move, Colour given_colour, Type given_type, int players_quant, int red, int orc, int green, int demand, Card demandedCard, int playerWhoHasDemanded, int duel, Card duel_card) {
         this.whose_move = whose_move;
         this.given_colour = given_colour;
         this.given_type = given_type;
@@ -38,8 +38,8 @@ public class Supervisor {
         this.orc = orc;
         this.green = green;
         this.demand = demand;
-        this.demanded_card = demanded_card;
-        this.player_who_has_demanded = player_who_has_demanded;
+        this.demandedCard = demandedCard;
+        this.playerWhoHasDemanded = playerWhoHasDemanded;
         this.duel = duel;
         this.duel_card = duel_card;
     }
@@ -210,13 +210,13 @@ public class Supervisor {
                 }
             } else if (what_move == 3) {
                 if (what_kind == 1) {
-                    return this.ordinaryDemandedType(player, demanded_card.getType());
+                    return this.ordinaryDemandedType(player, demandedCard.getType());
                 } else if (what_kind == 2) {
-                    return this.multipleDemandedType(player, demanded_card.getType());
+                    return this.multipleDemandedType(player, demandedCard.getType());
                 }
             }
 
-            if (whose_move == player_who_has_demanded) {
+            if (whose_move == playerWhoHasDemanded) {
                 this.resetDemand();
             }
         }
