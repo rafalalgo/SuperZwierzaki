@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Created by Jędrzej Hodor on 01.01.2018.
+ * Edited by Rafal Byczek on 08.01.2018.
  */
 
 public class Supervisor {
@@ -14,15 +15,13 @@ public class Supervisor {
     private static Situation situation;
     private static Card demandedCard;
     private static int playerWhoHasDemanded;
-
-    private static int players_quant;
-
-    private static int whose_move;
+    private static int playersQuant;
+    private static int whoseMove;
 
 // setting
 
     public Supervisor() {
-        if(hip == null) {
+        if (hip == null) {
             Supervisor.players = new LinkedList<>();
             Supervisor.hip = new Hip();
             Supervisor.specialPoints = new SpecialPoints(0, 0, 0, 0);
@@ -30,20 +29,20 @@ public class Supervisor {
         }
     }
 
-    public Supervisor(int whose_move, int players_quant, Card demandedCard, int playerWhoHasDemanded) {
+    public Supervisor(int whoseMove, int playersQuant, Card demandedCard, int playerWhoHasDemanded) {
         this();
-        Supervisor.whose_move = whose_move;
-        Supervisor.players_quant = players_quant;
+        Supervisor.whoseMove = whoseMove;
+        Supervisor.playersQuant = playersQuant;
         Supervisor.demandedCard = demandedCard;
         Supervisor.playerWhoHasDemanded = playerWhoHasDemanded;
     }
 
     public static int getWhoseMove() {
-        return whose_move;
+        return whoseMove;
     }
 
     public static int getPlayersQuant() {
-        return players_quant;
+        return playersQuant;
     }
 
     public static Player getPlayers(int i) {
@@ -51,14 +50,12 @@ public class Supervisor {
     }
 
     public static void setWhoseMove(int whose_move) {
-        Supervisor.whose_move = whose_move;
+        Supervisor.whoseMove = whose_move;
     }
 
     public static void setPlayersQuant(int players_quant) {
-        Supervisor.players_quant = players_quant;
+        Supervisor.playersQuant = players_quant;
     }
-
-
 
     private void setPlayers(int players_quant) {
         for (int i = 0; i < players_quant; i++) {
@@ -76,14 +73,13 @@ public class Supervisor {
 // game
 
 
-
     private void gameBegin() {
         hip.setDeck();
         hip.shuffleDeck();
         this.setFirstCard();
         Preparation.askForPlayersQuant();
         Supervisor.setWhoseMove(0);
-        this.setPlayers(Supervisor.players_quant);
+        this.setPlayers(Supervisor.playersQuant);
         Preparation.giveCards();
     }
 
@@ -92,7 +88,7 @@ public class Supervisor {
         Boolean no_winner = true;
         Player winner = null;
         while (no_winner) {
-            Human.beginingOfATurn(players.get(whose_move));
+            Human.beginingOfATurn(players.get(whoseMove));
             if (!this.playTurn()) {
                 Human.error();
             } else {
@@ -108,7 +104,7 @@ public class Supervisor {
 
     private Boolean playTurn() {
         System.out.println(situation);
-        Player player = players.get(whose_move);
+        Player player = players.get(whoseMove);
         int type = player.whatMove();
         if (specialPoints.checkIfForced()) {
             return this.forcedMove(player);
@@ -127,12 +123,12 @@ public class Supervisor {
     }
 
     private void nextTurn() {
-        whose_move += 1;
-        whose_move = whose_move % players_quant;
+        whoseMove += 1;
+        whoseMove = whoseMove % playersQuant;
     }
 
     public static Boolean ifWinner() {
-        for (int i = 0; i < players_quant; i++) {
+        for (int i = 0; i < playersQuant; i++) {
             if (0 == (players.get(i)).getQuant_of_cards()) {
                 return true;
             }
@@ -141,7 +137,7 @@ public class Supervisor {
     }
 
     public static Player whoWon() {
-        for (int i = 0; i < players_quant; i++) {
+        for (int i = 0; i < playersQuant; i++) {
             if (0 == (players.get(i)).getQuant_of_cards()) {
                 return players.get(i);
             }
@@ -161,7 +157,7 @@ public class Supervisor {
     }
 
     private static void playerCardsRemover() {
-        for (int i = 0; i < players_quant; ) {
+        for (int i = 0; i < playersQuant; ) {
             Player player = players.get(i);
             for (int j = 0; j < player.getQuant_of_cards(); j++) {
                 int rm = Supervisor.findCardInTheHip(player.getHand(j));
@@ -261,7 +257,7 @@ public class Supervisor {
                 }
             }
 
-            if (whose_move == playerWhoHasDemanded) {
+            if (whoseMove == playerWhoHasDemanded) {
                 this.specialPoints.setDemand(0);
             }
         }
