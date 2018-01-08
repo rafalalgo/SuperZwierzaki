@@ -39,4 +39,13 @@ public class Hip {
     public boolean isEmpty() {
         return hip.isEmpty();
     }
+
+    public int contains(Card card) {
+        for (int i = 0; i < hip.size(); i++) {
+            if (hip.get(i) == card) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }

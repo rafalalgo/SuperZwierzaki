@@ -1,6 +1,5 @@
 package Model;
 
-import static Model.Supervisor.getPlayers;
 
 /**
  * Created by Jędrzej Hodor on 05.01.2018.
@@ -9,8 +8,9 @@ import static Model.Supervisor.getPlayers;
 public class Duel {
     private int duel;
     private Card duel_card;
+    private Supervisor supervisor;
 
-    public Duel(int duel, Card duel_card) {
+    public Duel(int duel, Card duel_card, Supervisor supervisor) {
         this.duel = duel;
         this.duel_card = duel_card;
     }
@@ -21,19 +21,19 @@ public class Duel {
 
     private void resetDuel() {
         this.duel = 0;
-        for (int i = 0; i < Supervisor.getPlayersQuant(); i++) {
-            Player player = getPlayers(i);
+        for (int i = 0; i < this.supervisor.getPlayersQuant(); i++) {
+            Player player = this.supervisor.getPlayers(i);
             player.setIfFolded(false);
         }
     }
 
     private Boolean checkIfWinner() {
-        if (Supervisor.ifWinner()) {
+        if (this.supervisor.ifWinner()) {
             return true;
         }
         Boolean stop = false;
-        for (int i = 0; i < Supervisor.getPlayersQuant(); i++) {
-            Player player = Supervisor.getPlayers(i);
+        for (int i = 0; i < this.supervisor.getPlayersQuant(); i++) {
+            Player player = this.supervisor.getPlayers(i);
             if (!(player.getIfFolded()) && !stop) {
                 stop = true;
             } else if (!(player.getIfFolded()) && stop) {
@@ -44,11 +44,11 @@ public class Duel {
     }
 
     private Player findWinner() {
-        if (Supervisor.ifWinner()) {
-            return Supervisor.whoWon();
+        if (this.supervisor.ifWinner()) {
+            return this.supervisor.whoWon();
         }
-        for (int i = 0; i < Supervisor.getPlayersQuant(); i++) {
-            Player player = getPlayers(i);
+        for (int i = 0; i < this.supervisor.getPlayersQuant(); i++) {
+            Player player = this.supervisor.getPlayers(i);
             if (!player.getIfFolded()) {
                 return player;
             }
@@ -100,7 +100,7 @@ public class Duel {
         Boolean if_winner = false;
 
         while (!end) {
-            Player current_player = getPlayers(index);
+            Player current_player = supervisor.getPlayers(index);
             this.duelMove(current_player, function);
 
             if (this.duel == 0) {
@@ -111,9 +111,9 @@ public class Duel {
                 if_winner = true;
             }
 
-            index = (index + 1) % Supervisor.getPlayersQuant();
+            index = (index + 1) % this.supervisor.getPlayersQuant();
         }
-        Supervisor.setWhoseMove((index + 1) % Supervisor.getPlayersQuant());
+        this.supervisor.setWhoseMove((index + 1) % this.supervisor.getPlayersQuant());
         this.resetDuel();
         new Supervisor().newCardOnTheHip(this.duel_card);
 

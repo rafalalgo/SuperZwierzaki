@@ -133,9 +133,9 @@ public class Player {
     public Boolean tenColours(Card card) {
         List<Card> played = new LinkedList<>();
         played.add(card);
-        for(int i = 0; i < 9; i++) {
+        for (int i = 0; i < 9; i++) {
             Integer got = Human.askForTenColours(this);
-            if(got == -1) {
+            if (got == -1) {
                 return false;
             } else {
                 Card next = this.getHand(got);
@@ -146,24 +146,23 @@ public class Player {
                 }
             }
         }
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             this.playOneCard(played.get(i));
         }
-        Supervisor.newCardOnTheHip(played.get(9));
+        new Supervisor().newCardOnTheHip(played.get(9));
         return true;
     }
 
     private Boolean ifColourNotInTheList(List<Card> list, Card card) {
         Colour colour = card.getColour();
-        for(int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
             Colour colour2 = (list.get(i)).getColour();
-            if(colour == colour2) {
+            if (colour == colour2) {
                 return false;
             }
         }
         return true;
     }
-
 }
 
 

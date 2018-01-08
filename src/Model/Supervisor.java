@@ -9,57 +9,59 @@ import java.util.List;
  */
 
 public class Supervisor {
-    private static List<Player> players;
-    private static Hip hip;
-    private static SpecialPoints specialPoints;
-    private static Situation situation;
-    private static Card demandedCard;
-    private static int playerWhoHasDemanded;
-    private static int playersQuant;
-    private static int whoseMove;
+    private List<Player> players;
+    private Hip hip;
+    private SpecialPoints specialPoints;
+    private Situation situation;
+    private Preparation preparation;
+    private Card demandedCard;
+    private int playerWhoHasDemanded;
+    private int playersQuant;
+    private int whoseMove;
 
 // setting
 
     public Supervisor() {
         if (hip == null) {
-            Supervisor.players = new LinkedList<>();
-            Supervisor.hip = new Hip();
-            Supervisor.specialPoints = new SpecialPoints(0, 0, 0, 0);
-            Supervisor.situation = new Situation();
+            preparation = new Preparation(this);
+            players = new LinkedList<>();
+            this.hip = new Hip();
+            specialPoints = new SpecialPoints(0, 0, 0, 0);
+            this.situation = new Situation();
         }
     }
 
     public Supervisor(int whoseMove, int playersQuant, Card demandedCard, int playerWhoHasDemanded) {
         this();
-        Supervisor.whoseMove = whoseMove;
-        Supervisor.playersQuant = playersQuant;
-        Supervisor.demandedCard = demandedCard;
-        Supervisor.playerWhoHasDemanded = playerWhoHasDemanded;
+        this.whoseMove = whoseMove;
+        this.playersQuant = playersQuant;
+        this.demandedCard = demandedCard;
+        this.playerWhoHasDemanded = playerWhoHasDemanded;
     }
 
-    public static int getWhoseMove() {
+    public int getWhoseMove() {
         return whoseMove;
     }
 
-    public static int getPlayersQuant() {
+    public int getPlayersQuant() {
         return playersQuant;
     }
 
-    public static Player getPlayers(int i) {
+    public Player getPlayers(int i) {
         return players.get(i);
     }
 
-    public static void setWhoseMove(int whose_move) {
-        Supervisor.whoseMove = whose_move;
+    public void setWhoseMove(int whose_move) {
+        this.whoseMove = whose_move;
     }
 
-    public static void setPlayersQuant(int players_quant) {
-        Supervisor.playersQuant = players_quant;
+    public void setPlayersQuant(int players_quant) {
+        this.playersQuant = players_quant;
     }
 
     private void setPlayers(int players_quant) {
         for (int i = 0; i < players_quant; i++) {
-            Player player = Preparation.setPlayer(i);
+            Player player = preparation.setPlayer(i);
             players.add(player);
         }
     }
@@ -72,15 +74,14 @@ public class Supervisor {
 
 // game
 
-
     private void gameBegin() {
-        hip.setDeck();
-        hip.shuffleDeck();
+        this.hip.setDeck();
+        this.hip.shuffleDeck();
         this.setFirstCard();
-        Preparation.askForPlayersQuant();
-        Supervisor.setWhoseMove(0);
-        this.setPlayers(Supervisor.playersQuant);
-        Preparation.giveCards();
+        this.preparation.askForPlayersQuant();
+        this.setWhoseMove(0);
+        this.setPlayers(this.playersQuant);
+        this.preparation.giveCards();
     }
 
     public String game() {
@@ -92,8 +93,8 @@ public class Supervisor {
             if (!this.playTurn()) {
                 Human.error();
             } else {
-                if (Supervisor.ifWinner()) {
-                    winner = Supervisor.whoWon();
+                if (this.ifWinner()) {
+                    winner = this.whoWon();
                     no_winner = false;
                 }
                 this.nextTurn();
@@ -123,20 +124,14 @@ public class Supervisor {
     }
 
     private void nextTurn() {
-        whoseMove += 1;
-        whoseMove = whoseMove % playersQuant;
+        whoseMove = (whoseMove + 1) % playersQuant;
     }
 
-    public static Boolean ifWinner() {
-        for (int i = 0; i < playersQuant; i++) {
-            if (0 == (players.get(i)).getQuant_of_cards()) {
-                return true;
-            }
-        }
-        return false;
+    public Boolean ifWinner() {
+        return players.contains(0);
     }
 
-    public static Player whoWon() {
+    public Player whoWon() {
         for (int i = 0; i < playersQuant; i++) {
             if (0 == (players.get(i)).getQuant_of_cards()) {
                 return players.get(i);
@@ -145,44 +140,42 @@ public class Supervisor {
         return players.get(0);
     }
 
-    private static int findCardInTheHip(Card card) {
-        for (int i = 0; i < hip.size(); i++) {
-            if (hip.get(i) == card) {
-                return i;
-            }
+    private int findCardInTheHip(Card card) {
+        int tmp = hip.contains(card);
+        if (tmp > 0) {
+            return tmp;
         }
-        Human.error();
         Human.error();
         return 0;
     }
 
-    private static void playerCardsRemover() {
+    private void playerCardsRemover() {
         for (int i = 0; i < playersQuant; ) {
             Player player = players.get(i);
             for (int j = 0; j < player.getQuant_of_cards(); j++) {
-                int rm = Supervisor.findCardInTheHip(player.getHand(j));
+                int rm = this.findCardInTheHip(player.getHand(j));
                 hip.remove(rm);
             }
         }
     }
 
-    private static void hipWarden() {
+    private void hipWarden() {
         if (hip.isEmpty()) {
             hip.setDeck();
-            Supervisor.playerCardsRemover();
+            this.playerCardsRemover();
         }
     }
 
     public void newCardOnTheHip(Card card) {
-        this.situation.setGivenColour(card.getColour());
-        this.situation.setGivenType(card.getType());
+        situation.setGivenColour(card.getColour());
+        situation.setGivenType(card.getType());
     }
 
 // moves
 
-    static void draw(int quantity, Player player) {
+    public void draw(int quantity, Player player) {
         for (int i = 0; i < quantity; i++) {
-            Supervisor.hipWarden();
+            this.hipWarden();
             player.draw(hip.get(0));
             hip.remove(0);
         }
@@ -191,16 +184,16 @@ public class Supervisor {
     private Boolean forcedMove(Player player) {
         //zakładamy, że nie zdaży się opcja dwóch rodzajów punktów niezerowych (nie powinna xd)
 
-        int what_move = player.whatForcedMove(this.specialPoints.whatKindOfForced());
+        int what_move = player.whatForcedMove(specialPoints.whatKindOfForced());
         int what_kind = 0;
         if (what_move == 2) {
             what_kind = player.whatKindOfForcedMove();
         }
 
-        if (this.specialPoints.getRed() != 0) {
+        if (specialPoints.getRed() != 0) {
             if (what_move == 1) {
-                draw(this.specialPoints.getRed(), player);
-                this.specialPoints.setRed(0);
+                draw(specialPoints.getRed(), player);
+                specialPoints.setRed(0);
                 return true;
             } else if (what_move == 2) {
                 if (what_kind == 1) {
@@ -215,10 +208,10 @@ public class Supervisor {
                     return this.multipleDemandedFunction(player, Function.All);
                 }
             }
-        } else if (this.specialPoints.getOrc() != 0) {
+        } else if (specialPoints.getOrc() != 0) {
             if (what_move == 1) {
-                draw(this.specialPoints.getOrc(), player);
-                this.specialPoints.setOrc(0);
+                draw(specialPoints.getOrc(), player);
+                specialPoints.setOrc(0);
                 return true;
             } else if (what_move == 2) {
                 if (what_kind == 1) {
@@ -227,10 +220,10 @@ public class Supervisor {
                     return this.multipleDemandedFunction(player, Function.Orc);
                 }
             }
-        } else if (this.specialPoints.getGreen() != 0) {
+        } else if (specialPoints.getGreen() != 0) {
             if (what_move == 1) {
                 // Funkcja tracenia kolejek.
-                this.specialPoints.setGreen(0);
+                specialPoints.setGreen(0);
                 return true;
             } else if (what_move == 2) {
                 if (what_kind == 1) {
@@ -239,7 +232,7 @@ public class Supervisor {
                     return this.multipleDemandedFunction(player, Function.Stp);
                 }
             }
-        } else if (this.specialPoints.getDemand() != 0) {
+        } else if (specialPoints.getDemand() != 0) {
             if (what_move == 1) {
                 draw(1, player);
                 return true;
@@ -258,13 +251,13 @@ public class Supervisor {
             }
 
             if (whoseMove == playerWhoHasDemanded) {
-                this.specialPoints.setDemand(0);
+                specialPoints.setDemand(0);
             }
         }
         return false;
     }
 
-    // ordinary
+// ordinary
 
     private Boolean checkIfOrdinaryAllowed(Card card) {
         return (card.getColour() == situation.getGivenColour() || card.getType() == situation.getGivenType()
@@ -317,102 +310,50 @@ public class Supervisor {
 
     //multiple
 
+    private void helpMove(Player player, Card pl_card) {
+        int how_many = player.multipleMove(pl_card);
+        if (how_many == 2) {
+            Card extra_card = player.getThirdCardToThePair(pl_card);
+            player.playOneCard(extra_card);
+        } else if (how_many == 3) {
+            // Play Polak.
+        } else if (how_many == 4) {
+            // Play Kazuar.
+        } else if (how_many == 5) {
+            // cośtam
+        }
+        player.playFewCards(how_many, pl_card);
+        newCardOnTheHip(pl_card);
+        // Wykonanie funkcji odp ilość razy.
+    }
+
     private Boolean multipleMove(Player player) {
         Card pl_card = player.ordinaryMove();
-        int how_many;
         if (this.checkIfOrdinaryAllowed(pl_card)) {
-            how_many = player.multipleMove(pl_card);
-            if (how_many == 2) {
-                Card extra_card = player.getThirdCardToThePair(pl_card);
-                player.playOneCard(extra_card);
-            } else if (how_many == 3) {
-                // Play Polak.
-            } else if (how_many == 4) {
-                // Play Kazuar.
-            } else if (how_many == 5) {
-                // cośtam
-            }
-            player.playFewCards(how_many, pl_card);
-            newCardOnTheHip(pl_card);
-            // Wykonanie funkcji odp ilość razy.
+            this.helpMove(player, pl_card);
             return true;
-        } else {
-            return false;
         }
+        return false;
     } // 9 kart, 2 warany
 
     private Boolean multipleDemandedFunction(Player player, Function function) {
         Card pl_card = player.ordinaryMove();
-        int how_many;
         if (this.checkDemandedFunction(pl_card, function)) {
-            how_many = player.multipleMove(pl_card);
-            if (how_many == 2) {
-                Card extra_card = player.getThirdCardToThePair(pl_card);
-                player.playOneCard(extra_card);
-            } else if (how_many == 3) {
-                // Play Polak.
-            } else if (how_many == 4) {
-                // Play Kazuar.
-            } else if (how_many == 5) {
-                // cośtam
-            }
-            player.playFewCards(how_many, pl_card);
-            newCardOnTheHip(pl_card);
-            // Wykonanie funkcji odp ilość razy
+            this.helpMove(player, pl_card);
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     private Boolean multipleDemandedType(Player player, Type type) {
         Card pl_card = player.ordinaryMove();
-        int how_many;
         if (this.checkDemandedType(pl_card, type)) {
-            how_many = player.multipleMove(pl_card);
-            if (how_many == 2) {
-                Card extra_card = player.getThirdCardToThePair(pl_card);
-                player.playOneCard(extra_card);
-            } else if (how_many == 3) {
-                // Play Polak.
-            } else if (how_many == 4) {
-                // Play Kazuar.
-            } else if (how_many == 5) {
-                // cośtam
-            }
-            player.playFewCards(how_many, pl_card);
-            newCardOnTheHip(pl_card);
-            // Wykonanie funkcji odp ilość razy.
-            return true;
-        } else {
-            return false;
+            helpMove(player, pl_card);
         }
+        return false;
     }
-
 
 // special
-
-    private void waranTransposition(Player player1, Player player2) {
-        List<Card> tmp = player1.hand;
-        player1.hand = player2.hand;
-        player2.hand = tmp;
-
-        int tmpQuant = player1.getQuant_of_cards();
-        player1.setQuant_of_cards(player2.getQuant_of_cards());
-        player2.setQuant_of_cards(tmpQuant);
-    }
-
-    public void waranPermutation(Player master, Player giver, Player receiver) {
-        Boolean stop = true;
-        while (stop) {
-            //pytamy gracza master, czy chce wykonać transpozycje
-            if (stop) {
-                //pytamy jakich graczy, on nam wpisuje, że player1 i player2.
-                Player player1 = null, player2 = null;
-                this.waranTransposition(player1, player2);
-            }
-        }
-    }
 
     public void giveCards(Player giver, Player receiver, int quant_given) {
         giver.shuffleHand();

@@ -7,7 +7,8 @@ public class Situation {
     private Colour given_colour;
     private Type given_type;
 
-    public Situation() {}
+    public Situation() {
+    }
 
     public Situation(Colour given_colour, Type given_type) {
         this.given_colour = given_colour;

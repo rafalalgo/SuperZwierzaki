@@ -5,28 +5,33 @@ package Model;
  */
 
 public class Preparation {
+    private Supervisor supervisor;
 
-    public static void askForPlayersQuant() {
-        System.out.println("How many players do play?");
-        Supervisor.setPlayersQuant(GetFromHuman.getInt());
+    public Preparation(Supervisor supervisor) {
+        this.supervisor = supervisor;
     }
 
-    public static Player setPlayer(int i) {
+    public void askForPlayersQuant() {
+        System.out.println("How many players do play?");
+        supervisor.setPlayersQuant(GetFromHuman.getInt());
+    }
+
+    public Player setPlayer(int i) {
         Player player = new Player(0, 0, false, "");
         player.setNumber(i);
-        Preparation.askForName();
+        this.askForName();
         player.setName(GetFromHuman.getString());
         return player;
     }
 
-    private static void askForName() {
+    private void askForName() {
         System.out.println("What is your name?");
     }
 
-    public static void giveCards() {
-        for (int i = 0; i < Supervisor.getPlayersQuant(); i++) {
-            Player player = Supervisor.getPlayers(i);
-            Supervisor.draw(5, player);
+    public void giveCards() {
+        for (int i = 0; i < supervisor.getPlayersQuant(); i++) {
+            Player player = supervisor.getPlayers(i);
+            supervisor.draw(5, player);
         }
     }
 
