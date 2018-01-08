@@ -19,5 +19,6 @@ public enum Function {
     Pol,
     Dem,
     All,
-    None
+    None,
+    ERROR
 }
