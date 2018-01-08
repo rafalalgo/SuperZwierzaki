@@ -1,12 +1,16 @@
-package Model;
+package Model.FunctionalMove;
+
+import Model.Card;
+import Model.Player;
 
 import java.util.List;
 
 /**
  * Created by Rafal Byczek on 08.01.2018.
  */
-public class Waran {
-    private static void waranTransposition(Player player1, Player player2) {
+public class WaranMove extends FunctionalMove{
+    @Override
+    public void waranTransposition(Player player1, Player player2) {
         List<Card> tmp = player1.hand;
         player1.hand = player2.hand;
         player2.hand = tmp;
@@ -16,14 +20,15 @@ public class Waran {
         player2.setQuant_of_cards(tmpQuant);
     }
 
-    public static void waranPermutation(Player master, Player giver, Player receiver) {
+    @Override
+    public void waranPermutation(Player master, Player giver, Player receiver) {
         Boolean stop = true;
         while (stop) {
             //pytamy gracza master, czy chce wykonać transpozycje
             if (stop) {
                 //pytamy jakich graczy, on nam wpisuje, że player1 i player2.
                 Player player1 = null, player2 = null;
-                Waran.waranTransposition(player1, player2);
+                this.waranTransposition(player1, player2);
             }
         }
     }
