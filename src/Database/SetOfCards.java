@@ -254,7 +254,7 @@ public class SetOfCards implements Database {
         return listCard.stream().filter(item -> item.getFunction() == function).collect(Collectors.toList());
     }
 
-    private Colour switchStringIntoColour(String colour) {
+    public Colour switchStringIntoColour(String colour) {
         Colour colour2 = null;
         switch (colour) {
             case "LB":

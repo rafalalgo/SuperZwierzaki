@@ -2,7 +2,8 @@ package Model.FunctionalMove;
 
 import Model.Card;
 import Model.Player;
-
+import Model.Supervisor;
+import Model.Human;
 import java.util.List;
 
 /**
@@ -21,13 +22,17 @@ public class WaranMove extends FunctionalMove{
     }
 
     @Override
-    public void waranPermutation(Player master, Player giver, Player receiver) {
+    public void waranPermutation(Player master, Player giver, Player receiver, Supervisor supervisor) {
         Boolean stop = true;
         while (stop) {
-            //pytamy gracza master, czy chce wykonać transpozycje
+            Integer given = giver.getQuant_of_cards();
+            supervisor.giveCards(giver,receiver,given);
+            stop = Human.askWaranIf();
             if (stop) {
-                //pytamy jakich graczy, on nam wpisuje, że player1 i player2.
-                Player player1 = null, player2 = null;
+                Integer plr1 = Human.askWaranWho(supervisor);
+                Integer plr2 = Human.askWaranWho(supervisor);
+                Player player1 = supervisor.getPlayers(plr1);
+                Player player2 = supervisor.getPlayers(plr2);
                 this.waranTransposition(player1, player2);
             }
         }

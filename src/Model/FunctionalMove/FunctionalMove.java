@@ -9,16 +9,17 @@ import Model.Supervisor;
  * Created by Rafal Byczek on 08.01.2018.
  */
 public class FunctionalMove {
+
+    public Boolean jelenMove(Situation situation) {
+        return null;
+    }
     public void waranTransposition(Player player1, Player player2) {
 
     }
-    public void waranPermutation(Player master, Player giver, Player receiver) {
+    public void waranPermutation(Player master, Player giver, Player receiver, Supervisor supervisor) {
 
     }
-    public void jelenMove(Colour colour, Situation situation){
-
-    }
-    public void wioslakMove(Supervisor supervisor) {
+    public void wioslakMove(Supervisor supervisor, Player trig) {
 
     }
     public void mangustaMove(Supervisor supervisor) {

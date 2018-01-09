@@ -1,10 +1,14 @@
 package Model;
 
+import Database.SetOfCards;
+
 /**
  * Created by Jędrzej Hodor on 05.01.2018.
  */
 
 public class Human {
+
+// check
 
     private static Boolean check1(int input, int begin, int end) {
         return begin <= input && input <= end;
@@ -37,6 +41,17 @@ public class Human {
         return player.getHand(numberInHand) == card;
     }
 
+    private static String checkingJelen() {
+        String get = GetFromHuman.getString();
+        while (!(get.equals("LB") || get.equals("LG") || get.equals("R") || get.equals("DB") || get.equals("V") ||
+                get.equals("O") || get.equals("DG") || get.equals("Y") || get.equals("P"))) {
+            get = GetFromHuman.getString();
+        }
+        return get;
+    }
+
+// display
+
     private static void displayWho(Player player) {
         String name = player.getName();
         System.out.println("You are:");
@@ -61,6 +76,11 @@ public class Human {
 
     public static void tryAgain() {
         System.out.println("Try again");
+    }
+
+    public static void beginingOfATurn(Player player) {
+        Human.displayWho(player);
+        Human.displayHand(player);
     }
 
     private static void displayQuestionAction() {
@@ -112,10 +132,24 @@ public class Human {
         System.out.println("Choose another card");
     }
 
-    public static void beginingOfATurn(Player player) {
-        Human.displayWho(player);
-        Human.displayHand(player);
+    private static void displayJelen() {
+        System.out.println("You can change a given colour.");
+        System.out.println("Choose from the following options:");
+        System.out.println("LB, LG, R, DB, V, O, DG, Y, P");
     }
+
+    private static void displayWaranIf() {
+        System.out.println("Do you want to make a transposition?");
+        System.out.println("1 Yes");
+        System.out.println("0 No");
+    }
+
+    private static void displayWaranWho(Integer q) {
+        System.out.println("Choose player");
+        System.out.println("Choose number from 0 to " + (q-1));
+    }
+
+// ask
 
     public static int askWhatMove() {
         Human.displayRulesNormal();
@@ -162,6 +196,30 @@ public class Human {
     public static Integer askForTenColours(Player player) {
         Human.displayTenColours();
         return checking(0,player.getQuant_of_cards() - 1);
+    }
+
+    public static Colour askJelen() {
+        Human.displayJelen();
+        String col = Human.checkingJelen();
+        return Converter.switchStringIntoColour(col);
+    }
+
+    public static Boolean askWaranIf() {
+        Human.displayWaranIf();
+        Integer ifT = GetFromHuman.getInt();
+        switch (ifT){
+            case 0:
+                return false;
+            case 1:
+                return true;
+        }
+        return false;
+    }
+
+    public static Integer askWaranWho(Supervisor supervisor) {
+        Integer q = supervisor.getPlayersQuant();
+        Human.displayWaranWho(q);
+        return checking(0, q);
     }
 
 }
