@@ -51,16 +51,16 @@ public class Supervisor {
         return players.get(i);
     }
 
-    public void setWhoseMove(int whose_move) {
-        this.whoseMove = whose_move;
+    public void setWhoseMove(int whoseMove) {
+        this.whoseMove = whoseMove;
     }
 
-    public void setPlayersQuant(int players_quant) {
-        this.playersQuant = players_quant;
+    public void setPlayersQuant(int playersQuant) {
+        this.playersQuant = playersQuant;
     }
 
-    private void setPlayers(int players_quant) {
-        for (int i = 0; i < players_quant; i++) {
+    private void setPlayers(int playersQuant) {
+        for (int i = 0; i < playersQuant; i++) {
             Player player = preparation.setPlayer(i);
             players.add(player);
         }
@@ -95,16 +95,16 @@ public class Supervisor {
 
     public String game() {
         this.gameBegin();
-        Boolean no_winner = true;
+        Boolean noWinner = true;
         Player winner = null;
-        while (no_winner) {
+        while (noWinner) {
             Human.beginingOfATurn(players.get(whoseMove));
             if (!this.playTurn()) {
                 Human.error();
             } else {
                 if (this.ifWinner()) {
                     winner = this.whoWon();
-                    no_winner = false;
+                    noWinner = false;
                 }
                 this.nextTurn();
             }
@@ -142,7 +142,7 @@ public class Supervisor {
 
     public Player whoWon() {
         for (int i = 0; i < playersQuant; i++) {
-            if (0 == (players.get(i)).getQuant_of_cards()) {
+            if (0 == (players.get(i)).getQuantOfCards()) {
                 return players.get(i);
             }
         }
@@ -161,7 +161,7 @@ public class Supervisor {
     private void playerCardsRemover() {
         for (int i = 0; i < playersQuant; ) {
             Player player = players.get(i);
-            for (int j = 0; j < player.getQuant_of_cards(); j++) {
+            for (int j = 0; j < player.getQuantOfCards(); j++) {
                 int rm = this.findCardInTheHip(player.getHand(j));
                 hip.remove(rm);
             }
@@ -194,68 +194,68 @@ public class Supervisor {
     private Boolean forcedMove(Player player) {
         //zakładamy, że nie zdaży się opcja dwóch rodzajów punktów niezerowych (nie powinna xd)
 
-        int what_move = player.whatForcedMove(specialPoints.whatKindOfForced());
-        int what_kind = 0;
-        if (what_move == 2 || what_move == 3) {
-            what_kind = player.whatKindOfForcedMove();
+        int whatMove = player.whatForcedMove(specialPoints.whatKindOfForced());
+        int whatKind = 0;
+        if (whatMove == 2 || whatMove == 3) {
+            whatKind = player.whatKindOfForcedMove();
         }
 
         if (specialPoints.getRed() != 0) {
-            if (what_move == 1) {
+            if (whatMove == 1) {
                 draw(specialPoints.getRed(), player);
                 specialPoints.setRed(0);
                 return true;
-            } else if (what_move == 2) {
-                if (what_kind == 1) {
+            } else if (whatMove == 2) {
+                if (whatKind == 1) {
                     return this.ordinaryDemandedFunction(player, Function.Red);
-                } else if (what_kind == 2) {
+                } else if (whatKind == 2) {
                     return this.multipleDemandedFunction(player, Function.Red);
                 }
-            } else if (what_move == 3) {
-                if (what_kind == 1) {
+            } else if (whatMove == 3) {
+                if (whatKind == 1) {
                     return this.ordinaryDemandedFunction(player, Function.All);
-                } else if (what_kind == 2) {
+                } else if (whatKind == 2) {
                     return this.multipleDemandedFunction(player, Function.All);
                 }
             }
         } else if (specialPoints.getOrc() != 0) {
-            if (what_move == 1) {
+            if (whatMove == 1) {
                 draw(specialPoints.getOrc(), player);
                 specialPoints.setOrc(0);
                 return true;
-            } else if (what_move == 2) {
-                if (what_kind == 1) {
+            } else if (whatMove == 2) {
+                if (whatKind == 1) {
                     return this.ordinaryDemandedFunction(player, Function.Orc);
-                } else if (what_kind == 2) {
+                } else if (whatKind == 2) {
                     return this.multipleDemandedFunction(player, Function.Orc);
                 }
             }
         } else if (specialPoints.getGreen() != 0) {
-            if (what_move == 1) {
+            if (whatMove == 1) {
                 // Funkcja tracenia kolejek.
                 specialPoints.setGreen(0);
                 return true;
-            } else if (what_move == 2) {
-                if (what_kind == 1) {
+            } else if (whatMove == 2) {
+                if (whatKind == 1) {
                     return this.ordinaryDemandedFunction(player, Function.Stp);
-                } else if (what_kind == 2) {
+                } else if (whatKind == 2) {
                     return this.multipleDemandedFunction(player, Function.Stp);
                 }
             }
         } else if (specialPoints.getDemand() != 0) {
-            if (what_move == 1) {
+            if (whatMove == 1) {
                 draw(1, player);
                 return true;
-            } else if (what_move == 2) {
-                if (what_kind == 1) {
+            } else if (whatMove == 2) {
+                if (whatKind == 1) {
                     return this.ordinaryDemandedFunction(player, Function.Dem);
-                } else if (what_kind == 2) {
+                } else if (whatKind == 2) {
                     return this.multipleDemandedFunction(player, Function.Dem);
                 }
-            } else if (what_move == 3) {
-                if (what_kind == 1) {
+            } else if (whatMove == 3) {
+                if (whatKind == 1) {
                     return this.ordinaryDemandedType(player, demandedCard.getType());
-                } else if (what_kind == 2) {
+                } else if (whatKind == 2) {
                     return this.multipleDemandedType(player, demandedCard.getType());
                 }
             }
@@ -275,10 +275,10 @@ public class Supervisor {
     }
 
     private Boolean ordinaryMove(Player player) {
-        Card pl_card = player.ordinaryMove();
-        if (this.checkIfOrdinaryAllowed(pl_card)) {
-            player.playOneCard(pl_card);
-            newCardOnTheHip(pl_card);
+        Card plCard = player.ordinaryMove();
+        if (this.checkIfOrdinaryAllowed(plCard)) {
+            player.playOneCard(plCard);
+            newCardOnTheHip(plCard);
             // Wykonanie funkcji.
             return true;
         } else {
@@ -291,10 +291,10 @@ public class Supervisor {
     }
 
     private Boolean ordinaryDemandedFunction(Player player, Function function) {
-        Card pl_card = player.ordinaryMove();
-        if (this.checkDemandedFunction(pl_card, function)) {
-            player.playOneCard(pl_card);
-            newCardOnTheHip(pl_card);
+        Card plCard = player.ordinaryMove();
+        if (this.checkDemandedFunction(plCard, function)) {
+            player.playOneCard(plCard);
+            newCardOnTheHip(plCard);
             // Wykonanie funkcji.
             return true;
         } else {
@@ -307,10 +307,10 @@ public class Supervisor {
     }
 
     private Boolean ordinaryDemandedType(Player player, Type type) {
-        Card pl_card = player.ordinaryMove();
-        if (this.checkDemandedType(pl_card, type)) {
-            player.playOneCard(pl_card);
-            newCardOnTheHip(pl_card);
+        Card plCard = player.ordinaryMove();
+        if (this.checkDemandedType(plCard, type)) {
+            player.playOneCard(plCard);
+            newCardOnTheHip(plCard);
             // Wykonanie funkcji.
             return true;
         } else {
@@ -320,27 +320,27 @@ public class Supervisor {
 
     //multiple
 
-    private Boolean helpMove(Player player, Card pl_card) {
+    private Boolean helpMove(Player player, Card plCard) {
         Boolean ifSuccesfull = false;
-        int how_many = player.multipleMove(pl_card);
-        if (how_many == 2) {
-            Card extra_card = player.getThirdCardToThePair(pl_card);
-            if(extra_card == ErrorCard.getError()) {
+        int howMany = player.multipleMove(plCard);
+        if (howMany == 2) {
+            Card extraCard = player.getThirdCardToThePair(plCard);
+            if(extraCard == ErrorCard.getError()) {
                 return false;
             }
-            player.playOneCard(extra_card);
-        } else if (how_many == 3) {
+            player.playOneCard(extraCard);
+        } else if (howMany == 3) {
             // Play Polak.
-        } else if (how_many == 4) {
+        } else if (howMany == 4) {
             // Play Kazuar.
-        } else if (how_many == 5) {
+        } else if (howMany == 5) {
             // cośtam
-        } else if (how_many == 1) {
-            return player.tenColours(pl_card);
+        } else if (howMany == 1) {
+            return player.tenColours(plCard);
         }
-        if(ifSuccesfull && how_many != 1) {
-            player.playFewCards(how_many, pl_card);
-            newCardOnTheHip(pl_card);
+        if(ifSuccesfull && howMany != 1) {
+            player.playFewCards(howMany, plCard);
+            newCardOnTheHip(plCard);
             // Wykonanie funkcji odp ilość razy.
             return true;
         }
@@ -348,25 +348,25 @@ public class Supervisor {
     }
 
     private Boolean multipleMove(Player player) {
-        Card pl_card = player.ordinaryMove();
-        if (this.checkIfOrdinaryAllowed(pl_card)) {
-            return this.helpMove(player, pl_card);
+        Card plCard = player.ordinaryMove();
+        if (this.checkIfOrdinaryAllowed(plCard)) {
+            return this.helpMove(player, plCard);
         }
         return false;
     } // 2 warany
 
     private Boolean multipleDemandedFunction(Player player, Function function) {
-        Card pl_card = player.ordinaryMove();
-        if (this.checkDemandedFunction(pl_card, function)) {
-            return this.helpMove(player, pl_card);
+        Card plCard = player.ordinaryMove();
+        if (this.checkDemandedFunction(plCard, function)) {
+            return this.helpMove(player, plCard);
         }
         return false;
     }
 
     private Boolean multipleDemandedType(Player player, Type type) {
-        Card pl_card = player.ordinaryMove();
-        if (this.checkDemandedType(pl_card, type)) {
-            return this.helpMove(player, pl_card);
+        Card plCard = player.ordinaryMove();
+        if (this.checkDemandedType(plCard, type)) {
+            return this.helpMove(player, plCard);
         }
         return false;
     }

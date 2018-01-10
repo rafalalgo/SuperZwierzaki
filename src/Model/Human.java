@@ -86,7 +86,7 @@ public class Human {
 
     private static void displayHand(Player player) {
         System.out.println("Your cards:");
-        for (int i = 0; i < player.getQuant_of_cards(); i++) {
+        for (int i = 0; i < player.getQuantOfCards(); i++) {
             System.out.print(i + " ");
             (player.getHand(i)).displayCard();
         }
@@ -180,7 +180,7 @@ public class Human {
         for(int i = 0; i < supervisor.getPlayersQuant(); i++) {
             Player player = supervisor.getPlayers(i);
             System.out.println("Player number " + i + " named " + player.getName()
-                    + " has " + player.getQuant_of_cards() + " cards.");
+                    + " has " + player.getQuantOfCards() + " cards.");
         }
     }
 
@@ -208,7 +208,7 @@ public class Human {
 
     public static int askWhatCard(Player player) {
         Human.displayCard();
-        return Human.checking(0, player.getQuant_of_cards() - 1);
+        return Human.checking(0, player.getQuantOfCards() - 1);
     }
 
     public static int askHowMany(Player player, Card card) {
@@ -228,7 +228,7 @@ public class Human {
 
     public static int askForThirdCard(Player player, Card card) {
         Human.displayThirdCard();
-        int choosen = Human.checking(0, player.getQuant_of_cards() - 1);
+        int choosen = Human.checking(0, player.getQuantOfCards() - 1);
         if (Human.checkingThird(player, choosen, card)) {
             Human.error();
             return -1;
@@ -244,7 +244,7 @@ public class Human {
 
     public static Integer askForTenColours(Player player) {
         Human.displayTenColours();
-        return checking(0,player.getQuant_of_cards() - 1);
+        return checking(0,player.getQuantOfCards() - 1);
     }
 
     public static Colour askJelen() {
@@ -285,7 +285,7 @@ public class Human {
     }
 
     public static LinkedList<Integer> askWhatCardsFromHand(Player player, Integer quantity) {
-        Integer cardsInHand = player.getQuant_of_cards();
+        Integer cardsInHand = player.getQuantOfCards();
 
         displayCardsToChoose(quantity);
         if(cardsInHand <= quantity) {

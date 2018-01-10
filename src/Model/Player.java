@@ -11,26 +11,26 @@ import java.util.Collections;
 public class Player {
     private int number;
     public List<Card> hand;
-    private int quant_of_cards;
-    private Boolean if_folded;
+    private int quantOfCards;
+    private Boolean ifFolded;
     private String name;
 
 //setting
 
-    public Player(int number, int quant_of_cards, Boolean if_folded, String name) {
+    public Player(int number, int quantOfCards, Boolean ifFolded, String name) {
         this.number = number;
-        this.quant_of_cards = quant_of_cards;
-        this.if_folded = if_folded;
+        this.quantOfCards = quantOfCards;
+        this.ifFolded = ifFolded;
         this.name = name;
         this.hand = new LinkedList<>();
     }
 
-    public int getQuant_of_cards() {
-        return quant_of_cards;
+    public int getQuantOfCards() {
+        return quantOfCards;
     }
 
-    public void setQuant_of_cards(int quant_of_cards) {
-        this.quant_of_cards = quant_of_cards;
+    public void setQuantOfCards(int quantOfCards) {
+        this.quantOfCards = quantOfCards;
     }
 
     public int getNumber() {
@@ -42,11 +42,11 @@ public class Player {
     }
 
     public Boolean getIfFolded() {
-        return if_folded;
+        return ifFolded;
     }
 
-    public void setIfFolded(Boolean if_folded) {
-        this.if_folded = if_folded;
+    public void setIfFolded(Boolean ifFolded) {
+        this.ifFolded = ifFolded;
     }
 
     public Card getHand(int i) {
@@ -70,30 +70,30 @@ public class Player {
 
     public void draw(Card card) {
         hand.add(card);
-        quant_of_cards += 1;
+        quantOfCards += 1;
     }
 
     public Card ordinaryMove() {
-        int card_from_the_hand = Human.askWhatCard(this);
-        if(card_from_the_hand == -1) {
+        int cardFromTheHand = Human.askWhatCard(this);
+        if(cardFromTheHand == -1) {
             return ErrorCard.getError();
         }
-        return hand.get(card_from_the_hand);
+        return hand.get(cardFromTheHand);
     }
 
-    public void playOneCard(Card card_allowed) {
-        hand.remove(card_allowed);
-        quant_of_cards -= 1;
+    public void playOneCard(Card cardAllowed) {
+        hand.remove(cardAllowed);
+        quantOfCards -= 1;
     }
 
     public int multipleMove(Card card) {
         return Human.askHowMany(this, card);
     }
 
-    public void playFewCards(int how_many, Card card) {
-        for (int i = 0; i < how_many; i++) {
+    public void playFewCards(int howMany, Card card) {
+        for (int i = 0; i < howMany; i++) {
             hand.remove(card);
-            quant_of_cards -= 1;
+            quantOfCards -= 1;
         }
     }
 
@@ -120,21 +120,21 @@ public class Player {
     }
 
     public Card getThirdCardToThePair(Card card) {
-        int card_from_the_hand = Human.askForThirdCard(this, card);
-        if(card_from_the_hand == -1) {
+        int cardFromTheHand = Human.askForThirdCard(this, card);
+        if(cardFromTheHand == -1) {
             return ErrorCard.getError();
         }
-        return hand.get(card_from_the_hand);
+        return hand.get(cardFromTheHand);
     }
 
     public int checkHowManyExactCardsInHand(Card card) {
-        int how_many = 0;
-        for (int i = 0; i < this.quant_of_cards; i++) {
+        int howMany = 0;
+        for (int i = 0; i < this.quantOfCards; i++) {
             if (this.getHand(i) == card) {
-                how_many += 1;
+                howMany += 1;
             }
         }
-        return how_many;
+        return howMany;
     }
 
     public Boolean tenColours(Card card) {

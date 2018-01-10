@@ -28,7 +28,7 @@ public class WaranMove extends FunctionalMove{
             Integer rec = P.getSecond();
             Player giver = supervisor.getPlayers(giv);
             Player receiver = supervisor.getPlayers(rec);
-            Integer given = giver.getQuant_of_cards();
+            Integer given = giver.getQuantOfCards();
             supervisor.giveChoosenCards(giver,receiver,(given + 1) / 2);
             stop = Human.askWaranIf();
             if (stop) {
@@ -48,9 +48,9 @@ public class WaranMove extends FunctionalMove{
         player1.hand = player2.hand;
         player2.hand = tmp;
 
-        int tmpQuant = player1.getQuant_of_cards();
-        player1.setQuant_of_cards(player2.getQuant_of_cards());
-        player2.setQuant_of_cards(tmpQuant);
+        int tmpQuant = player1.getQuantOfCards();
+        player1.setQuantOfCards(player2.getQuantOfCards());
+        player2.setQuantOfCards(tmpQuant);
     }
 
     private void displayWaransucc() {
