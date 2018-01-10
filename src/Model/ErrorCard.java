@@ -1,7 +1,7 @@
 package Model;
 
 /**
- * Created by Jędrzej Hodor on 08.01.2018.
+ * Created by Jedrzej Hodor on 08.01.2018.
  */
 
 public class ErrorCard {

@@ -1,9 +1,7 @@
 package Model.FunctionalMove;
 
-import Model.Card;
-import Model.Player;
-import Model.Supervisor;
-import Model.Human;
+import Model.*;
+
 import java.util.List;
 
 /**
@@ -11,7 +9,41 @@ import java.util.List;
  */
 public class WaranMove extends FunctionalMove{
     @Override
-    public void waranTransposition(Player player1, Player player2) {
+    public Boolean waranOnlyTransposion(Supervisor supervisor) {
+        Integer pl1 = Human.askWaranWho(supervisor);
+        Integer pl2 = Human.askWaranWho(supervisor);
+        Player player1 = supervisor.getPlayers(pl1);
+        Player player2 = supervisor.getPlayers(pl2);
+        this.waranTransposition(player1, player2);
+        this.displayWaransucc();
+        return true;
+    }
+
+    @Override
+    public Boolean waranPermutation(Player master, Supervisor supervisor) {
+        Boolean stop = true;
+        while (stop) {
+            Pair<Integer,Integer> P = Human.askWaranGivRec(supervisor);
+            Integer giv = P.getFirst();
+            Integer rec = P.getSecond();
+            Player giver = supervisor.getPlayers(giv);
+            Player receiver = supervisor.getPlayers(rec);
+            Integer given = giver.getQuant_of_cards();
+            supervisor.giveChoosenCards(giver,receiver,(given + 1) / 2);
+            stop = Human.askWaranIf();
+            if (stop) {
+                Integer plr1 = Human.askWaranWho(supervisor);
+                Integer plr2 = Human.askWaranWho(supervisor);
+                Player player1 = supervisor.getPlayers(plr1);
+                Player player2 = supervisor.getPlayers(plr2);
+                this.waranTransposition(player1, player2);
+                this.displayWaransucc();
+            }
+        }
+        return true;
+    }
+
+    private void waranTransposition(Player player1, Player player2) {
         List<Card> tmp = player1.hand;
         player1.hand = player2.hand;
         player2.hand = tmp;
@@ -21,20 +53,7 @@ public class WaranMove extends FunctionalMove{
         player2.setQuant_of_cards(tmpQuant);
     }
 
-    @Override
-    public void waranPermutation(Player master, Player giver, Player receiver, Supervisor supervisor) {
-        Boolean stop = true;
-        while (stop) {
-            Integer given = giver.getQuant_of_cards();
-            supervisor.giveCards(giver,receiver,given);
-            stop = Human.askWaranIf();
-            if (stop) {
-                Integer plr1 = Human.askWaranWho(supervisor);
-                Integer plr2 = Human.askWaranWho(supervisor);
-                Player player1 = supervisor.getPlayers(plr1);
-                Player player2 = supervisor.getPlayers(plr2);
-                this.waranTransposition(player1, player2);
-            }
-        }
+    private void displayWaransucc() {
+        System.out.println("Transposition successful");
     }
 }

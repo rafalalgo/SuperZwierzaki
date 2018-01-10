@@ -1,6 +1,9 @@
 package Model;
 
 import Database.SetOfCards;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
+import java.util.LinkedList;
 
 /**
  * Created by Jędrzej Hodor on 05.01.2018.
@@ -48,6 +51,29 @@ public class Human {
             get = GetFromHuman.getString();
         }
         return get;
+    }
+
+    private static LinkedList<Integer> checkingChooseCards(Integer cardsInHand, Integer quantity) {
+        LinkedList<Integer> cards = new LinkedList<>();
+        Boolean stop;
+
+        while(true) {
+            cards.clear();
+            stop = false;
+            for(int i = 0; i < quantity && !stop; i++) {
+                Integer get = GetFromHuman.getInt();
+                if(get == -1) {
+                    stop = true;
+                    Human.goBack();
+                } else if(!check1(get, 0, cardsInHand) || cards.contains(get)) {
+                    stop = true;
+                    Human.error();
+                }
+            }
+            if(!stop) {
+                return cards;
+            }
+        }
     }
 
 // display
@@ -145,8 +171,31 @@ public class Human {
     }
 
     private static void displayWaranWho(Integer q) {
-        System.out.println("Choose player");
+        System.out.println("Choose a player to do a transposition");
+        System.out.println("Choose a number from 0 to " + (q-1));
+    }
+
+    private static void displayCardsSituation(Supervisor supervisor) {
+        System.out.println("Cards situation:");
+        for(int i = 0; i < supervisor.getPlayersQuant(); i++) {
+            Player player = supervisor.getPlayers(i);
+            System.out.println("Player number " + i + " named " + player.getName()
+                    + " has " + player.getQuant_of_cards() + " cards.");
+        }
+    }
+
+    private static void displayWaranGiver(Integer q) {
+        System.out.println("Choose player who will give half of his cards to another");
         System.out.println("Choose number from 0 to " + (q-1));
+    }
+
+    private static void displayWaranReceiver(Integer q) {
+        System.out.println("Choose player who will receive those cards");
+    }
+
+    private static void displayCardsToChoose(Integer quantity) {
+        System.out.println("Choose numbers of cards");
+        System.out.println("Choose " + quantity + " cards.");
     }
 
 // ask
@@ -218,8 +267,37 @@ public class Human {
 
     public static Integer askWaranWho(Supervisor supervisor) {
         Integer q = supervisor.getPlayersQuant();
+
+        Human.displayCardsSituation(supervisor);
         Human.displayWaranWho(q);
         return checking(0, q);
     }
+
+    public static Pair<Integer, Integer> askWaranGivRec(Supervisor supervisor) {
+        Integer q = supervisor.getPlayersQuant();
+
+        Human.displayCardsSituation(supervisor);
+        Human.displayWaranGiver(q);
+        Integer p1 = checking(0, q);
+        Human.displayWaranReceiver(q);
+        Integer p2 = checking(0, q);
+        return new Pair<>(p1,p2);
+    }
+
+    public static LinkedList<Integer> askWhatCardsFromHand(Player player, Integer quantity) {
+        Integer cardsInHand = player.getQuant_of_cards();
+
+        displayCardsToChoose(quantity);
+        if(cardsInHand <= quantity) {
+            LinkedList<Integer> cards = new LinkedList<>();
+            for(Integer i = 0; i < cardsInHand; i++) {
+                cards.add(i);
+            }
+            return cards;
+        } else {
+            return Human.checkingChooseCards(cardsInHand, quantity);
+        }
+    }
+
 
 }

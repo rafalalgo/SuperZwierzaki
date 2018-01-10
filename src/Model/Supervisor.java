@@ -72,6 +72,13 @@ public class Supervisor {
         hip.remove(0);
     }
 
+    public void setPlayersWioslak(List<Player> newq) {
+        players.clear();
+        for(int i = 0; i < playersQuant; i++) {
+            players.add(newq.get(i));
+        }
+    }
+
 
 // game
 
@@ -189,7 +196,7 @@ public class Supervisor {
 
         int what_move = player.whatForcedMove(specialPoints.whatKindOfForced());
         int what_kind = 0;
-        if (what_move == 2) {
+        if (what_move == 2 || what_move == 3) {
             what_kind = player.whatKindOfForcedMove();
         }
 
@@ -366,11 +373,22 @@ public class Supervisor {
 
 // special
 
-    public void giveCards(Player giver, Player receiver, int quant_given) {
+    public void giveCards(Player giver, Player receiver, int quantGiven) {
         giver.shuffleHand();
-        for (int i = 0; i < quant_given; i++) {
+        for (int i = 0; i < quantGiven; i++) {
             receiver.draw(giver.showACard(0));
             giver.playOneCard(giver.showACard(0));
+        }
+    }
+
+    public void giveChoosenCards(Player giver, Player receiver, int quantGiven) {
+        LinkedList<Integer> numbers = new LinkedList<>();
+        numbers = Human.askWhatCardsFromHand(giver, quantGiven);
+
+        for (int i = 0; i < quantGiven; i++) {
+            Integer curr = numbers.get(i);
+            receiver.draw(giver.showACard(curr - i));
+            giver.playOneCard(giver.showACard(curr - i));
         }
     }
 }
