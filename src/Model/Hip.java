@@ -11,7 +11,8 @@ import java.util.List;
 public class Hip {
     private List<Card> hip;
 
-    public Hip() {}
+    public Hip() {
+    }
 
     public void setDeck() {
         SetOfCards setOfCards = new SetOfCards();

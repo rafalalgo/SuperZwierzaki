@@ -15,7 +15,7 @@ public class JelenMove extends FunctionalMove {
     @Override
     public Boolean jelenMove(Situation situation) {
         Colour colour = Human.askJelen();
-        if(colour != Colour.ERROR) {
+        if (colour != Colour.ERROR) {
             situation.setGivenColour(colour);
             return true;
         }

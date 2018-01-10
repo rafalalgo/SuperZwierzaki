@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Rafal Byczek on 08.01.2018.
  */
-public class WaranMove extends FunctionalMove{
+public class WaranMove extends FunctionalMove {
     @Override
     public Boolean waranOnlyTransposion(Supervisor supervisor) {
         Integer pl1 = Human.askWaranWho(supervisor);
@@ -23,13 +23,13 @@ public class WaranMove extends FunctionalMove{
     public Boolean waranPermutation(Player master, Supervisor supervisor) {
         Boolean stop = true;
         while (stop) {
-            Pair<Integer,Integer> P = Human.askWaranGivRec(supervisor);
+            Pair<Integer, Integer> P = Human.askWaranGivRec(supervisor);
             Integer giv = P.getFirst();
             Integer rec = P.getSecond();
             Player giver = supervisor.getPlayers(giv);
             Player receiver = supervisor.getPlayers(rec);
             Integer given = giver.getQuantOfCards();
-            supervisor.giveChoosenCards(giver,receiver,(given + 1) / 2);
+            supervisor.giveChoosenCards(giver, receiver, (given + 1) / 2);
             stop = Human.askWaranIf();
             if (stop) {
                 Integer plr1 = Human.askWaranWho(supervisor);

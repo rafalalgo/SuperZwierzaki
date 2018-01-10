@@ -1,7 +1,5 @@
 package Model;
 
-import com.sun.xml.internal.stream.events.EndElementEvent;
-
 /**
  * Created by Jedrzej Hodor on 08.01.2018.
  */

@@ -1,7 +1,7 @@
 package Model.FunctionalMove;
 
-import Model.Supervisor;
 import Model.Player;
+import Model.Supervisor;
 
 import java.util.LinkedList;
 
@@ -20,7 +20,7 @@ public class WioslakMove extends FunctionalMove {
         LinkedList<Player> queue = new LinkedList<>();
         Integer start = trig.getNumber();
         Integer quantity = supervisor.getPlayersQuant();
-        for(int i = 0; i < quantity; i++) {
+        for (int i = 0; i < quantity; i++) {
             queue.addFirst(supervisor.getPlayers((i + start) % quantity));
         }
         supervisor.setWhoseMove(0);

@@ -1,8 +1,5 @@
 package Model;
 
-import Database.SetOfCards;
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 import java.util.LinkedList;
 
 /**
@@ -23,7 +20,7 @@ public class Human {
         int dec = 0;
         while (notYet) {
             dec = GetFromHuman.getInt();
-            if(dec == -1) {
+            if (dec == -1) {
                 Human.goBack();
                 return -1;
             }
@@ -57,20 +54,20 @@ public class Human {
         LinkedList<Integer> cards = new LinkedList<>();
         Boolean stop;
 
-        while(true) {
+        while (true) {
             cards.clear();
             stop = false;
-            for(int i = 0; i < quantity && !stop; i++) {
+            for (int i = 0; i < quantity && !stop; i++) {
                 Integer get = GetFromHuman.getInt();
-                if(get == -1) {
+                if (get == -1) {
                     stop = true;
                     Human.goBack();
-                } else if(!check1(get, 0, cardsInHand) || cards.contains(get)) {
+                } else if (!check1(get, 0, cardsInHand) || cards.contains(get)) {
                     stop = true;
                     Human.error();
                 }
             }
-            if(!stop) {
+            if (!stop) {
                 return cards;
             }
         }
@@ -172,12 +169,12 @@ public class Human {
 
     private static void displayWaranWho(Integer q) {
         System.out.println("Choose a player to do a transposition");
-        System.out.println("Choose a number from 0 to " + (q-1));
+        System.out.println("Choose a number from 0 to " + (q - 1));
     }
 
     private static void displayCardsSituation(Supervisor supervisor) {
         System.out.println("Cards situation:");
-        for(int i = 0; i < supervisor.getPlayersQuant(); i++) {
+        for (int i = 0; i < supervisor.getPlayersQuant(); i++) {
             Player player = supervisor.getPlayers(i);
             System.out.println("Player number " + i + " named " + player.getName()
                     + " has " + player.getQuantOfCards() + " cards.");
@@ -186,7 +183,7 @@ public class Human {
 
     private static void displayWaranGiver(Integer q) {
         System.out.println("Choose player who will give half of his cards to another");
-        System.out.println("Choose number from 0 to " + (q-1));
+        System.out.println("Choose number from 0 to " + (q - 1));
     }
 
     private static void displayWaranReceiver(Integer q) {
@@ -244,7 +241,7 @@ public class Human {
 
     public static Integer askForTenColours(Player player) {
         Human.displayTenColours();
-        return checking(0,player.getQuantOfCards() - 1);
+        return checking(0, player.getQuantOfCards() - 1);
     }
 
     public static Colour askJelen() {
@@ -256,7 +253,7 @@ public class Human {
     public static Boolean askWaranIf() {
         Human.displayWaranIf();
         Integer ifT = GetFromHuman.getInt();
-        switch (ifT){
+        switch (ifT) {
             case 0:
                 return false;
             case 1:
@@ -281,16 +278,16 @@ public class Human {
         Integer p1 = checking(0, q);
         Human.displayWaranReceiver(q);
         Integer p2 = checking(0, q);
-        return new Pair<>(p1,p2);
+        return new Pair<>(p1, p2);
     }
 
     public static LinkedList<Integer> askWhatCardsFromHand(Player player, Integer quantity) {
         Integer cardsInHand = player.getQuantOfCards();
 
         displayCardsToChoose(quantity);
-        if(cardsInHand <= quantity) {
+        if (cardsInHand <= quantity) {
             LinkedList<Integer> cards = new LinkedList<>();
-            for(Integer i = 0; i < cardsInHand; i++) {
+            for (Integer i = 0; i < cardsInHand; i++) {
                 cards.add(i);
             }
             return cards;

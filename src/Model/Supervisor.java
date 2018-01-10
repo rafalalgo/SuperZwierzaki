@@ -43,20 +43,20 @@ public class Supervisor {
         return whoseMove;
     }
 
-    public int getPlayersQuant() {
-        return playersQuant;
-    }
-
-    public Player getPlayers(int i) {
-        return players.get(i);
-    }
-
     public void setWhoseMove(int whoseMove) {
         this.whoseMove = whoseMove;
     }
 
+    public int getPlayersQuant() {
+        return playersQuant;
+    }
+
     public void setPlayersQuant(int playersQuant) {
         this.playersQuant = playersQuant;
+    }
+
+    public Player getPlayers(int i) {
+        return players.get(i);
     }
 
     private void setPlayers(int playersQuant) {
@@ -74,7 +74,7 @@ public class Supervisor {
 
     public void setPlayersWioslak(List<Player> newq) {
         players.clear();
-        for(int i = 0; i < playersQuant; i++) {
+        for (int i = 0; i < playersQuant; i++) {
             players.add(newq.get(i));
         }
     }
@@ -325,7 +325,7 @@ public class Supervisor {
         int howMany = player.multipleMove(plCard);
         if (howMany == 2) {
             Card extraCard = player.getThirdCardToThePair(plCard);
-            if(extraCard == ErrorCard.getError()) {
+            if (extraCard == ErrorCard.getError()) {
                 return false;
             }
             player.playOneCard(extraCard);
@@ -338,7 +338,7 @@ public class Supervisor {
         } else if (howMany == 1) {
             return player.tenColours(plCard);
         }
-        if(ifSuccesfull && howMany != 1) {
+        if (ifSuccesfull && howMany != 1) {
             player.playFewCards(howMany, plCard);
             newCardOnTheHip(plCard);
             // Wykonanie funkcji odp ilość razy.

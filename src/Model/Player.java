@@ -1,16 +1,16 @@
 package Model;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Collections;
 
 /**
  * Created by Jędrzej Hodor on 01.01.2018.
  */
 
 public class Player {
-    private int number;
     public List<Card> hand;
+    private int number;
     private int quantOfCards;
     private Boolean ifFolded;
     private String name;
@@ -53,12 +53,12 @@ public class Player {
         return hand.get(i);
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 
@@ -75,7 +75,7 @@ public class Player {
 
     public Card ordinaryMove() {
         int cardFromTheHand = Human.askWhatCard(this);
-        if(cardFromTheHand == -1) {
+        if (cardFromTheHand == -1) {
             return ErrorCard.getError();
         }
         return hand.get(cardFromTheHand);
@@ -121,7 +121,7 @@ public class Player {
 
     public Card getThirdCardToThePair(Card card) {
         int cardFromTheHand = Human.askForThirdCard(this, card);
-        if(cardFromTheHand == -1) {
+        if (cardFromTheHand == -1) {
             return ErrorCard.getError();
         }
         return hand.get(cardFromTheHand);

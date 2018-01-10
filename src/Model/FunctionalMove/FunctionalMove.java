@@ -1,6 +1,9 @@
 package Model.FunctionalMove;
 
-import Model.*;
+import Model.Player;
+import Model.Situation;
+import Model.SpecialPoints;
+import Model.Supervisor;
 
 /**
  * Created by Rafal Byczek on 08.01.2018.
@@ -30,7 +33,6 @@ public class FunctionalMove {
     public Boolean orkaMove(SpecialPoints specialPoints, Situation situation) {
         return null;
     }
-
 
 
     public void mangustaMove(Supervisor supervisor) {

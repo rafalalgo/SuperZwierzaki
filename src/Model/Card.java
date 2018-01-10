@@ -20,20 +20,20 @@ public class Card {
         this.type = type;
     }
 
-    public Type getType() {
-        return this.type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }
-
     public Card(int number, String name, Colour colour, Type type, Function function) {
         this.number = number;
         this.name = name;
         this.colour = colour;
         this.type = type;
         this.function = function;
+    }
+
+    public Type getType() {
+        return this.type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public int getNumber() {
