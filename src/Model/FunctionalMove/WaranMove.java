@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class WaranMove extends FunctionalMove {
     @Override
-    public Boolean waranOnlyTransposion(Supervisor supervisor) {
+    public Boolean warOnlyTransposion(Supervisor supervisor) {
         Integer pl1 = Human.askWaranWho(supervisor);
         Integer pl2 = Human.askWaranWho(supervisor);
         Player player1 = supervisor.getPlayers(pl1);
@@ -20,7 +20,7 @@ public class WaranMove extends FunctionalMove {
     }
 
     @Override
-    public Boolean waranPermutation(Player master, Supervisor supervisor) {
+    public Boolean warPermutation(Player master, Supervisor supervisor) {
         Boolean stop = true;
         while (stop) {
             Pair<Integer, Integer> P = Human.askWaranGivRec(supervisor);

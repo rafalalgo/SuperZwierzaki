@@ -17,7 +17,7 @@ public class Preparation {
     }
 
     public Player setPlayer(int i) {
-        Player player = new Player(0, 0, false, "");
+        Player player = new Player(0, 0, 0, false, "");
         player.setNumber(i);
         this.askForName();
         player.setName(GetFromHuman.getString());

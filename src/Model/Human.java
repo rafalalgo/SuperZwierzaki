@@ -195,6 +195,31 @@ public class Human {
         System.out.println("Choose " + quantity + " cards.");
     }
 
+    private static void displayDemandCard(Player player) {
+        Human.displayHand(player);
+        System.out.println("Choose a number of a card");
+        System.out.println("But not an ordinal number in your hand!");
+        System.out.println("It should be card's number displayed after an ordinal number.");
+        System.out.println("If you remember, you can choose card which isn't in your hand.");
+    }
+
+    private static void displayWhoGiveCards(Player player, Integer howMany, Supervisor supervisor) {
+        System.out.println("You are " + player.getName() + " - player number " + player.getNumber());
+        System.out.println("Choose one of players, who you want to give " + howMany + " cards.");
+        System.out.println("Choose number from  0 to " + supervisor.getPlayersQuant());
+        System.out.println("Be aware, that you are able to choose yourself");
+    }
+
+    private static void displayCyrDzi(Player curr, Player winner) {
+        System.out.println("You are: " + curr.getName());
+        System.out.println("Do you want to prevent " + winner.getName() + "'s action?");
+        System.out.println("Type 1 for yes, 0 for no");
+    }
+
+    public static void displayCyrDziWhich() {
+        System.out.println("Choose Cyraczeka or Dzieciol from your hand");
+    }
+
 // ask
 
     public static int askWhatMove() {
@@ -296,5 +321,29 @@ public class Human {
         }
     }
 
+    public static Integer askDemandedCard (Player player) {
+        Human.displayDemandCard(player);
+        return checking(1, 116);
+    }
+
+    public static Player askWhoGiveCardsTo (Player player, Integer howMany, Supervisor supervisor) {
+        Human.displayCardsSituation(supervisor);
+        Human.displayWhoGiveCards(player, howMany, supervisor);
+
+        Integer plr = checking(0, supervisor.getPlayersQuant());
+        return supervisor.getPlayers(plr);
+    }
+
+    public static Boolean askCyrDzi (Player curr, Player winner) {
+        Human. displayCyrDzi(curr, winner);
+        Integer get = checking(0,1);
+        return get == 1;
+    }
+
+    public static Integer askCyrDziWhich (Player curr) {
+        Human.displayHand(curr);
+        Human.displayCyrDziWhich();
+        return checking(0, curr.getQuantOfCards());
+    }
 
 }

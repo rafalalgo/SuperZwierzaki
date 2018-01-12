@@ -93,11 +93,12 @@ public class Duel {
         return false;
     }
 
-    public int duel(Function function, Player triggeringPlayer) {
+    public Pair<Player, Integer> duel(Function function, Player triggeringPlayer) {
         int index = triggeringPlayer.getNumber();
         Boolean end = false;
         Player winner = null;
         Boolean ifWinner = false;
+        Integer duelFinal = 0;
 
         while (!end) {
             Player currentPlayer = supervisor.getPlayers(index);
@@ -114,13 +115,14 @@ public class Duel {
             index = (index + 1) % this.supervisor.getPlayersQuant();
         }
         this.supervisor.setWhoseMove((index + 1) % this.supervisor.getPlayersQuant());
+        duelFinal = this.duel;
         this.resetDuel();
         new Supervisor().newCardOnTheHip(this.duelCard);
 
         if (ifWinner) {
-            return winner.getNumber();
+            return new Pair<>(winner,duelFinal) ;
         } else {
-            return -1;
+            return new Pair<>(null, -1);
         }
     } // Zwraca winnera, jeśli został przerwany to -1
 

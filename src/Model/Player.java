@@ -3,6 +3,8 @@ package Model;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import Model.FunctionalMove.FunctionalMove;
+import Model.FunctionalMove.TenMove;
 
 /**
  * Created by Jędrzej Hodor on 01.01.2018.
@@ -12,17 +14,20 @@ public class Player {
     public List<Card> hand;
     private int number;
     private int quantOfCards;
+    private int greenPrivatePoints;
     private Boolean ifFolded;
     private String name;
 
 //setting
 
-    public Player(int number, int quantOfCards, Boolean ifFolded, String name) {
+    public Player(int number, int quantOfCards, int greenPrivatePoints, Boolean ifFolded, String name) {
         this.number = number;
         this.quantOfCards = quantOfCards;
+        this.greenPrivatePoints = greenPrivatePoints;
         this.ifFolded = ifFolded;
         this.name = name;
         this.hand = new LinkedList<>();
+
     }
 
     public int getQuantOfCards() {
@@ -59,6 +64,14 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getGreenPrivatePoints() {
+        return greenPrivatePoints;
+    }
+
+    public void setGreenPrivatePoints(int greenPrivatePoints) {
+        this.greenPrivatePoints = greenPrivatePoints;
     }
 
 
@@ -127,6 +140,17 @@ public class Player {
         return hand.get(cardFromTheHand);
     }
 
+    public int checkIfPlayerHasAFunction(Function fun1, Function fun2) {
+        Integer howMany = 0;
+        for (int i = 0; i < this.quantOfCards; i++) {
+            Card card = this.getHand(i);
+            if (card.getFunction() == fun1 || card.getFunction() == fun2) {
+                howMany += 1;
+            }
+        }
+        return howMany;
+    }
+
     public int checkHowManyExactCardsInHand(Card card) {
         int howMany = 0;
         for (int i = 0; i < this.quantOfCards; i++) {
@@ -137,7 +161,7 @@ public class Player {
         return howMany;
     }
 
-    public Boolean tenColours(Card card) {
+    public Boolean tenColours(Card card, Supervisor supervisor) {
         List<Card> played = new LinkedList<>();
         played.add(card);
         for (int i = 0; i < 9; i++) {
@@ -146,17 +170,21 @@ public class Player {
                 return false;
             } else {
                 Card next = this.getHand(got);
-                if (this.ifColourNotInTheList(played, next)) {
+                if (this.ifColourNotInTheList(played, next) && next.getType() != Type.all) {
                     played.add(next);
                 } else {
                     return false;
                 }
             }
         }
+        supervisor.newCardOnTheHip(played.get(9));
         for (int i = 0; i < 10; i++) {
             this.playOneCard(played.get(i));
         }
-        new Supervisor().newCardOnTheHip(played.get(9));
+        if(!supervisor.checkCyrDzi(this)) {
+            TenMove ten = new TenMove();
+            ten.tenMove(this, supervisor, 1);
+        }
         return true;
     }
 
@@ -170,6 +198,27 @@ public class Player {
         }
         return true;
     }
+
+    public Boolean playCyrDzi(Supervisor supervisor) {
+        Integer nr = Human.askCyrDziWhich(this);
+        if(nr == -1) {
+            return false;
+        } else {
+            Card card = hand.get(nr);
+            return supervisor.ordinaryMoveSpecial(this, card);
+        }
+    }
+
+    public Card findCyrDzi() {
+        for (int i = 0; i < this.quantOfCards; i++) {
+            Card card = this.getHand(i);
+            if (card.getFunction() == Function.Cyr || card.getFunction() == Function.Dzi) {
+                return card;
+            }
+        }
+        return null;
+    }
+
 }
 
 

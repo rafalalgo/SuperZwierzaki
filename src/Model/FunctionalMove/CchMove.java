@@ -7,13 +7,13 @@ import Model.Situation;
 /**
  * Created by Rafal Byczek on 08.01.2018.
  */
-public class JelenMove extends FunctionalMove {
+public class CchMove extends FunctionalMove {
 
-    public JelenMove() {
+    public CchMove() {
     }
 
     @Override
-    public Boolean jelenMove(Situation situation) {
+    public Boolean cchMove(Situation situation) {
         Colour colour = Human.askJelen();
         if (colour != Colour.ERROR) {
             situation.setGivenColour(colour);

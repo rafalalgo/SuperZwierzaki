@@ -3,6 +3,8 @@ package Model;
 import java.util.LinkedList;
 import java.util.List;
 
+import Model.FunctionalMove.*;
+
 /**
  * Created by Jędrzej Hodor on 01.01.2018.
  * Edited by Rafal Byczek on 08.01.2018.
@@ -15,7 +17,7 @@ public class Supervisor {
     private Situation situation;
     private Preparation preparation;
     private Card demandedCard;
-    private int playerWhoHasDemanded;
+    private Player playerWhoHasDemanded;
     private int playersQuant;
     private int whoseMove;
 
@@ -31,7 +33,7 @@ public class Supervisor {
         }
     }
 
-    public Supervisor(int whoseMove, int playersQuant, Card demandedCard, int playerWhoHasDemanded, Card error) {
+    public Supervisor(int whoseMove, int playersQuant, Card demandedCard, Player playerWhoHasDemanded, Card error) {
         this();
         this.whoseMove = whoseMove;
         this.playersQuant = playersQuant;
@@ -79,6 +81,14 @@ public class Supervisor {
         }
     }
 
+    public void setPlayerWhoHasDemanded(Player playerWhoHasDemanded) {
+        this.playerWhoHasDemanded = playerWhoHasDemanded;
+    }
+
+    public void setDemandedCard(Card demandedCard) {
+        this.demandedCard = demandedCard;
+    }
+
 
 // game
 
@@ -103,8 +113,10 @@ public class Supervisor {
                 Human.error();
             } else {
                 if (this.ifWinner()) {
-                    winner = this.whoWon();
-                    noWinner = false;
+                    if(!this.checkCyrDzi(winner)) {
+                        winner = this.whoWon();
+                        noWinner = false;
+                    }
                 }
                 this.nextTurn();
             }
@@ -113,8 +125,12 @@ public class Supervisor {
     }
 
     private Boolean playTurn() {
-        System.out.println(situation);
         Player player = players.get(whoseMove);
+
+        if(this.checkIfEmptyMove(player)) {
+            return true;
+        }
+        System.out.println(situation);
         int type = player.whatMove();
         if (specialPoints.checkIfForced()) {
             return this.forcedMove(player);
@@ -232,7 +248,7 @@ public class Supervisor {
             }
         } else if (specialPoints.getGreen() != 0) {
             if (whatMove == 1) {
-                // Funkcja tracenia kolejek.
+                player.setGreenPrivatePoints(specialPoints.getGreen());
                 specialPoints.setGreen(0);
                 return true;
             } else if (whatMove == 2) {
@@ -260,9 +276,17 @@ public class Supervisor {
                 }
             }
 
-            if (whoseMove == playerWhoHasDemanded) {
+            if (player == playerWhoHasDemanded) {
                 specialPoints.setDemand(0);
             }
+        }
+        return false;
+    }
+
+    private Boolean checkIfEmptyMove(Player player) {
+        if(player.getGreenPrivatePoints() != 0) {
+            player.setGreenPrivatePoints(player.getGreenPrivatePoints() - 1);
+            return true;
         }
         return false;
     }
@@ -321,24 +345,32 @@ public class Supervisor {
     //multiple
 
     private Boolean helpMove(Player player, Card plCard) {
-        Boolean ifSuccesfull = false;
+        Boolean ifS = false;
         int howMany = player.multipleMove(plCard);
         if (howMany == 2) {
-            Card extraCard = player.getThirdCardToThePair(plCard);
-            if (extraCard == ErrorCard.getError()) {
-                return false;
+            if(plCard.getFunction() != Function.War) {
+                Card extraCard = player.getThirdCardToThePair(plCard);
+                if (extraCard == ErrorCard.getError()) {
+                    return false;
+                }
+                player.playOneCard(extraCard);
+            } else {
+                WaranMove war = new WaranMove();
+                war.warPermutation(player, this);
             }
-            player.playOneCard(extraCard);
         } else if (howMany == 3) {
-            // Play Polak.
+            PolMove pol = new PolMove();
+            ifS = pol.polMove(player, this);
         } else if (howMany == 4) {
-            // Play Kazuar.
+            KazMove kaz = new KazMove();
+            ifS = kaz.kazMove(player, this);
         } else if (howMany == 5) {
-            // cośtam
+            TenMove ten = new TenMove();
+            ifS = ten.tenMove(player, this, 1);
         } else if (howMany == 1) {
-            return player.tenColours(plCard);
+            return player.tenColours(plCard, this);
         }
-        if (ifSuccesfull && howMany != 1) {
+        if (ifS) {
             player.playFewCards(howMany, plCard);
             newCardOnTheHip(plCard);
             // Wykonanie funkcji odp ilość razy.
@@ -353,7 +385,7 @@ public class Supervisor {
             return this.helpMove(player, plCard);
         }
         return false;
-    } // 2 warany
+    }
 
     private Boolean multipleDemandedFunction(Player player, Function function) {
         Card plCard = player.ordinaryMove();
@@ -382,13 +414,50 @@ public class Supervisor {
     }
 
     public void giveChoosenCards(Player giver, Player receiver, int quantGiven) {
-        LinkedList<Integer> numbers = new LinkedList<>();
-        numbers = Human.askWhatCardsFromHand(giver, quantGiven);
+        LinkedList<Integer> numbers = Human.askWhatCardsFromHand(giver, quantGiven);
 
         for (int i = 0; i < quantGiven; i++) {
             Integer curr = numbers.get(i);
             receiver.draw(giver.showACard(curr - i));
             giver.playOneCard(giver.showACard(curr - i));
         }
+    }
+
+    public void removeChoosenCards(Player giver, int quantGiven) {
+        LinkedList<Integer> numbers = Human.askWhatCardsFromHand(giver, quantGiven);
+
+        for (int i = 0; i < quantGiven; i++) {
+            Integer curr = numbers.get(i);
+            giver.playOneCard(giver.showACard(curr - i));
+        }
+    }
+
+    public Boolean checkCyrDzi(Player winner) {
+        Integer HowManyCyrDzi;
+        Player curr;
+        Boolean stop = false;
+        for(int i = 0; i < playersQuant && !stop; i++) {
+            curr = this.getPlayers((i + whoseMove) % playersQuant);
+            if(curr != winner) {
+                HowManyCyrDzi = curr.checkIfPlayerHasAFunction(Function.Dzi, Function.Cyr);
+                if(HowManyCyrDzi != 0) {
+                    if(Human.askCyrDzi(curr, winner)) {
+                        if(HowManyCyrDzi == 1) {
+                            stop = ordinaryMoveSpecial(curr, curr.findCyrDzi());
+                        } else {
+                            stop =  curr.playCyrDzi(this);
+                        }
+                    }
+                }
+            }
+        }
+        return stop;
+    }
+
+    public Boolean ordinaryMoveSpecial(Player player, Card card) {
+        player.playOneCard(card);
+        newCardOnTheHip(card);
+        //wykonanie funkcji
+        return true;
     }
 }

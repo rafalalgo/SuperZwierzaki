@@ -7,13 +7,13 @@ import Model.SpecialPoints;
  * Created by Jedrzej Hodor on 10.01.2018.
  */
 
-public class OrkaMove extends FunctionalMove {
+public class OrcMove extends FunctionalMove {
 
     @Override
-    public Boolean orkaMove(SpecialPoints specialPoints, Situation situation) {
+    public Boolean orcMove(SpecialPoints specialPoints, Situation situation) {
         specialPoints.setOrc(specialPoints.getOrc() + 3);
-        JelenMove chg = new JelenMove();
-        chg.jelenMove(situation);
+        CchMove chg = new CchMove();
+        chg.cchMove(situation);
         return true;
     }
 }
