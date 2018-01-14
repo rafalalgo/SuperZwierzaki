@@ -295,7 +295,8 @@ public class Supervisor {
 
     private Boolean checkIfOrdinaryAllowed(Card card) {
         return (card.getColour() == situation.getGivenColour() || card.getType() == situation.getGivenType()
-                || card.getColour() == Colour.ALL || card.getType() == Type.all);
+                || card.getColour() == Colour.ALL || card.getType() == Type.all ||
+                situation.getGivenColour() == Colour.ALL || situation.getGivenType() == Type.all);
     }
 
     private Boolean ordinaryMove(Player player) {

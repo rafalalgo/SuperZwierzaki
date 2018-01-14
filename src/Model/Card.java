@@ -96,7 +96,11 @@ public class Card {
                 " }";
     }
 
+    private String toStringAleTakieZebySieDaloCosZobaczyc() {
+        return colour + ", " + type + ", " + name + ", " + number + ", " + function + ".";
+    }
+
     public void displayCard() {
-        System.out.println(this.toString());
+        System.out.println(this.toStringAleTakieZebySieDaloCosZobaczyc());
     }
 }
