@@ -162,23 +162,35 @@ public class Player {
     }
 
     public Boolean tenColours(Card card, Supervisor supervisor) {
+        if(card.getColour() == Colour.ALL) {
+            return false;
+        }
+
+        Boolean checker = false;
         List<Card> played = new LinkedList<>();
         played.add(card);
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 8; i++) {
+            this.displayList(played);
             Integer got = Human.askForTenColours(this);
             if (got == -1) {
                 return false;
             } else {
                 Card next = this.getHand(got);
-                if (this.ifColourNotInTheList(played, next) && next.getType() != Type.all) {
+                if (this.ifColourNotOnTheList(played, next) && next.getType() != Type.all) {
                     played.add(next);
+                    checker = false;
                 } else {
-                    return false;
+                    if(!checker) {
+                        checker = true;
+                        i--;
+                        Human.tryAgain();
+                    } else
+                        return false;
                 }
             }
         }
-        supervisor.newCardOnTheHip(played.get(9));
-        for (int i = 0; i < 10; i++) {
+        supervisor.newCardOnTheHip(played.get(8));
+        for (int i = 0; i < 9; i++) {
             this.playOneCard(played.get(i));
         }
         if(!supervisor.checkCyrDzi(this)) {
@@ -188,7 +200,7 @@ public class Player {
         return true;
     }
 
-    private Boolean ifColourNotInTheList(List<Card> list, Card card) {
+    private Boolean ifColourNotOnTheList(List<Card> list, Card card) {
         Colour colour = card.getColour();
         for (int i = 0; i < list.size(); i++) {
             Colour colour2 = (list.get(i)).getColour();
@@ -197,6 +209,15 @@ public class Player {
             }
         }
         return true;
+    }
+
+    private void displayList(List<Card> list) {
+        Integer lng = list.size();
+        System.out.print("Already played:");
+        for(int i = 0; i < lng; i++) {
+            System.out.print(" " + ((list.get(i)).getColour()).toString() );
+        }
+        System.out.println(".");
     }
 
     public Boolean playCyrDzi(Supervisor supervisor) {

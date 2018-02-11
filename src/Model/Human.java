@@ -65,6 +65,8 @@ public class Human {
                 } else if (!check1(get, 0, cardsInHand) || cards.contains(get)) {
                     stop = true;
                     Human.error();
+                } else {
+                    cards.add(get);
                 }
             }
             if (!stop) {
@@ -81,7 +83,7 @@ public class Human {
         System.out.println(name);
     }
 
-    private static void displayHand(Player player) {
+    public static void displayHand(Player player) {
         System.out.println("Your cards:");
         for (int i = 0; i < player.getQuantOfCards(); i++) {
             System.out.print(i + " ");
@@ -206,7 +208,7 @@ public class Human {
     private static void displayWhoGiveCards(Player player, Integer howMany, Supervisor supervisor) {
         System.out.println("You are " + player.getName() + " - player number " + player.getNumber());
         System.out.println("Choose one of players, who you want to give " + howMany + " cards.");
-        System.out.println("Choose number from  0 to " + supervisor.getPlayersQuant());
+        System.out.println("Choose number from  0 to " + (supervisor.getPlayersQuant() - 1));
         System.out.println("Be aware, that you are able to choose yourself");
     }
 
@@ -264,7 +266,7 @@ public class Human {
         return checking(1, 3);
     }
 
-    public static Integer askForTenColours(Player player) {
+    public static int askForTenColours(Player player) {
         Human.displayTenColours();
         return checking(0, player.getQuantOfCards() - 1);
     }
@@ -287,7 +289,7 @@ public class Human {
         return false;
     }
 
-    public static Integer askWaranWho(Supervisor supervisor) {
+    public static int askWaranWho(Supervisor supervisor) {
         Integer q = supervisor.getPlayersQuant();
 
         Human.displayCardsSituation(supervisor);
@@ -321,7 +323,7 @@ public class Human {
         }
     }
 
-    public static Integer askDemandedCard (Player player) {
+    public static int askDemandedCard (Player player) {
         Human.displayDemandCard(player);
         return checking(1, 116);
     }
@@ -340,7 +342,7 @@ public class Human {
         return get == 1;
     }
 
-    public static Integer askCyrDziWhich (Player curr) {
+    public static int askCyrDziWhich (Player curr) {
         Human.displayHand(curr);
         Human.displayCyrDziWhich();
         return checking(0, curr.getQuantOfCards());

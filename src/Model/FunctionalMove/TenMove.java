@@ -19,6 +19,7 @@ public class TenMove extends FunctionalMove {
             howMany = q - oneOrTwo;
         }
         Player receiver = Human.askWhoGiveCardsTo(player, howMany, supervisor);
+        Human.displayHand(player);
         supervisor.giveChoosenCards(player, receiver, howMany);
         return true;
     }

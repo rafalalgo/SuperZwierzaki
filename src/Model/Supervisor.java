@@ -343,7 +343,7 @@ public class Supervisor {
         }
     }
 
-    //multiple
+//multiple
 
     private Boolean helpMove(Player player, Card plCard) {
         Boolean ifS = false;
